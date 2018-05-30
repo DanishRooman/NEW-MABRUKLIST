@@ -12,7 +12,7 @@ using ColidColorlib.Models;
 
 namespace ColidColorlib.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -481,5 +481,12 @@ namespace ColidColorlib.Controllers
             }
         }
         #endregion
+
+
+        public ActionResult Admin()
+        {
+            return View();
+        }
+
     }
 }
