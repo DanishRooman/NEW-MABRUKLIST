@@ -39,6 +39,16 @@ namespace ColidColorlib
                      "~/StyleSheet/animate.css"
                   ));
 
+            //Admin page Css
+
+            bundles.Add(new StyleBundle("~/Content/adminCss").Include(
+                   "~/Content/bootstrap.min.css",
+                   "~/StyleSheet/metisMenu.min.css",
+                   "~/StyleSheet/sb-admin-2.css",
+                   "~/StyleSheet/morris.css",
+                   "~/fonts/font-awesome.min.css"
+                 ));
+
         }
     }
 }
