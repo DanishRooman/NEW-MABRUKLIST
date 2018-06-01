@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColidColorlib", "ColidColorlib\ColidColorlib.csproj", "{49330C8F-7DB7-4BC2-B2A1-18C1BA3DD1B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferObjects", "DataTransferObjects\DataTransferObjects.csproj", "{AE77561B-B96F-4064-AC04-4C902B97037D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{2F225CC2-AAB2-44DB-91E0-16C507BD5236}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{49330C8F-7DB7-4BC2-B2A1-18C1BA3DD1B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49330C8F-7DB7-4BC2-B2A1-18C1BA3DD1B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49330C8F-7DB7-4BC2-B2A1-18C1BA3DD1B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE77561B-B96F-4064-AC04-4C902B97037D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE77561B-B96F-4064-AC04-4C902B97037D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE77561B-B96F-4064-AC04-4C902B97037D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE77561B-B96F-4064-AC04-4C902B97037D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F225CC2-AAB2-44DB-91E0-16C507BD5236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F225CC2-AAB2-44DB-91E0-16C507BD5236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F225CC2-AAB2-44DB-91E0-16C507BD5236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F225CC2-AAB2-44DB-91E0-16C507BD5236}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
