@@ -46,7 +46,8 @@ namespace ColidColorlib
                    "~/StyleSheet/metisMenu.min.css",
                    "~/StyleSheet/sb-admin-2.css",
                    "~/StyleSheet/morris.css",
-                   "~/fonts/font-awesome.min.css"
+                   "~/fonts/font-awesome.min.css",
+                   "~/Content/jquery.toast.min.css"
                  ));
 
         }
