@@ -31,5 +31,6 @@ namespace DataAccessLayer.DBContext
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<mblist_category> mblist_category { get; set; }
+        public virtual DbSet<mblist_type> mblist_type { get; set; }
     }
 }

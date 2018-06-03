@@ -23,21 +23,51 @@ namespace ColidColorlib.Controllers
             return PartialView("AddCategory", category);
         }
 
+        [HttpGet]
+        public ActionResult CategoryListing()
+        {
+            List<CategoryDto> categoryList = new List<CategoryDto>();
+            using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+            {
+                categoryList = dbcontext.mblist_category.AsEnumerable().OrderByDescending(x=>x.cat_key).Select(x => new CategoryDto {
+                    Id = x.cat_key,
+                    Category = x.cat_name
+                }).ToList();
+            };
+            return PartialView("_CategoryListing",categoryList);
+        }
+
         [HttpPost]
         public ActionResult AddOrUpdateCategory(CategoryDto dto)
         {
             try
             {
-                using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                if (ModelState.IsValid)
                 {
-                    mblist_category category = new mblist_category()
+                    using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                     {
-                        cat_name = dto.Category
+                        var data = dbcontext.mblist_category.Where(x => x.cat_name == dto.Category).FirstOrDefault();
+                        if (data != null)
+                        {
+                            return Json(new { key = false, value = "Category already exist" }, JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                        {
+                            mblist_category category = new mblist_category()
+                            {
+                                cat_name = dto.Category
+                            };
+                            dbcontext.mblist_category.Add(category);
+                            dbcontext.SaveChanges();
+                            return Json(new { key = true, value = "Category added successfully" }, JsonRequestBehavior.AllowGet);
+                        }
+       
                     };
-                    dbcontext.mblist_category.Add(category);
-                    dbcontext.SaveChanges();
-                    return Json(new { key = true, value = "Category added successfully" }, JsonRequestBehavior.AllowGet);
-                };
+                }
+                else
+                {
+                    return Json(new { key = false, value = "Please enter correct data" }, JsonRequestBehavior.AllowGet);
+                }
             }
             catch(Exception ex)
             {

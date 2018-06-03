@@ -15,5 +15,6 @@ namespace DataTransferObjects.Category
         [Required]
         [Display(Name ="Category")]
         public string Category { get; set; }
+       
     }
 }

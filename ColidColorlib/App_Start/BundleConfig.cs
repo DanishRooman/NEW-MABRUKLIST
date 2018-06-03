@@ -50,6 +50,11 @@ namespace ColidColorlib
                    "~/Content/jquery.toast.min.css"
                  ));
 
+            bundles.Add(new StyleBundle("~/Content/Datatable.css").Include(
+                "~/Content/dataTables.bootstrap.min.css",
+                "~/Content/responsive.bootstrap.min.css"
+                ));
+
         }
     }
 }

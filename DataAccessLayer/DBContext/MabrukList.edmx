@@ -73,6 +73,13 @@
           <Property Name="cat_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cat_name" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
+        <EntityType Name="mblist_type">
+          <Key>
+            <PropertyRef Name="type_key" />
+          </Key>
+          <Property Name="type_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_name" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -137,6 +144,7 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_category" EntityType="Self.mblist_category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mblist_type" EntityType="Self.mblist_type" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -165,6 +173,7 @@
           <EntitySet Name="AspNetUserLogins" EntityType="MABRUKLISTModel.AspNetUserLogins" />
           <EntitySet Name="AspNetUsers" EntityType="MABRUKLISTModel.AspNetUsers" />
           <EntitySet Name="mblist_category" EntityType="MABRUKLISTModel.mblist_category" />
+          <EntitySet Name="mblist_type" EntityType="MABRUKLISTModel.mblist_type" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="MABRUKLISTModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -243,6 +252,13 @@
           </Key>
           <Property Name="cat_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cat_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mblist_type">
+          <Key>
+            <PropertyRef Name="type_key" />
+          </Key>
+          <Property Name="type_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="MABRUKLISTModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
@@ -342,6 +358,14 @@
               <MappingFragment StoreEntitySet="mblist_category">
                 <ScalarProperty Name="cat_name" ColumnName="cat_name" />
                 <ScalarProperty Name="cat_key" ColumnName="cat_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mblist_type">
+            <EntityTypeMapping TypeName="MABRUKLISTModel.mblist_type">
+              <MappingFragment StoreEntitySet="mblist_type">
+                <ScalarProperty Name="type_name" ColumnName="type_name" />
+                <ScalarProperty Name="type_key" ColumnName="type_key" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

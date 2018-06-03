@@ -84,6 +84,9 @@
     <Compile Include="DBContext\mblist_category.cs">
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBContext\mblist_type.cs">
+      <DependentUpon>MabrukList.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
