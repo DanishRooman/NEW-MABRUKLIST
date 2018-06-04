@@ -1,0 +1,7 @@
+﻿var mabrukList = function () {
+   
+   
+    return {
+      
+    };
+}();

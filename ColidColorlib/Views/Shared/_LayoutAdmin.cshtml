@@ -9,9 +9,11 @@
 
     <title>@ViewBag.Title -Admin Portal</title>
 
-    @Styles.Render("~/Content/adminCss")
+    @Styles.Render("~/Content/admin.css")
     @Styles.Render("~/Content/Datatable.css")
-    <link href="~/Content/components.min.css" rel="stylesheet" />
+    @Scripts.Render("~/Scripts/admin.js")
+
+
 </head>
 <body>
 
@@ -387,41 +389,11 @@
             @RenderBody()
         </div>
     </div>
-    @*Scripts link Files*@
-    <!-- jQuery -->
-    @*<script src="~/javascript/jquery.min.js"></script>*@
-    <script src="~/javascript/jquery-3.3.1.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="~/javascript/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="~/javascript/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="~/javascript/raphael.min.js"></script>
-
-
-    @*<script src="~/javascript/morris.min.js"></script>
-
-    <script src="~/javascript/morris-data.js"></script>*@
-    <!-- Custom Theme JavaScript -->
-    <script src="~/javascript/sb-admin-2.js"></script>
-    <script src="~/Scripts/jquery.toast.min.js"></script>
-
-    <!--Datatables-->
-    <script src="~/Scripts/jquery.dataTables.min.js"></script>
-    <script src="~/Scripts/dataTables.bootstrap.min.js"></script>
-    <script src="~/Scripts/dataTables.responsive.min.js"></script>
-    <script src="~/Scripts/responsive.bootstrap.min.js"></script>
-
-    <!--Block UI-->
-  
-    <script src="~/javascript/jquery.blockui.min.js"></script>
-    <script src="~/javascript/app.min.js"></script>
-    <script src="~/javascript/ui-blockui.js"></script>
-
+    @Scripts.Render("~/Scripts/sb-admin-2.js")
+    @Scripts.Render("~/Scripts/toast.js")
+    @Scripts.Render("~/Scripts/Datatable.js")
+    @Scripts.Render("~/Scripts/BlockUI.js")
     @RenderSection("scripts", required: false)
-
 </body>
 </html>

@@ -235,6 +235,7 @@
     <Content Include="assets\global\img\syncfusion-icons.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\components.css" />
     <Content Include="Content\components.min.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\jquery.toast.min.css" />
@@ -307,6 +308,8 @@
     <Content Include="images\team-section-4.png" />
     <Content Include="images\themeforest.gif" />
     <Content Include="images\videgub.gif" />
+    <Content Include="img\remove-icon-small.png" />
+    <Content Include="javascript\app.js" />
     <Content Include="javascript\app.min.js" />
     <Content Include="javascript\bootstrap.js" />
     <Content Include="javascript\bootstrap.min.js" />
@@ -377,6 +380,7 @@
     <Content Include="Project Scripts\Type\Type.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\Base.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

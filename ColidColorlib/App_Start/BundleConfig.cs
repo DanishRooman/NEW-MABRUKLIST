@@ -41,18 +41,54 @@ namespace ColidColorlib
 
             //Admin page Css
 
-            bundles.Add(new StyleBundle("~/Content/adminCss").Include(
+            bundles.Add(new StyleBundle("~/Content/admin.css").Include(
                    "~/Content/bootstrap.min.css",
                    "~/StyleSheet/metisMenu.min.css",
                    "~/StyleSheet/sb-admin-2.css",
                    "~/StyleSheet/morris.css",
                    "~/fonts/font-awesome.min.css",
-                   "~/Content/jquery.toast.min.css"
+                   "~/Content/jquery.toast.min.css",
+                   "~/Content/components.css"
                  ));
 
             bundles.Add(new StyleBundle("~/Content/Datatable.css").Include(
                 "~/Content/dataTables.bootstrap.min.css",
                 "~/Content/responsive.bootstrap.min.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Datatable.js").Include(
+                "~/Scripts/jquery.dataTables.min.js",
+                "~/Scripts/dataTables.bootstrap.min.js",
+                "~/Scripts/dataTables.responsive.min.js",
+                "~/Scripts/responsive.bootstrap.min.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/BlockUI.js").Include(
+               "~/javascript/jquery.blockui.min.js",
+               "~/javascript/app.js",
+               "~/javascript/ui-blockui.js"
+               ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/admin.js").Include(
+              "~/Scripts/jquery-1.10.2.min.js",
+              "~/Scripts/Base.js",
+              "~/Scripts/jquery.unobtrusive-ajax.js",
+              "~/Scripts/jquery.validate.min.js",
+              "~/javascript/bootstrap.min.js"
+              ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/unobtrusive").Include(
+                "~/Scripts/jquery.validate.unobtrusive.min.js"
+                ));
+
+
+            bundles.Add(new ScriptBundle("~/Scripts/toast.js").Include(
+                "~/Scripts/jquery.toast.min.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/sb-admin-2.js").Include(
+                "~/javascript/metisMenu.min.js",
+                "~/javascript/sb-admin-2.js"
                 ));
 
         }
