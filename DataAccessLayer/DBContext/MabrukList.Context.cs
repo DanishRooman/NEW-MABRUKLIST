@@ -30,7 +30,9 @@ namespace DataAccessLayer.DBContext
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<mblist_address> mblist_address { get; set; }
         public virtual DbSet<mblist_category> mblist_category { get; set; }
+        public virtual DbSet<mblist_group> mblist_group { get; set; }
         public virtual DbSet<mblist_type> mblist_type { get; set; }
     }
 }

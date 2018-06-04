@@ -3,7 +3,7 @@
     var handleCreateCategory = function () {
         //Ajax call
         $.ajax({
-            url: '/Category/AddCategory',
+            url: '/Group/AddGroup',
             type: 'GET',
             dataType: 'HTML',
             data: {},
@@ -17,6 +17,7 @@
             }
         });
     };
+    //toster Messages
     var handleCategorySuccess = function (result) {
         if (result.key) {
             $.toast({
@@ -37,7 +38,8 @@
             });
         }
     };
-
+    /// end toster messages
+    /// Select process
     var handleCategoryList = function () {
         $.ajax({
             url: '/Category/CategoryListing',
@@ -54,13 +56,11 @@
         });
     };
     var handleEditCategory = function (id) {
-        debugger
+
+       
     };
     var handleDeleteCategory = function (id) {
-        debugger
-        App.blockUI({
-            boxed: true
-        });
+       
     };
     return {
         //public static
@@ -79,6 +79,7 @@
         initDeleteCategory: function (id) {
             handleDeleteCategory(id);
         },
+        
     };
 }();
 

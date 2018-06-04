@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DataTransferObjects.Group.GroupDTO>
+
+
+<table class="table table-bordered table-striped table-hover" id="tblGroup">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Group)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Group)
+                </td>
+                <td>
+
+                    <a href="javascript:void(0);" title="Edit Category" onclick="Group.initEditGroup('@item.id');"><i class="fa fa-pencil" aria-hidden="true"></i></a> |
+                    <a href="javascript:void(0);" title="Delete Category" onclick="Group.initDeleteGroup('@item.id');"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tblGroup').DataTable();
+    });
+</script>
