@@ -9,7 +9,9 @@
             </th>
             <th>Action</th>
         </tr>
+       
     </thead>
+  
     <tbody>
         @foreach (var item in Model)
         {
@@ -29,8 +31,10 @@
         }
     </tbody>
 </table>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#tblGroup').DataTable();
     });
+
 </script>
