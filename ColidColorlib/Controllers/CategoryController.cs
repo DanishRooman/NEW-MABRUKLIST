@@ -24,6 +24,7 @@ namespace ColidColorlib.Controllers
         }
 
         [HttpGet]
+                //select
         public ActionResult CategoryListing()
         {
             List<CategoryDto> categoryList = new List<CategoryDto>();
@@ -38,6 +39,7 @@ namespace ColidColorlib.Controllers
         }
 
         [HttpPost]
+                 //insertion
         public ActionResult AddOrUpdateCategory(CategoryDto dto)
         {
             try

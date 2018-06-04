@@ -21,22 +21,57 @@ namespace ColidColorlib.Controllers
             TypeDto Type = new TypeDto();
             return PartialView("AddType", Type);
         }
+        [HttpGet]
+        //Select
+        public ActionResult TypeListing()
+        {
+            List<TypeDto> TypeList = new List<TypeDto>();
+            using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+            {
+                TypeList = dbcontext.mblist_type.AsEnumerable().OrderByDescending(x => x.type_key).Select(x => new TypeDto
+                {
+                    id = x.type_key,
+                    Type = x.type_name
+                }).ToList();
+            };
+            return PartialView("_TypeListing", TypeList);
+        }
+
         [HttpPost]
+        //insertion
         public ActionResult AddOrUpdateType(TypeDto dto)
         {
             try
             {
-                using (MABRUKLISTEntities dbcontext=new MABRUKLISTEntities())
+                if (ModelState.IsValid)
                 {
-                    mblist_type type = new mblist_type()
+                    using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                     {
-                        type_name=dto.Type
-                    };
+                        var data = dbcontext.mblist_type.Where(x => x.type_name == dto.Type).FirstOrDefault();
+                        if (data != null)
+                        {
+                            return Json(new { key = false, value = "Category already exist" }, JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                        {
+                            mblist_type type = new mblist_type()
+                            {
+                                type_name = dto.Type
+                            };
 
-                    dbcontext.mblist_type.Add(type);
-                    dbcontext.SaveChanges();
-                    return Json(new { key = true, value = "Type added successfully" }, JsonRequestBehavior.AllowGet);
-                };
+                            dbcontext.mblist_type.Add(type);
+                            dbcontext.SaveChanges();
+                            return Json(new { key = true, value = "Type added successfully" }, JsonRequestBehavior.AllowGet);
+                        }
+
+
+                    };
+                }
+                else
+                {
+                    return Json(new { key = false, value = "Please enter correct data" }, JsonRequestBehavior.AllowGet);
+                }
+
             }
             catch (Exception)
             {
