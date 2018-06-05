@@ -49,7 +49,7 @@
         $.ajax({
             url: '/Group/GroupListing',
             type: 'GET',
-            dataType: 'HTML',
+            dataType: 'html',
             data: {},
             success: function (result) {
                 $("#divGroup").empty();
@@ -66,7 +66,7 @@
     var handleDeleteGroup = function () {
 
     };
-    //public Satic function
+    //public Satic functions
     return {
         initCreateGroup: function () {
 

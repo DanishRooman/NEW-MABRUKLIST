@@ -34,7 +34,7 @@ namespace ColidColorlib.Controllers
 
                 }).ToList();
             };
-            return PartialView("_CategoryListing", groupList);
+            return PartialView("_GroupListing", groupList);
         }
 
 

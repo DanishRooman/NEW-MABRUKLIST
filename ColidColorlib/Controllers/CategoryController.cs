@@ -24,7 +24,7 @@ namespace ColidColorlib.Controllers
         }
 
         [HttpGet]
-                //select
+        //select
         public ActionResult CategoryListing()
         {
             List<CategoryDto> categoryList = new List<CategoryDto>();
@@ -40,7 +40,6 @@ namespace ColidColorlib.Controllers
         }
 
         [HttpPost]
-                 //insertion
         public ActionResult AddOrUpdateCategory(CategoryDto dto)
         {
             try
@@ -76,6 +75,35 @@ namespace ColidColorlib.Controllers
             {
                 return Json(new { key = false, value = "Unable to save the category" }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        [HttpGet]
+        public ActionResult GetCategory(int id)
+        {
+            try
+            {
+                CategoryDto category = new CategoryDto();
+                using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                {
+                    var cat = dbcontext.mblist_category.Find(id);
+                    if (cat != null)
+                    {
+                        category.Id = cat.cat_key;
+                        category.Category = cat.cat_name;
+                        return PartialView("AddCategory", category);
+                    }
+                    else
+                    {
+                        return Json(new { key = false, value = "Category not found its deleted" }, JsonRequestBehavior.AllowGet);
+                    }
+                };
+                
+            }
+            catch (Exception ex)
+            {
+                return Json(new { key = false, value = "Unable to edit the category" }, JsonRequestBehavior.AllowGet);
+            }
+           
         }
     }
 }

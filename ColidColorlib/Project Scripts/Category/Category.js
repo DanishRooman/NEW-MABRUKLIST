@@ -3,7 +3,7 @@
     var handleCreateCategory = function () {
         //Ajax call
         $.ajax({
-            url: '/Group/AddGroup',
+            url: '/Category/AddCategory',
             type: 'GET',
             dataType: 'HTML',
             data: {},
@@ -55,7 +55,30 @@
         });
     };
     var handleEditCategory = function (id) {
-
+        $.ajax({
+            url: '/Category/GetCategory',
+            type: 'GET',
+            dataType: 'HTML',
+            data: { "id": id },
+            success: function (result) {
+                if (result.key == false) {
+                    $.toast({
+                        heading: 'Error',
+                        text: result.value,
+                        showHideTransition: 'fade',
+                        icon: 'error'
+                    });
+                }
+                else {
+                    $("#createCategory").empty();
+                    $("#createCategory").html(result);
+                    $("#createCategory").modal("show");
+                }
+            },
+            error: function () {
+                console.log("Error");
+            }
+        });
        
     };
     var handleDeleteCategory = function (id) {
