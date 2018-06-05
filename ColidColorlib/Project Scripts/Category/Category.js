@@ -83,7 +83,46 @@
        
     };
     var handleDeleteCategory = function (id) {
-       
+        $.confirm({
+            title: 'Delete Categor',
+            content: 'Are you sure you want to delete the Category?',
+            theme: 'Material',
+            buttons: {
+                confirm: function () {
+                    $.ajax({
+                        url: '/Category/DeleteCategory',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: { "id": id },
+                        success: function (result) {
+                            if (result.key) {
+                                $.toast({
+                                    heading: 'Success',
+                                    text: result.value,
+                                    showHideTransition: 'slide',
+                                    icon: 'success'
+                                });
+                                handleCategoryList();
+                            }
+                            else {
+                                $.toast({
+                                    heading: 'Error',
+                                    text: result.value,
+                                    showHideTransition: 'fade',
+                                    icon: 'error'
+                                });
+                            }
+                        },
+                        error: function () {
+                            console.log("Error");
+                        }
+                    });
+                },
+                cancel: function () {
+                   
+                },
+            }
+        });
     };
     return {
         //public static

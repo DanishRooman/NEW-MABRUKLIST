@@ -80,7 +80,7 @@ namespace ColidColorlib.Controllers
                                 return Json(new { key = false, value = "Category not found" }, JsonRequestBehavior.AllowGet);
                             }
                         }
-                       
+
 
                     };
                 }
@@ -115,13 +115,39 @@ namespace ColidColorlib.Controllers
                         return Json(new { key = false, value = "Category not found its deleted" }, JsonRequestBehavior.AllowGet);
                     }
                 };
-                
+
             }
             catch (Exception ex)
             {
                 return Json(new { key = false, value = "Unable to edit the category" }, JsonRequestBehavior.AllowGet);
             }
-           
+
+        }
+
+        public ActionResult DeleteCategory(int id)
+        {
+            try
+            {
+                using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                {
+                    var cat = dbcontext.mblist_category.Find(id);
+                    if (cat != null)
+                    {
+                        dbcontext.mblist_category.Remove(cat);
+                        dbcontext.SaveChanges();
+                        return Json(new { key = true, value = "Category deleted Successfully" }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { key = false, value = "Category not found" }, JsonRequestBehavior.AllowGet);
+                    }
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { key = false, value = "Unable to edit the category" }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

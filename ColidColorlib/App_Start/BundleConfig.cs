@@ -41,13 +41,14 @@ namespace ColidColorlib
 
             //Admin page Css
 
-            bundles.Add(new StyleBundle("~/Content/adminCss").Include(
+            bundles.Add(new StyleBundle("~/Content/admin.css").Include(
                    "~/Content/bootstrap.min.css",
                    "~/StyleSheet/metisMenu.min.css",
                    "~/StyleSheet/sb-admin-2.css",
                    "~/StyleSheet/morris.css",
                    "~/fonts/font-awesome.min.css",
-                   "~/Content/jquery.toast.min.css"
+                   "~/Content/jquery.toast.min.css",
+                   "~/Content/jquery-confirm.css"
                  ));
 
             bundles.Add(new StyleBundle("~/Content/Datatable.css").Include(
@@ -83,6 +84,10 @@ namespace ColidColorlib
 
             bundles.Add(new ScriptBundle("~/Scripts/toast.js").Include(
                 "~/Scripts/jquery.toast.min.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/jquery-confirm.js").Include(
+                "~/javascript/jquery-confirm.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/Scripts/sb-admin-2.js").Include(

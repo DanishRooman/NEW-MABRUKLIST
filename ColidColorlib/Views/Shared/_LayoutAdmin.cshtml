@@ -8,11 +8,9 @@
     <meta name="author" content="">
 
     <title>@ViewBag.Title -Admin Portal</title>
-
-    @Styles.Render("~/Content/adminCss")
+    @Styles.Render("~/Content/admin.css")
     @Styles.Render("~/Content/Datatable.css")
     @Scripts.Render("~/Scripts/admin.js")
- 
 
 
 </head>
@@ -393,6 +391,7 @@
 
     @Scripts.Render("~/Scripts/sb-admin-2.js")
     @Scripts.Render("~/Scripts/toast.js")
+    @Scripts.Render("~/Scripts/jquery-confirm.js")
     @Scripts.Render("~/Scripts/Datatable.js")
     @Scripts.Render("~/Scripts/BlockUI.js")
     @RenderSection("scripts", required: false)
