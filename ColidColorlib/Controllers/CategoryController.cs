@@ -48,21 +48,39 @@ namespace ColidColorlib.Controllers
                 {
                     using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                     {
-                        var data = dbcontext.mblist_category.Where(x => x.cat_name == dto.Category).FirstOrDefault();
-                        if (data != null)
+                        if (dto.Id == 0)
                         {
-                            return Json(new { key = false, value = "Category already exist" }, JsonRequestBehavior.AllowGet);
+                            var data = dbcontext.mblist_category.Where(x => x.cat_name == dto.Category).FirstOrDefault();
+                            if (data != null)
+                            {
+                                return Json(new { key = false, value = "Category already exist" }, JsonRequestBehavior.AllowGet);
+                            }
+                            else
+                            {
+                                mblist_category category = new mblist_category()
+                                {
+                                    cat_name = dto.Category
+                                };
+                                dbcontext.mblist_category.Add(category);
+                                dbcontext.SaveChanges();
+                                return Json(new { key = true, value = "Category added successfully" }, JsonRequestBehavior.AllowGet);
+                            }
                         }
                         else
                         {
-                            mblist_category category = new mblist_category()
+                            var data = dbcontext.mblist_category.Find(dto.Id);
+                            if (data != null)
                             {
-                                cat_name = dto.Category
-                            };
-                            dbcontext.mblist_category.Add(category);
-                            dbcontext.SaveChanges();
-                            return Json(new { key = true, value = "Category added successfully" }, JsonRequestBehavior.AllowGet);
+                                data.cat_name = dto.Category;
+                                dbcontext.SaveChanges();
+                                return Json(new { key = true, value = "Category updated successfully" }, JsonRequestBehavior.AllowGet);
+                            }
+                            else
+                            {
+                                return Json(new { key = false, value = "Category not found" }, JsonRequestBehavior.AllowGet);
+                            }
                         }
+                       
 
                     };
                 }
