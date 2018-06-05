@@ -91,6 +91,9 @@ namespace ColidColorlib
                 "~/javascript/sb-admin-2.js"
                 ));
 
+            bundles.Add(new StyleBundle("~/Scripts/component.css").Include(
+                           "~/Content/components.css"
+                           ));
         }
     }
 }
