@@ -3,7 +3,7 @@
     var handleCreateCategory = function () {
         //Ajax call
         $.ajax({
-            url: '/Group/AddGroup',
+            url: '/Category/AddCategory',
             type: 'GET',
             dataType: 'HTML',
             data: {},
