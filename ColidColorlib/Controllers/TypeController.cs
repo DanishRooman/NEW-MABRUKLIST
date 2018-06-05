@@ -47,24 +47,41 @@ namespace ColidColorlib.Controllers
                 {
                     using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                     {
-                        var data = dbcontext.mblist_type.Where(x => x.type_name == dto.Type).FirstOrDefault();
-                        if (data != null)
+
+                        if (dto.id == 0)
                         {
-                            return Json(new { key = false, value = "Category already exist" }, JsonRequestBehavior.AllowGet);
+                            var data = dbcontext.mblist_type.Where(x => x.type_name == dto.Type).FirstOrDefault();
+                            if (data != null)
+                            {
+                                return Json(new { key = false, value = "Group already exist" }, JsonRequestBehavior.AllowGet);
+                            }
+                            else
+                            {
+                                mblist_type type = new mblist_type()
+                                {
+                                    type_name = dto.Type
+                                };
+
+                                dbcontext.mblist_type.Add(type);
+                                dbcontext.SaveChanges();
+                                return Json(new { key = true, value = "Type added successfully" }, JsonRequestBehavior.AllowGet);
+                            }
+
                         }
                         else
                         {
-                            mblist_type type = new mblist_type()
+                            var data = dbcontext.mblist_type.Find(dto.id);
+                            if (data != null)
                             {
-                                type_name = dto.Type
-                            };
-
-                            dbcontext.mblist_type.Add(type);
-                            dbcontext.SaveChanges();
-                            return Json(new { key = true, value = "Type added successfully" }, JsonRequestBehavior.AllowGet);
+                                data.type_name = dto.Type;
+                                dbcontext.SaveChanges();
+                                return Json(new { key = false, value = "Type Updated Successfully" }, JsonRequestBehavior.AllowGet);
+                            }
+                            else
+                            {
+                                return Json(new { key = false, value = "Type is not found" }, JsonRequestBehavior.AllowGet);
+                            }
                         }
-
-
                     };
                 }
                 else
@@ -78,6 +95,63 @@ namespace ColidColorlib.Controllers
 
                 return Json(new { key = false, value = "Unable to save the Type" }, JsonRequestBehavior.AllowGet);
             }
+        }
+        [HttpGet]
+        public ActionResult GetType(int id)
+        {
+            try
+            {
+                TypeDto Type = new TypeDto();
+                using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                {
+                    var type = dbcontext.mblist_type.Find(id);
+                    if (type != null)
+                    {
+                        Type.id = type.type_key;
+                        Type.Type = type.type_name;
+                        return PartialView("AddType", Type);
+
+                    }
+                    else
+                    {
+
+                        return Json(new { key = false, value = "Type not Found its Deleted from data base!!" }, JsonRequestBehavior.AllowGet);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                return Json(new { key = false, value = "Unable to edit the type" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult DeleteType(int id)
+        {
+            try
+            {
+                using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                {
+                    var type = dbcontext.mblist_type.Find(id);
+                    if (type != null)
+                    {
+                        dbcontext.mblist_type.Remove(type);
+                        dbcontext.SaveChanges();
+                        return Json(new { key = true, value = "Type deleted Successfully" }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+
+                        return Json(new { key = false, value = "Type not Found its Deleted from data base!!" }, JsonRequestBehavior.AllowGet);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                return Json(new { key = false, value = "Unable to edit the Type" }, JsonRequestBehavior.AllowGet);
+            }
+
         }
     }
 }

@@ -56,6 +56,7 @@
         });
     };
     var handleEditCategory = function (id) {
+       
         $.ajax({
             url: '/Category/GetCategory',
             type: 'GET',
