@@ -29,12 +29,13 @@ namespace ColidColorlib.Controllers
             List<CategoryDto> categoryList = new List<CategoryDto>();
             using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
             {
-                categoryList = dbcontext.mblist_category.AsEnumerable().OrderByDescending(x=>x.cat_key).Select(x => new CategoryDto {
+                categoryList = dbcontext.mblist_category.AsEnumerable().OrderByDescending(x => x.cat_key).Select(x => new CategoryDto
+                {
                     Id = x.cat_key,
                     Category = x.cat_name
                 }).ToList();
             };
-            return PartialView("_CategoryListing",categoryList);
+            return PartialView("_CategoryListing", categoryList);
         }
 
         [ValidateAntiForgeryToken]
@@ -62,7 +63,7 @@ namespace ColidColorlib.Controllers
                             dbcontext.SaveChanges();
                             return Json(new { key = true, value = "Category added successfully" }, JsonRequestBehavior.AllowGet);
                         }
-       
+
                     };
                 }
                 else
@@ -70,7 +71,7 @@ namespace ColidColorlib.Controllers
                     return Json(new { key = false, value = "Please enter correct data" }, JsonRequestBehavior.AllowGet);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Json(new { key = false, value = "Unable to save the category" }, JsonRequestBehavior.AllowGet);
             }

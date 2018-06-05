@@ -81,7 +81,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MabrukList.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DBContext\mblist_address.cs">
+      <DependentUpon>MabrukList.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBContext\mblist_category.cs">
+      <DependentUpon>MabrukList.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\mblist_group.cs">
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\mblist_type.cs">

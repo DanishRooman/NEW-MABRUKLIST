@@ -12,6 +12,7 @@
     @Styles.Render("~/Content/admin.css")
     @Styles.Render("~/Content/Datatable.css")
     @Scripts.Render("~/Scripts/admin.js")
+ 
 
 
 </head>
@@ -340,10 +341,10 @@
                                 <a href="#">Congregations</a>
                             </li>
                             <li>
-                                <a href="#">Groups</a>
+                                <a href="/Group/Index">Groups</a>
                             </li>
                             <li>
-                                <a href="#">Nieghborhoods</a>
+                                <a href="#">Addresses</a>
                             </li>
                             <li>
                                 <a href="#">Titles</a>
@@ -395,5 +396,6 @@
     @Scripts.Render("~/Scripts/Datatable.js")
     @Scripts.Render("~/Scripts/BlockUI.js")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

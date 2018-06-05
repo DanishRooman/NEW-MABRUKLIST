@@ -7,11 +7,13 @@
       <Diagram DiagramId="6c8586b042d64d6499443758fed9cc87" Name="Diagram1">
         <EntityTypeShape EntityType="MABRUKLISTModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="MABRUKLISTModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.5" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="3.625" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" />
         <EntityTypeShape EntityType="MABRUKLISTModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_category" Width="1.5" PointX="2.75" PointY="6.75" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_type" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_address" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_category" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_group" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_type" Width="1.5" PointX="7.75" PointY="0.75" />
         <AssociationConnector Association="MABRUKLISTModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="MABRUKLISTModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="MABRUKLISTModel.AspNetUserRoles" />
