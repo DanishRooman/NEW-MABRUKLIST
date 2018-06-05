@@ -38,7 +38,6 @@ namespace ColidColorlib.Controllers
             return PartialView("_CategoryListing",categoryList);
         }
 
-        [ValidateAntiForgeryToken]
         [HttpPost]
                  //insertion
         public ActionResult AddOrUpdateCategory(CategoryDto dto)

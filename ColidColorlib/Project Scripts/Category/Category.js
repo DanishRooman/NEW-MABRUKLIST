@@ -27,7 +27,6 @@
                 icon: 'success'
             });
             $("#createCategory").modal("hide");
-            handleCategoryList();
         }
         else {
             $.toast({

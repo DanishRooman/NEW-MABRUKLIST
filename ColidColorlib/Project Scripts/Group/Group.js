@@ -45,6 +45,7 @@
     //groupList Table
     //Select Process
     var handleGroupList = function () {
+
         $.ajax({
             url: '/Group/GroupListing',
             type: 'GET',
