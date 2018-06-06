@@ -41,7 +41,7 @@ namespace ColidColorlib
 
             //Admin page Css
 
-            bundles.Add(new StyleBundle("~/Content/admin.css").Include(
+            bundles.Add(new StyleBundle("~/Contents/admin.css").Include(
                    "~/Content/bootstrap.min.css",
                    "~/StyleSheet/metisMenu.min.css",
                    "~/StyleSheet/sb-admin-2.css",
@@ -52,25 +52,25 @@ namespace ColidColorlib
                    "~/Content/components.css"
                  ));
 
-            bundles.Add(new StyleBundle("~/Content/Datatable.css").Include(
+            bundles.Add(new StyleBundle("~/Contents/Datatable.css").Include(
                 "~/Content/dataTables.bootstrap.min.css",
                 "~/Content/responsive.bootstrap.min.css"
                 ));
 
-            bundles.Add(new ScriptBundle("~/Scripts/Datatable.js").Include(
+            bundles.Add(new ScriptBundle("~/Script/Datatable.js").Include(
                 "~/Scripts/jquery.dataTables.min.js",
                 "~/Scripts/dataTables.bootstrap.min.js",
                 "~/Scripts/dataTables.responsive.min.js",
                 "~/Scripts/responsive.bootstrap.min.js"
                 ));
 
-            bundles.Add(new ScriptBundle("~/Scripts/BlockUI.js").Include(
+            bundles.Add(new ScriptBundle("~/Script/BlockUI.js").Include(
                "~/javascript/jquery.blockui.min.js",
                "~/javascript/app.js",
                "~/javascript/ui-blockui.js"
                ));
 
-            bundles.Add(new ScriptBundle("~/Scripts/admin.js").Include(
+            bundles.Add(new ScriptBundle("~/Script/admin.js").Include(
               "~/Scripts/jquery-1.10.2.min.js",
               "~/Scripts/Base.js",
               "~/Scripts/jquery.unobtrusive-ajax.js",
@@ -78,25 +78,25 @@ namespace ColidColorlib
               "~/javascript/bootstrap.min.js"
               ));
 
-            bundles.Add(new ScriptBundle("~/Scripts/unobtrusive").Include(
+            bundles.Add(new ScriptBundle("~/Script/unobtrusive").Include(
                 "~/Scripts/jquery.validate.unobtrusive.min.js"
                 ));
 
 
-            bundles.Add(new ScriptBundle("~/Scripts/toast.js").Include(
+            bundles.Add(new ScriptBundle("~/Script/toast.js").Include(
                 "~/Scripts/jquery.toast.min.js"
                 ));
 
-            bundles.Add(new ScriptBundle("~/Scripts/jquery-confirm.js").Include(
+            bundles.Add(new ScriptBundle("~/Script/jquery-confirm.js").Include(
                 "~/javascript/jquery-confirm.js"
                 ));
 
-            bundles.Add(new ScriptBundle("~/Scripts/sb-admin-2.js").Include(
+            bundles.Add(new ScriptBundle("~/Script/sb-admin-2.js").Include(
                 "~/javascript/metisMenu.min.js",
                 "~/javascript/sb-admin-2.js"
                 ));
 
-            bundles.Add(new StyleBundle("~/Scripts/component.css").Include(
+            bundles.Add(new StyleBundle("~/Script/component.css").Include(
                            "~/Content/components.css"
                            ));
         }
