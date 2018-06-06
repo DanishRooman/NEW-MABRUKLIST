@@ -30,6 +30,7 @@
                 icon: 'success'
             });
             $("#CreateGroup").modal("hide");
+            handleGroupList();
         }
         else {
             $.toast({

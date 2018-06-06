@@ -31,6 +31,7 @@
             });
 
             $("#CreateType").modal("hide");
+            handleTypeList();
 
         }
         else {
@@ -82,6 +83,7 @@
                     $("#CreateType").empty();
                     $("#CreateType").html(result);
                     $("#CreateType").modal("show");
+
                 }
             },
             error: function () {
@@ -110,7 +112,7 @@
                                     showHideTransition: 'slide',
                                     icon: 'success'
                                 });
-                                handleCategoryList();
+                                handleTypeList();
                             }
                             else {
                                 $.toast({

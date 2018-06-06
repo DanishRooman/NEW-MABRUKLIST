@@ -48,7 +48,8 @@ namespace ColidColorlib
                    "~/StyleSheet/morris.css",
                    "~/fonts/font-awesome.min.css",
                    "~/Content/jquery.toast.min.css",
-                   "~/Content/jquery-confirm.css"
+                   "~/Content/jquery-confirm.css",
+                   "~/Content/components.css"
                  ));
 
             bundles.Add(new StyleBundle("~/Content/Datatable.css").Include(
