@@ -31,6 +31,7 @@
             });
 
             $("#CreateType").modal("hide");
+            handleCategoryList();
 
         }
         else {
@@ -63,7 +64,7 @@
     };
 
     var handleEditType = function (id) {
-
+        debugger
         $.ajax({
             url: '/Type/GetType',
             type: 'GET',

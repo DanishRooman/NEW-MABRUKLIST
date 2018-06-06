@@ -33,6 +33,9 @@ namespace ColidColorlib.Controllers
                     id = x.type_key,
                     Type = x.type_name
                 }).ToList();
+
+
+
             };
             return PartialView("_TypeListing", TypeList);
         }
@@ -53,7 +56,7 @@ namespace ColidColorlib.Controllers
                             var data = dbcontext.mblist_type.Where(x => x.type_name == dto.Type).FirstOrDefault();
                             if (data != null)
                             {
-                                return Json(new { key = false, value = "Group already exist" }, JsonRequestBehavior.AllowGet);
+                                return Json(new { key = false, value = "Type already exist" }, JsonRequestBehavior.AllowGet);
                             }
                             else
                             {
@@ -75,7 +78,7 @@ namespace ColidColorlib.Controllers
                             {
                                 data.type_name = dto.Type;
                                 dbcontext.SaveChanges();
-                                return Json(new { key = false, value = "Type Updated Successfully" }, JsonRequestBehavior.AllowGet);
+                                return Json(new { key = true, value = "Type Updated Successfully" }, JsonRequestBehavior.AllowGet);
                             }
                             else
                             {
