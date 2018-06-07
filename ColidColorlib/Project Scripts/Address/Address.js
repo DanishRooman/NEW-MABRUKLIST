@@ -2,7 +2,7 @@
     //private static Function
 
     var handleCreateAddress = function () {
-      
+        debugger
         //Ajax call
         $.ajax({
             url: '/Address/AddAddress',
@@ -61,7 +61,7 @@
     };
 
     var handleEditAddress = function (id) {
-     
+        debugger
         $.ajax({
             url: '/Address/GetAddress',
             type: 'GET',
@@ -112,7 +112,7 @@
                                         showHideTransition: 'slide',
                                         icon: 'success'
                                     });
-                                    handleAddressList();
+                                    handleGroupList();
                                 }
                                 else {
                                     $.toast({

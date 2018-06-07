@@ -93,9 +93,6 @@
     <Compile Include="DBContext\mblist_neighborhoods.cs">
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBContext\mblist_subtitle.cs">
-      <DependentUpon>MabrukList.tt</DependentUpon>
-    </Compile>
     <Compile Include="DBContext\mblist_title.cs">
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>
