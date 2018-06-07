@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ColidColorlib.Controllers
 {
+    [Authorize]
     public class GroupController : Controller
     {
         // GET: Group

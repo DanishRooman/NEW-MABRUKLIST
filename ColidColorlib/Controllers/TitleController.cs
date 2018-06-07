@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ColidColorlib.Controllers
 {
+    [Authorize]
     public class TitleController : Controller
     {
         // GET: Title
