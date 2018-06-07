@@ -45,7 +45,9 @@
     <Compile Include="Address\DispAttribute.cs" />
     <Compile Include="Category\CategoryDto.cs" />
     <Compile Include="Group\GroupDTO.cs" />
+    <Compile Include="Neighborhood\NeighborhoodDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subtitle\SubtitleDTO.cs" />
     <Compile Include="Title\TitleDTO.cs" />
     <Compile Include="Types\TypeDto.cs" />
   </ItemGroup>

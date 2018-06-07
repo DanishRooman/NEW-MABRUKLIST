@@ -1,18 +1,18 @@
-﻿var Address = function () {
-    //private static Function
+﻿var Subtitle = function () {
+    //private Static
+    var handleCreateSubtitle = function () {
 
-    var handleCreateAddress = function () {
-      
         //Ajax call
         $.ajax({
-            url: '/Address/AddAddress',
+            url: '/Subtitle/AddSubtitle',
             type: 'GET',
             dataType: 'HTML',
             data: {},
             success: function (result) {
-                $("#CreateAddress").empty();
-                $("#CreateAddress").html(result);
-                $("#CreateAddress").modal("show");
+                $("#CreateSubtitle").empty();
+                $("#CreateSubtitle").html(result);
+                $("#CreateSubtitle").modal("show");
+
             },
             error: function () {
                 console.log("Error");
@@ -20,7 +20,7 @@
         });
     };
 
-    var handleAddressSucsess = function (result) {
+    var handleSubtitleSucsess = function (result) {
         if (result.key) {
 
             $.toast({
@@ -29,8 +29,8 @@
                 showHideTransition: 'slide',
                 icon: 'success'
             });
-            $("#CreateAddress").modal("hide");
-            handleAddressList();
+            $("#CreateSubtitle").modal("hide");
+            handleSubtitleList();
 
         }
         else {
@@ -43,27 +43,26 @@
         }
     };
 
-    var handleAddressList = function () {
-
+    var handleSubtitleList = function () {
         $.ajax({
-            url: '/Address/AddressListing',
+            url: '/Subtitle/SubtitleListing',
             type: 'GET',
             dataType: 'html',
             data: {},
             success: function (result) {
-                $("#divAddress").empty();
-                $("#divAddress").html(result);
+                $("#divSubtitle").empty();
+                $("#divSubtitle").html(result);
             },
             error: function () {
                 console.log("Error");
             }
         });
-    };
 
-    var handleEditAddress = function (id) {
-     
+    }
+
+    var handleEditSubtitle = function (id) {
         $.ajax({
-            url: '/Address/GetAddress',
+            url: '/Subtitle/GetSubtitle',
             type: 'GET',
             dataType: 'html',
             data: { "id": id },
@@ -77,9 +76,9 @@
                     });
                 }
                 else {
-                    $("#CreateAddress").empty();
-                    $("#CreateAddress").html(result);
-                    $("#CreateAddress").modal("show");
+                    $("#CreateSubtitle").empty();
+                    $("#CreateSubtitle").html(result);
+                    $("#CreateSubtitle").modal("show");
                 }
 
             },
@@ -88,11 +87,10 @@
             }
         });
     };
-
-    var handleDeleteAddress = function (id) {
+    var handleDeleteSubtitle = function (id) {
         $.confirm({
             title: 'Delete Group',
-            content: 'Are you sure you want to delete this Address?',
+            content: 'Are you sure you want to delete this Subtitle?',
             theme: 'material',
             buttons: {
                 confirm: {
@@ -100,7 +98,7 @@
                     keys: ["enter"],
                     action: function () {
                         $.ajax({
-                            url: '/Address/DeleteAddress',
+                            url: '/Subtitle/DeleteSubtitle',
                             type: 'GET',
                             dataType: 'json',
                             data: { "id": id },
@@ -112,7 +110,7 @@
                                         showHideTransition: 'slide',
                                         icon: 'success'
                                     });
-                                    handleAddressList();
+                                    handleSubtitleList();
                                 }
                                 else {
                                     $.toast({
@@ -134,32 +132,33 @@
                 },
             }
         });
+
     };
 
-
-    // Public static Function
     return {
-        initCreateAddress: function () {
-            handleCreateAddress();
-        },
-        initAddressSucsess: function (result) {
-            handleAddressSucsess(result);
-        },
-        initAddressList: function () {
-            handleAddressList();
-        },
-        iniEditAddress: function (id) {
-            handleEditAddress(id);
-        },
-        initDeleteAddress: function (id) {
-            handleDeleteAddress(id)
-        },
 
-    };
+        initCreateSubtitle: function () {
+            handleCreateSubtitle();
+        },
+        initSubtitleSucsess: function (result) {
+
+            handleSubtitleSucsess(result);
+        },
+        initSubtitleList() {
+
+            handleSubtitleList();
+        },
+        initEditSubtitle: function (id) {
+
+            handleEditSubtitle(id);
+        },
+        initDeleteSubtitle: function (id) {
+            handleDeleteSubtitle(id);
+        },
+    }
 
 }();
-//Document ready load page
-
 $(function () {
-    Address.initAddressList();
+    Subtitle.initSubtitleList();
+
 });

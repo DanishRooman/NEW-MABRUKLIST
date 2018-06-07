@@ -201,6 +201,8 @@
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NeighborhoodController.cs" />
+    <Compile Include="Controllers\SubtitleController.cs" />
     <Compile Include="Controllers\TitleController.cs" />
     <Compile Include="Controllers\TypeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -384,6 +386,8 @@
     <Content Include="Project Scripts\Address\Address.js" />
     <Content Include="Project Scripts\Category\Category.js" />
     <Content Include="Project Scripts\Group\Group.js" />
+    <Content Include="Project Scripts\Neighborhood\Neighborhood.js" />
+    <Content Include="Project Scripts\Subtitle\Subtitle.js" />
     <Content Include="Project Scripts\Title\Title.js" />
     <Content Include="Project Scripts\Type\Type.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
@@ -554,6 +558,12 @@
     <Content Include="Views\Title\Index.cshtml" />
     <Content Include="Views\Title\_AddTitle.cshtml" />
     <Content Include="Views\Title\_TitleListing.cshtml" />
+    <Content Include="Views\Neighborhood\Index.cshtml" />
+    <Content Include="Views\Neighborhood\_AddNeighborhood.cshtml" />
+    <Content Include="Views\Neighborhood\_NeighborhoodListing.cshtml" />
+    <Content Include="Views\Subtitle\Index.cshtml" />
+    <Content Include="Views\Subtitle\_AddSubtitle.cshtml" />
+    <Content Include="Views\Subtitle\_SubtitleListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

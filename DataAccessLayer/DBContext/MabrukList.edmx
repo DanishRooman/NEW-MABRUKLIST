@@ -94,6 +94,13 @@
           <Property Name="neighborhoods_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="neighborhoods_name" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
+        <EntityType Name="mblist_subtitle">
+          <Key>
+            <PropertyRef Name="subtitle_key" />
+          </Key>
+          <Property Name="subtitle_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subtitle_name" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
         <EntityType Name="mblist_title">
           <Key>
             <PropertyRef Name="title_key" />
@@ -175,6 +182,7 @@
           <EntitySet Name="mblist_category" EntityType="Self.mblist_category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_group" EntityType="Self.mblist_group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_neighborhoods" EntityType="Self.mblist_neighborhoods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mblist_subtitle" EntityType="Self.mblist_subtitle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_title" EntityType="Self.mblist_title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_type" EntityType="Self.mblist_type" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -208,6 +216,7 @@
           <EntitySet Name="mblist_category" EntityType="MABRUKLISTModel.mblist_category" />
           <EntitySet Name="mblist_group" EntityType="MABRUKLISTModel.mblist_group" />
           <EntitySet Name="mblist_neighborhoods" EntityType="MABRUKLISTModel.mblist_neighborhoods" />
+          <EntitySet Name="mblist_subtitle" EntityType="MABRUKLISTModel.mblist_subtitle" />
           <EntitySet Name="mblist_title" EntityType="MABRUKLISTModel.mblist_title" />
           <EntitySet Name="mblist_type" EntityType="MABRUKLISTModel.mblist_type" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="MABRUKLISTModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -309,6 +318,13 @@
           </Key>
           <Property Name="neighborhoods_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="neighborhoods_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mblist_subtitle">
+          <Key>
+            <PropertyRef Name="subtitle_key" />
+          </Key>
+          <Property Name="subtitle_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subtitle_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="mblist_title">
           <Key>
@@ -446,6 +462,14 @@
               <MappingFragment StoreEntitySet="mblist_neighborhoods">
                 <ScalarProperty Name="neighborhoods_name" ColumnName="neighborhoods_name" />
                 <ScalarProperty Name="neighborhoods_key" ColumnName="neighborhoods_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mblist_subtitle">
+            <EntityTypeMapping TypeName="MABRUKLISTModel.mblist_subtitle">
+              <MappingFragment StoreEntitySet="mblist_subtitle">
+                <ScalarProperty Name="subtitle_name" ColumnName="subtitle_name" />
+                <ScalarProperty Name="subtitle_key" ColumnName="subtitle_key" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

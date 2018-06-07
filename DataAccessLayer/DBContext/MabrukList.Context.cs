@@ -34,6 +34,7 @@ namespace DataAccessLayer.DBContext
         public virtual DbSet<mblist_category> mblist_category { get; set; }
         public virtual DbSet<mblist_group> mblist_group { get; set; }
         public virtual DbSet<mblist_neighborhoods> mblist_neighborhoods { get; set; }
+        public virtual DbSet<mblist_subtitle> mblist_subtitle { get; set; }
         public virtual DbSet<mblist_title> mblist_title { get; set; }
         public virtual DbSet<mblist_type> mblist_type { get; set; }
     }

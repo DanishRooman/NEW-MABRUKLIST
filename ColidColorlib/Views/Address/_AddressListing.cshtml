@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<DataTransferObjects.Address.AddressDTO>
 
 
+
+
 <table class="table table-bordered table-striped table-responsive table-hover" id="tblAddress">
     <thead>
         <tr>
@@ -22,7 +24,7 @@
                 </td>
                 <td>
                     <a href="javascript:void(0);" id="blockui_sample_2_2" title="Edit Address" onclick="Address.iniEditAddress(@item.id);"><i class="fa fa-pencil" aria-hidden="true"></i></a> |
-                    <a href="javascript:void(0);" title="Delete Address" onclick="Address. initDeleteAddress(@item.id);"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a href="javascript:void(0);" title="Delete Address" onclick="Address.initDeleteAddress(@item.id);"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
                     @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
                         @Html.ActionLink("Details", "Details", new { id = item.id }) |

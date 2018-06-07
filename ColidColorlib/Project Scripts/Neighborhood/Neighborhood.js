@@ -1,18 +1,17 @@
-﻿var Address = function () {
-    //private static Function
-
-    var handleCreateAddress = function () {
-      
-        //Ajax call
+﻿var Neighborhood = function () {
+    // Private Static
+   
+    var handleCreateNeighborhood = function () {
+        debugger
         $.ajax({
-            url: '/Address/AddAddress',
+            url: '/Neighborhood/AddNeighborhood',
             type: 'GET',
-            dataType: 'HTML',
+            dataType: 'html',
             data: {},
             success: function (result) {
-                $("#CreateAddress").empty();
-                $("#CreateAddress").html(result);
-                $("#CreateAddress").modal("show");
+                $("#CreateNeighborhood").html(result);
+                $("#CreateNeighborhood").modal("show");
+                handleNeighborhoodList();
             },
             error: function () {
                 console.log("Error");
@@ -20,17 +19,17 @@
         });
     };
 
-    var handleAddressSucsess = function (result) {
+    var handleNeighborhoodSucsess = function (result) {
         if (result.key) {
-
-            $.toast({
+                $.toast({
                 heading: 'Success',
                 text: result.value,
                 showHideTransition: 'slide',
                 icon: 'success'
             });
-            $("#CreateAddress").modal("hide");
-            handleAddressList();
+
+                $("#CreateNeighborhood").modal("hide");
+                handleNeighborhoodList();
 
         }
         else {
@@ -41,31 +40,32 @@
                 icon: 'error'
             });
         }
+
     };
 
-    var handleAddressList = function () {
-
+    var handleNeighborhoodList = function () {
+        
         $.ajax({
-            url: '/Address/AddressListing',
+            url: '/Neighborhood/NeighborhoodListing',
             type: 'GET',
-            dataType: 'html',
+            dataType: 'HTML',
             data: {},
             success: function (result) {
-                $("#divAddress").empty();
-                $("#divAddress").html(result);
+                $("#divNeighborhood").empty();
+                $("#divNeighborhood").html(result);
             },
             error: function () {
                 console.log("Error");
             }
+
         });
     };
-
-    var handleEditAddress = function (id) {
-     
+    var handleEditNeighborhood = function (id) {
+       
         $.ajax({
-            url: '/Address/GetAddress',
+            url: '/Neighborhood/GetNeighborhood',
             type: 'GET',
-            dataType: 'html',
+            dataType: 'HTML',
             data: { "id": id },
             success: function (result) {
                 if (result.key == false) {
@@ -77,22 +77,23 @@
                     });
                 }
                 else {
-                    $("#CreateAddress").empty();
-                    $("#CreateAddress").html(result);
-                    $("#CreateAddress").modal("show");
-                }
+                    $("#CreateNeighborhood").empty();
+                    $("#CreateNeighborhood").html(result);
+                    $("#CreateNeighborhood").modal("show");
+                  
 
+                }
             },
             error: function () {
                 console.log("Error");
             }
         });
     };
-
-    var handleDeleteAddress = function (id) {
+    var handleDeleteNeighborhood = function (id) {
+        debugger
         $.confirm({
             title: 'Delete Group',
-            content: 'Are you sure you want to delete this Address?',
+            content: 'Are you sure you want to delete this Neighborhood?',
             theme: 'material',
             buttons: {
                 confirm: {
@@ -100,7 +101,7 @@
                     keys: ["enter"],
                     action: function () {
                         $.ajax({
-                            url: '/Address/DeleteAddress',
+                            url: '/Neighborhood/DeleteNeighborhood',
                             type: 'GET',
                             dataType: 'json',
                             data: { "id": id },
@@ -112,7 +113,7 @@
                                         showHideTransition: 'slide',
                                         icon: 'success'
                                     });
-                                    handleAddressList();
+                                    handleNeighborhoodList();
                                 }
                                 else {
                                     $.toast({
@@ -135,31 +136,32 @@
             }
         });
     };
-
-
-    // Public static Function
+    //public Static
     return {
-        initCreateAddress: function () {
-            handleCreateAddress();
+
+        initCreateNeighborhood: function () {
+
+            handleCreateNeighborhood();
         },
-        initAddressSucsess: function (result) {
-            handleAddressSucsess(result);
+        initNeighbordhoodSucsess: function (result) {
+            handleNeighborhoodSucsess(result);
+
         },
-        initAddressList: function () {
-            handleAddressList();
+        initNeighboorhoodList: function () {
+            handleNeighborhoodList();
         },
-        iniEditAddress: function (id) {
-            handleEditAddress(id);
+        initEditNeighborhood: function (id) {
+            handleEditNeighborhood(id);
         },
-        initDeleteAddress: function (id) {
-            handleDeleteAddress(id)
+        initDeleteNeighborhood: function (id) {
+            handleDeleteNeighborhood(id);
         },
 
-    };
+    }
 
 }();
-//Document ready load page
+//Document ready
 
 $(function () {
-    Address.initAddressList();
+    Neighborhood.initNeighboorhoodList();
 });

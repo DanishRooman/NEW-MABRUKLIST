@@ -156,7 +156,7 @@ namespace ColidColorlib.Controllers
                     {
                         return Json(new { key = false, value = "Title not Found its Deleted from data base!!" }, JsonRequestBehavior.AllowGet);
                     }
-                }
+                };
             }
             catch (Exception)
             {
