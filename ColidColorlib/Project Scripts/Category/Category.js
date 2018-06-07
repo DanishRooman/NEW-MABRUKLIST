@@ -85,42 +85,46 @@
     };
     var handleDeleteCategory = function (id) {
         $.confirm({
-            title: 'Delete Categor',
-            content: 'Are you sure you want to delete the Category?',
-            theme: 'Material',
+            title: 'Delete Category',
+            content: 'Are you sure you want to delete this Category?',
+            theme: 'material',
             buttons: {
-                confirm: function () {
-                    $.ajax({
-                        url: '/Category/DeleteCategory',
-                        type: 'GET',
-                        dataType: 'json',
-                        data: { "id": id },
-                        success: function (result) {
-                            if (result.key) {
-                                $.toast({
-                                    heading: 'Success',
-                                    text: result.value,
-                                    showHideTransition: 'slide',
-                                    icon: 'success'
-                                });
-                                handleCategoryList();
+                confirm: {
+                    btnClass: "btn-blue",
+                    keys: ["enter"],
+                    action: function () {
+                        $.ajax({
+                            url: '/Category/DeleteCategory',
+                            type: 'GET',
+                            dataType: 'json',
+                            data: { "id": id },
+                            success: function (result) {
+                                if (result.key) {
+                                    $.toast({
+                                        heading: 'Success',
+                                        text: result.value,
+                                        showHideTransition: 'slide',
+                                        icon: 'success'
+                                    });
+                                    handleCategoryList();
+                                }
+                                else {
+                                    $.toast({
+                                        heading: 'Error',
+                                        text: result.value,
+                                        showHideTransition: 'fade',
+                                        icon: 'error'
+                                    });
+                                }
+                            },
+                            error: function () {
+                                console.log("Error");
                             }
-                            else {
-                                $.toast({
-                                    heading: 'Error',
-                                    text: result.value,
-                                    showHideTransition: 'fade',
-                                    icon: 'error'
-                                });
-                            }
-                        },
-                        error: function () {
-                            console.log("Error");
-                        }
-                    });
+                        });
+                    }
                 },
                 cancel: function () {
-                   
+
                 },
             }
         });

@@ -1,18 +1,18 @@
-﻿var Group = function () {
+﻿var Title = function(){
 
-    //private Static function
-    var handleCreatGroup = function () {
+    //private static functions
+    var handleCreateTitle = function () {
+        //Ajax Call
         debugger
-        //Ajax call
         $.ajax({
-            url: '/Group/AddGroup',
+            url: '/Title/AddTitle',
             type: 'GET',
             dataType: 'HTML',
             data: {},
             success: function (result) {
-                $("#CreateGroup").empty();
-                $("#CreateGroup").html(result);
-                $("#CreateGroup").modal("show");
+                $("#CreateTitle").empty();
+                $("#CreateTitle").html(result);
+                $("#CreateTitle").modal("show");
             },
             error: function () {
                 console.log("Error");
@@ -20,7 +20,8 @@
         });
     };
 
-    var handleGroupSucsess = function (result) {
+    var handleTitleSucsess = function (result) {
+        debugger
         if (result.key) {
 
             $.toast({
@@ -29,8 +30,8 @@
                 showHideTransition: 'slide',
                 icon: 'success'
             });
-            $("#CreateGroup").modal("hide");
-            handleGroupList();
+            $("#CreateTitle").modal("hide");
+            //handleGroupList();
         }
         else {
             $.toast({
@@ -40,31 +41,29 @@
                 icon: 'error'
             });
         }
-
     };
 
-    //groupList Table
-    //Select Process
-    var handleGroupList = function () {
-
+    var handleTitleList = function ()
+    {
         $.ajax({
-            url: '/Group/GroupListing',
+            url: '/Title/TitleListing',
             type: 'GET',
             dataType: 'html',
             data: {},
             success: function (result) {
-                $("#divGroup").empty();
-                $("#divGroup").html(result);
+                $("#divTitle").empty();
+                $("#divTitle").html(result);
             },
             error: function () {
                 console.log("Error");
             }
         });
     };
-    var handleEditGroup = function (id) {
+
+    var handleEditTitle = function (id) {
         debugger
         $.ajax({
-            url: '/Group/GetGroup',
+            url: '/Title/GetTitle',
             type: 'GET',
             dataType: 'HTML',
             data: { "id": id },
@@ -78,9 +77,9 @@
                     });
                 }
                 else {
-                    $("#CreateGroup").empty();
-                    $("#CreateGroup").html(result);
-                    $("#CreateGroup").modal("show");
+                    $("#CreateTitle").empty();
+                    $("#CreateTitle").html(result);
+                    $("#CreateTitle").modal("show");
                 }
 
             },
@@ -89,7 +88,8 @@
             }
         });
     };
-    var handleDeleteGroup = function (id) {
+
+    var handleDeleteTitle = function (id) {
 
         $.confirm({
             title: 'Delete Group',
@@ -98,10 +98,10 @@
             buttons: {
                 confirm: {
                     btnClass: "btn-blue",
-                    keys:["enter"],
-                    action:function () {
+                    keys: ["enter"],
+                    action: function () {
                         $.ajax({
-                            url: '/Group/DeleteGroup',
+                            url: '/Title/DeleteTitle',
                             type: 'GET',
                             dataType: 'json',
                             data: { "id": id },
@@ -113,7 +113,7 @@
                                         showHideTransition: 'slide',
                                         icon: 'success'
                                     });
-                                    handleGroupList();
+                                    handleTitleList();
                                 }
                                 else {
                                     $.toast({
@@ -135,32 +135,31 @@
                 },
             }
         });
-
     };
-    //public Static functions
+    //Public static functions
     return {
-        initCreateGroup: function () {
 
-            handleCreatGroup();
+        initCreateTitle: function () {
+            handleCreateTitle();
         },
-        initGroupSeccess: function (result) {
+        initTitleSucsess: function (result) {
+            handleTitleSucsess(result);
+        },
+        initTitleList: function () {
+            handleTitleList();
+        },
+        initEditTitle: function (id) {
+            handleEditTitle(id);
+        },
+        initDeleteTitle: function (id) {
+            handleDeleteTitle(id);
+        },
 
-            handleGroupSucsess(result);
-        },
-        initGroupList: function () {
-            handleGroupList();
-        },
-        initEditGroup: function (id) {
-            handleEditGroup(id);
-        },
-        initDeleteGroup: function (id) {
-            handleDeleteGroup(id);
-        },
-
-    };
+    }
 
 }();
+
 //Document ready load page
 $(function () {
-    Group.initGroupList();
+    Title.initTitleList();
 });

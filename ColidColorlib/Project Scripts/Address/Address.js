@@ -1,18 +1,18 @@
-﻿var Group = function () {
+﻿var Address = function () {
+    //private static Function
 
-    //private Static function
-    var handleCreatGroup = function () {
+    var handleCreateAddress = function () {
         debugger
         //Ajax call
         $.ajax({
-            url: '/Group/AddGroup',
+            url: '/Address/AddAddress',
             type: 'GET',
             dataType: 'HTML',
             data: {},
             success: function (result) {
-                $("#CreateGroup").empty();
-                $("#CreateGroup").html(result);
-                $("#CreateGroup").modal("show");
+                $("#CreateAddress").empty();
+                $("#CreateAddress").html(result);
+                $("#CreateAddress").modal("show");
             },
             error: function () {
                 console.log("Error");
@@ -20,7 +20,7 @@
         });
     };
 
-    var handleGroupSucsess = function (result) {
+    var handleAddressSucsess = function (result) {
         if (result.key) {
 
             $.toast({
@@ -29,8 +29,9 @@
                 showHideTransition: 'slide',
                 icon: 'success'
             });
-            $("#CreateGroup").modal("hide");
-            handleGroupList();
+            $("#CreateAddress").modal("hide");
+            handleAddressList();
+
         }
         else {
             $.toast({
@@ -40,33 +41,31 @@
                 icon: 'error'
             });
         }
-
     };
 
-    //groupList Table
-    //Select Process
-    var handleGroupList = function () {
+    var handleAddressList = function () {
 
         $.ajax({
-            url: '/Group/GroupListing',
+            url: '/Address/AddressListing',
             type: 'GET',
             dataType: 'html',
             data: {},
             success: function (result) {
-                $("#divGroup").empty();
-                $("#divGroup").html(result);
+                $("#divAddress").empty();
+                $("#divAddress").html(result);
             },
             error: function () {
                 console.log("Error");
             }
         });
     };
-    var handleEditGroup = function (id) {
+
+    var handleEditAddress = function (id) {
         debugger
         $.ajax({
-            url: '/Group/GetGroup',
+            url: '/Address/GetAddress',
             type: 'GET',
-            dataType: 'HTML',
+            dataType: 'html',
             data: { "id": id },
             success: function (result) {
                 if (result.key == false) {
@@ -78,9 +77,9 @@
                     });
                 }
                 else {
-                    $("#CreateGroup").empty();
-                    $("#CreateGroup").html(result);
-                    $("#CreateGroup").modal("show");
+                    $("#CreateAddress").empty();
+                    $("#CreateAddress").html(result);
+                    $("#CreateAddress").modal("show");
                 }
 
             },
@@ -89,19 +88,19 @@
             }
         });
     };
-    var handleDeleteGroup = function (id) {
 
+    var handleDeleteAddress = function (id) {
         $.confirm({
             title: 'Delete Group',
-            content: 'Are you sure you want to delete this group?',
+            content: 'Are you sure you want to delete this Address?',
             theme: 'material',
             buttons: {
                 confirm: {
                     btnClass: "btn-blue",
-                    keys:["enter"],
-                    action:function () {
+                    keys: ["enter"],
+                    action: function () {
                         $.ajax({
-                            url: '/Group/DeleteGroup',
+                            url: '/Address/DeleteAddress',
                             type: 'GET',
                             dataType: 'json',
                             data: { "id": id },
@@ -135,32 +134,32 @@
                 },
             }
         });
-
     };
-    //public Static functions
+
+
+    // Public static Function
     return {
-        initCreateGroup: function () {
-
-            handleCreatGroup();
+        initCreateAddress: function () {
+            handleCreateAddress();
         },
-        initGroupSeccess: function (result) {
-
-            handleGroupSucsess(result);
+        initAddressSucsess: function (result) {
+            handleAddressSucsess(result);
         },
-        initGroupList: function () {
-            handleGroupList();
+        initAddressList: function () {
+            handleAddressList();
         },
-        initEditGroup: function (id) {
-            handleEditGroup(id);
+        iniEditAddress: function (id) {
+            handleEditAddress(id);
         },
-        initDeleteGroup: function (id) {
-            handleDeleteGroup(id);
+        initDeleteAddress: function (id) {
+            handleDeleteAddress(id)
         },
 
     };
 
 }();
 //Document ready load page
+
 $(function () {
-    Group.initGroupList();
+    Address.initAddressList();
 });

@@ -94,39 +94,43 @@
 
     var handleDeleteType = function (id) {
         $.confirm({
-            title: 'Delete Type',
-            content: 'Are you sure you want to delete the Type?',
-            theme: 'Material',
+            title: 'Delete Group',
+            content: 'Are you sure you want to delete this group?',
+            theme: 'material',
             buttons: {
-                confirm: function () {
-                    $.ajax({
-                        url: '/Type/DeleteType',
-                        type: 'GET',
-                        dataType: 'json',
-                        data: { "id": id },
-                        success: function (result) {
-                            if (result.key) {
-                                $.toast({
-                                    heading: 'Success',
-                                    text: result.value,
-                                    showHideTransition: 'slide',
-                                    icon: 'success'
-                                });
-                                handleTypeList();
+                confirm: {
+                    btnClass: "btn-blue",
+                    keys: ["enter"],
+                    action: function () {
+                        $.ajax({
+                            url: '/Type/DeleteType',
+                            type: 'GET',
+                            dataType: 'json',
+                            data: { "id": id },
+                            success: function (result) {
+                                if (result.key) {
+                                    $.toast({
+                                        heading: 'Success',
+                                        text: result.value,
+                                        showHideTransition: 'slide',
+                                        icon: 'success'
+                                    });
+                                    handleTypeList();
+                                }
+                                else {
+                                    $.toast({
+                                        heading: 'Error',
+                                        text: result.value,
+                                        showHideTransition: 'fade',
+                                        icon: 'error'
+                                    });
+                                }
+                            },
+                            error: function () {
+                                console.log("Error");
                             }
-                            else {
-                                $.toast({
-                                    heading: 'Error',
-                                    text: result.value,
-                                    showHideTransition: 'fade',
-                                    icon: 'error'
-                                });
-                            }
-                        },
-                        error: function () {
-                            console.log("Error");
-                        }
-                    });
+                        });
+                    }
                 },
                 cancel: function () {
 
