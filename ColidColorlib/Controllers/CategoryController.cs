@@ -94,7 +94,7 @@ namespace ColidColorlib.Controllers
                 return Json(new { key = false, value = "Unable to save the category" }, JsonRequestBehavior.AllowGet);
             }
         }
-       
+
 
         [HttpGet]
         public ActionResult GetCategory(int id)

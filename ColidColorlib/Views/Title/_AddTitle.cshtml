@@ -1,14 +1,14 @@
-﻿@model DataTransferObjects.Group.GroupDTO
+﻿@model DataTransferObjects.Title.TitleDTO
 @Scripts.Render("~/Script/unobtrusive")
 
 <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
-        @using (Ajax.BeginForm("AddOrUpdateGroup", "Group", new AjaxOptions { OnSuccess = "Group.initGroupSeccess" }))
+        @using (Ajax.BeginForm("AddOrUpdateTitle", "Title", new AjaxOptions { OnSuccess = "Title.initTitleSucsess" }))
         {
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add New Group</h4>
+                <h4 class="modal-title">Add New Title</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -19,10 +19,10 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
                                 @Html.HiddenFor(model => model.id)
-                                @Html.LabelFor(model => model.Group, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Group, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Group, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
@@ -42,4 +42,6 @@
 
     </div>
 </div>
+
+
 
