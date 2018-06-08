@@ -48,8 +48,8 @@ namespace ColidColorlib
                    "~/StyleSheet/morris.css",
                    "~/fonts/font-awesome.min.css",
                    "~/Content/jquery.toast.min.css",
-                   "~/Content/jquery-confirm.css",
-                   "~/Content/components.css" 
+                   "~/Content/jquery-confirm.css"
+                  // "~/Content/components.css"
                  ));
 
             bundles.Add(new StyleBundle("~/Contents/Datatables_Styles").Include(
@@ -96,7 +96,7 @@ namespace ColidColorlib
                 "~/javascript/sb-admin-2.js"
                 ));
 
-            bundles.Add(new StyleBundle("~/Script/component_Styles").Include(
+            bundles.Add(new StyleBundle("~/Content/component_Styles").Include(
                            "~/Content/components.css"
                            ));
         }
