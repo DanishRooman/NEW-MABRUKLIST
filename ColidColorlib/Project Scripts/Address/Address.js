@@ -61,7 +61,7 @@
     };
 
     var handleEditAddress = function (id) {
-        debugger
+        
         $.ajax({
             url: '/Address/GetAddress',
             type: 'GET',
