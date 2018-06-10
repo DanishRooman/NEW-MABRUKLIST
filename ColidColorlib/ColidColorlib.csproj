@@ -317,7 +317,6 @@
     <Content Include="images\videgub.gif" />
     <Content Include="img\remove-icon-small.png" />
     <Content Include="javascript\app.js" />
-    <Content Include="javascript\app.min.js" />
     <Content Include="javascript\bootstrap.js" />
     <Content Include="javascript\bootstrap.min.js" />
     <Content Include="javascript\contact-form.js" />
@@ -379,10 +378,8 @@
     <Content Include="javascript\raphael.js" />
     <Content Include="javascript\raphael.min.js" />
     <Content Include="javascript\sb-admin-2.js" />
-    <Content Include="javascript\sb-admin-2.min.js" />
     <Content Include="javascript\scrollUp.min.js" />
     <Content Include="javascript\ui-blockui.js" />
-    <Content Include="javascript\ui-blockui.min.js" />
     <Content Include="javascript\wow.min.js" />
     <Content Include="Project Scripts\Address\Address.js" />
     <Content Include="Project Scripts\Categories\Categories.js" />
@@ -573,6 +570,7 @@
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Categories\_AddCategories.cshtml" />
     <Content Include="Views\Categories\_CategoriesListing.cshtml" />
+    <Content Include="Views\Account\AddUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
