@@ -43,15 +43,17 @@
   <ItemGroup>
     <Compile Include="Address\AddressDTO.cs" />
     <Compile Include="Address\DispAttribute.cs" />
+    <Compile Include="Categories\CategoriesDTO.cs" />
     <Compile Include="Category\CategoryDto.cs" />
+    <Compile Include="Congregation\CongregationDTO.cs" />
     <Compile Include="Group\GroupDTO.cs" />
+    <Compile Include="Neighbourhood\NeighbourhoodDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subtitle\SubtitleDTO.cs" />
     <Compile Include="Title\TitleDTO.cs" />
     <Compile Include="Types\TypeDto.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Neighborhood\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

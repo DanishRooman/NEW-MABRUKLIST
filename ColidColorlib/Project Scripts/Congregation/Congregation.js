@@ -1,37 +1,37 @@
-﻿var Title = function(){
+﻿var Congregation = function () {
+    //private static
 
-    //private static functions
-    var handleCreateTitle = function () {
-        //Ajax Call
-       
+    var handleCreateCongregation = function () {
+
+        //Ajax call
         $.ajax({
-            url: '/Title/AddTitle',
+            url: '/Congregation/AddCongregation',
             type: 'GET',
             dataType: 'HTML',
             data: {},
             success: function (result) {
-                $("#CreateTitle").empty();
-                $("#CreateTitle").html(result);
-                $("#CreateTitle").modal("show");
+                $("#CreateCongregation").empty();
+                $("#CreateCongregation").html(result);
+                $("#CreateCongregation").modal("show");
             },
             error: function () {
                 console.log("Error");
             }
         });
+
     };
 
-    var handleTitleSucsess = function (result) {
-       
+    var handleCongregationSucsess = function (result) {
+  
         if (result.key) {
-
             $.toast({
                 heading: 'Success',
                 text: result.value,
                 showHideTransition: 'slide',
                 icon: 'success'
             });
-            $("#CreateTitle").modal("hide");
-            handleTitleList();
+            $("#CreateCongregation").modal("hide");
+            handleCongregationList();
         }
         else {
             $.toast({
@@ -41,29 +41,29 @@
                 icon: 'error'
             });
         }
+
     };
 
-    var handleTitleList = function ()
-    {
+    var handleCongregationList = function () {
         $.ajax({
-            url: '/Title/TitleListing',
+            url: '/Congregation/CongregationListing',
             type: 'GET',
-            dataType: 'html',
+            dataType: 'HTML',
             data: {},
             success: function (result) {
-                $("#divTitle").empty();
-                $("#divTitle").html(result);
+                $("#divCongregation").empty();
+                $("#divCongregation").html(result);
             },
             error: function () {
                 console.log("Error");
             }
         });
-    };
 
-    var handleEditTitle = function (id) {
-       
+    };
+    var handleEditCongregation = function (id) {
+
         $.ajax({
-            url: '/Title/GetTitle',
+            url: '/Congregation/GetCongregation',
             type: 'GET',
             dataType: 'HTML',
             data: { "id": id },
@@ -77,11 +77,10 @@
                     });
                 }
                 else {
-                    $("#CreateTitle").empty();
-                    $("#CreateTitle").html(result);
-                    $("#CreateTitle").modal("show");
+                    $("#CreateCongregation").empty();
+                    $("#CreateCongregation").html(result);
+                    $("#CreateCongregation").modal("show");
                 }
-
             },
             error: function () {
                 console.log("Error");
@@ -89,11 +88,11 @@
         });
     };
 
-    var handleDeleteTitle = function (id) {
+    var handleDeleteCongregation = function (id) {
 
         $.confirm({
-            title: 'Delete Group',
-            content: 'Are you sure you want to delete this group?',
+            title: 'Delete Category',
+            content: 'Are you sure you want to delete this Congregation?',
             theme: 'material',
             buttons: {
                 confirm: {
@@ -101,7 +100,7 @@
                     keys: ["enter"],
                     action: function () {
                         $.ajax({
-                            url: '/Title/DeleteTitle',
+                            url: '/Congregation/DeleteCongregation',
                             type: 'GET',
                             dataType: 'json',
                             data: { "id": id },
@@ -113,7 +112,7 @@
                                         showHideTransition: 'slide',
                                         icon: 'success'
                                     });
-                                    handleTitleList();
+                                    handleCongregationList();
                                 }
                                 else {
                                     $.toast({
@@ -135,31 +134,43 @@
                 },
             }
         });
+
     };
-    //Public static functions
+
+    //public static
     return {
 
-        initCreateTitle: function () {
-            handleCreateTitle();
+        initCreateCongregation: function () {
+
+
+            handleCreateCongregation();
         },
-        initTitleSucsess: function (result) {
-            handleTitleSucsess(result);
-        },
-        initTitleList: function () {
-            handleTitleList();
-        },
-        initEditTitle: function (id) {
-            handleEditTitle(id);
-        },
-        initDeleteTitle: function (id) {
-            handleDeleteTitle(id);
+        initCongregationSucsess: function (result) {
+
+            handleCongregationSucsess(result)
         },
 
-    }
+        initCongregationList: function () {
+
+            handleCongregationList();
+        },
+        initEditCongregation: function (id) {
+
+            handleEditCongregation(id);
+
+        },
+        initDeleteCongregation: function (id) {
+
+            handleDeleteCongregation(id);
+        },
+
+    };
+
+
 
 }();
 
-//Document ready load page
 $(function () {
-    Title.initTitleList();
+
+    Congregation.initCongregationList();
 });

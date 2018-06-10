@@ -60,13 +60,14 @@ namespace ColidColorlib.Controllers
                             }
                             else
                             {
-                                mblist_address adress = new mblist_address()
+                                mblist_address obj = new mblist_address()
                                 {
                                     address_name = dto.Address
+
                                 };
-                                dbcontext.mblist_address.Add(adress);
+                                dbcontext.mblist_address.Add(obj);
                                 dbcontext.SaveChanges();
-                                return Json(new { key = true, value = "Address added successfully" }, JsonRequestBehavior.AllowGet);
+                                return Json(new { key = true, value = "Congregation added successfully" }, JsonRequestBehavior.AllowGet);
                             }
 
                         }

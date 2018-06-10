@@ -112,7 +112,7 @@
                                         showHideTransition: 'slide',
                                         icon: 'success'
                                     });
-                                    handleGroupList();
+                                    handleAddressList();
                                 }
                                 else {
                                     $.toast({

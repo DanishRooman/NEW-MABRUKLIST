@@ -1,27 +1,27 @@
-﻿var Title = function(){
+﻿var Neighbourhood = function () {
+    //private Static
+    var handleCreateNeighbourhood = function () {
 
-    //private static functions
-    var handleCreateTitle = function () {
-        //Ajax Call
-       
+        //Ajax call
         $.ajax({
-            url: '/Title/AddTitle',
+            url: '/Neighbourhood/AddNeighbourhood',
             type: 'GET',
             dataType: 'HTML',
             data: {},
             success: function (result) {
-                $("#CreateTitle").empty();
-                $("#CreateTitle").html(result);
-                $("#CreateTitle").modal("show");
+                $("#CreateNeighbourhood").empty();
+                $("#CreateNeighbourhood").html(result);
+                $("#CreateNeighbourhood").modal("show");
             },
             error: function () {
                 console.log("Error");
             }
         });
+
     };
 
-    var handleTitleSucsess = function (result) {
-       
+    var handleNeighbourhoodSucsess = function (result) {
+
         if (result.key) {
 
             $.toast({
@@ -30,8 +30,8 @@
                 showHideTransition: 'slide',
                 icon: 'success'
             });
-            $("#CreateTitle").modal("hide");
-            handleTitleList();
+            $("#CreateNeighbourhood").modal("hide");
+            handleNeighbourhoodList();
         }
         else {
             $.toast({
@@ -41,18 +41,19 @@
                 icon: 'error'
             });
         }
+
     };
 
-    var handleTitleList = function ()
-    {
+    var handleNeighbourhoodList=  function(){
+    
         $.ajax({
-            url: '/Title/TitleListing',
+            url: '/Neighbourhood/NeighbourhoodListing',
             type: 'GET',
             dataType: 'html',
             data: {},
             success: function (result) {
-                $("#divTitle").empty();
-                $("#divTitle").html(result);
+                $("#divNeighbourhood").empty();
+                $("#divNeighbourhood").html(result);
             },
             error: function () {
                 console.log("Error");
@@ -60,10 +61,10 @@
         });
     };
 
-    var handleEditTitle = function (id) {
-       
+    var handleEditNeighbourhood = function (id) {
+      
         $.ajax({
-            url: '/Title/GetTitle',
+            url: '/Neighbourhood/GetNeighbourhood',
             type: 'GET',
             dataType: 'HTML',
             data: { "id": id },
@@ -77,9 +78,9 @@
                     });
                 }
                 else {
-                    $("#CreateTitle").empty();
-                    $("#CreateTitle").html(result);
-                    $("#CreateTitle").modal("show");
+                    $("#CreateNeighbourhood").empty();
+                    $("#CreateNeighbourhood").html(result);
+                    $("#CreateNeighbourhood").modal("show");
                 }
 
             },
@@ -87,9 +88,10 @@
                 console.log("Error");
             }
         });
+
     };
 
-    var handleDeleteTitle = function (id) {
+    var handleDeleteNeighbourhood = function (id) {
 
         $.confirm({
             title: 'Delete Group',
@@ -101,7 +103,7 @@
                     keys: ["enter"],
                     action: function () {
                         $.ajax({
-                            url: '/Title/DeleteTitle',
+                            url: '/Neighbourhood/DeleteNeighbourhood',
                             type: 'GET',
                             dataType: 'json',
                             data: { "id": id },
@@ -113,7 +115,7 @@
                                         showHideTransition: 'slide',
                                         icon: 'success'
                                     });
-                                    handleTitleList();
+                                    handleNeighbourhoodList();
                                 }
                                 else {
                                     $.toast({
@@ -135,31 +137,40 @@
                 },
             }
         });
+
     };
-    //Public static functions
+    //public Static
     return {
 
-        initCreateTitle: function () {
-            handleCreateTitle();
+        initCreateNeighbourdhood: function () {
+
+            handleCreateNeighbourhood();
         },
-        initTitleSucsess: function (result) {
-            handleTitleSucsess(result);
+
+        initNeighbourhoodSucsess: function (result) {
+
+            handleNeighbourhoodSucsess(result);
+
         },
-        initTitleList: function () {
-            handleTitleList();
+        initNeighbourhoodList: function () {
+            handleNeighbourhoodList();
+
         },
-        initEditTitle: function (id) {
-            handleEditTitle(id);
+        initEditNeighbourhood: function (id) {
+
+            handleEditNeighbourhood(id);
+
         },
-        initDeleteTitle: function (id) {
-            handleDeleteTitle(id);
+
+        initDeleteNeighbourhood: function (id) {
+
+            handleDeleteNeighbourhood(id);
         },
+
 
     }
 
 }();
-
-//Document ready load page
 $(function () {
-    Title.initTitleList();
+    Neighbourhood.initNeighbourhoodList();
 });

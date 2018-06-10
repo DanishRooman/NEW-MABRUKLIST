@@ -197,7 +197,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CongregationController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -383,8 +385,11 @@
     <Content Include="javascript\ui-blockui.min.js" />
     <Content Include="javascript\wow.min.js" />
     <Content Include="Project Scripts\Address\Address.js" />
+    <Content Include="Project Scripts\Categories\Categories.js" />
     <Content Include="Project Scripts\Category\Category.js" />
+    <Content Include="Project Scripts\Congregation\Congregation.js" />
     <Content Include="Project Scripts\Group\Group.js" />
+    <Content Include="Project Scripts\Neighbourhood\Neighbourhood.js" />
     <Content Include="Project Scripts\Subtitle\Subtitle.js" />
     <Content Include="Project Scripts\Title\Title.js" />
     <Content Include="Project Scripts\Type\Type.js" />
@@ -557,6 +562,17 @@
     <Content Include="Views\Title\_AddTitle.cshtml" />
     <Content Include="Views\Title\_TitleListing.cshtml" />
     <Content Include="Views\Neighbourhood\Index.cshtml" />
+    <Content Include="Views\Neighbourhood\_AddNeighbourhood.cshtml" />
+    <Content Include="Views\Neighbourhood\_NeighbourhoodListing.cshtml" />
+    <Content Include="Views\Subtitle\Index.cshtml" />
+    <Content Include="Views\Subtitle\_AddSubtitle.cshtml" />
+    <Content Include="Views\Subtitle\_SubtitleListing.cshtml" />
+    <Content Include="Views\Congregation\Index.cshtml" />
+    <Content Include="Views\Congregation\_AddCongregation.cshtml" />
+    <Content Include="Views\Congregation\_CongregationListing.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Categories\_AddCategories.cshtml" />
+    <Content Include="Views\Categories\_CategoriesListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

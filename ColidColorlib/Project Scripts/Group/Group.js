@@ -2,7 +2,7 @@
 
     //private Static function
     var handleCreatGroup = function () {
-        debugger
+
         //Ajax call
         $.ajax({
             url: '/Group/AddGroup',
@@ -62,7 +62,7 @@
         });
     };
     var handleEditGroup = function (id) {
-        debugger
+
         $.ajax({
             url: '/Group/GetGroup',
             type: 'GET',
@@ -98,8 +98,8 @@
             buttons: {
                 confirm: {
                     btnClass: "btn-blue",
-                    keys:["enter"],
-                    action:function () {
+                    keys: ["enter"],
+                    action: function () {
                         $.ajax({
                             url: '/Group/DeleteGroup',
                             type: 'GET',

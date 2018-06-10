@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DataTransferObjects.Categories.CategoriesDTO>
+
+
+
+
+<table class="table table-bordered table-striped table-responsive table-hover" id="tblCategories">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                Action
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    <a href="javascript:void(0);" id="blockui_sample_2_2" title="Edit Category" onclick="Categories.initEditCategories(@item.id);"><i class="fa fa-pencil" aria-hidden="true"></i></a> |
+                    <a href="javascript:void(0);" title="Delete Category" onclick="Categories.initDeleteCategories(@item.id);"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tblCategories').DataTable();
+    });
+</script>
+
+

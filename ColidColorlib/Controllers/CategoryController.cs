@@ -90,7 +90,7 @@ namespace ColidColorlib.Controllers
                     return Json(new { key = false, value = "Please enter correct data" }, JsonRequestBehavior.AllowGet);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Json(new { key = false, value = "Unable to save the category" }, JsonRequestBehavior.AllowGet);
             }
@@ -119,7 +119,7 @@ namespace ColidColorlib.Controllers
                 };
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Json(new { key = false, value = "Unable to edit the category" }, JsonRequestBehavior.AllowGet);
             }
@@ -146,7 +146,7 @@ namespace ColidColorlib.Controllers
                 };
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Json(new { key = false, value = "Unable to edit the category" }, JsonRequestBehavior.AllowGet);
             }

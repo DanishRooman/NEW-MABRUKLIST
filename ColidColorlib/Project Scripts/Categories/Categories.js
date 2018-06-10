@@ -1,27 +1,28 @@
-﻿var Title = function(){
+﻿var Categories = function () {
+    //private static
 
-    //private static functions
-    var handleCreateTitle = function () {
+    var handleCreateCategories = function () {
         //Ajax Call
-       
+
         $.ajax({
-            url: '/Title/AddTitle',
+            url: '/Categories/AddCategories',
             type: 'GET',
             dataType: 'HTML',
             data: {},
             success: function (result) {
-                $("#CreateTitle").empty();
-                $("#CreateTitle").html(result);
-                $("#CreateTitle").modal("show");
+                $("#CreateCategories").empty();
+                $("#CreateCategories").html(result);
+                $("#CreateCategories").modal("show");
             },
             error: function () {
                 console.log("Error");
             }
         });
+
+
     };
 
-    var handleTitleSucsess = function (result) {
-       
+    var handleSucsessCategories = function (result) {
         if (result.key) {
 
             $.toast({
@@ -30,8 +31,9 @@
                 showHideTransition: 'slide',
                 icon: 'success'
             });
-            $("#CreateTitle").modal("hide");
-            handleTitleList();
+            $("#CreateCategories").modal("hide");
+            handleCategoriesList();
+
         }
         else {
             $.toast({
@@ -41,18 +43,19 @@
                 icon: 'error'
             });
         }
+
     };
 
-    var handleTitleList = function ()
-    {
+    var handleCategoriesList = function () {
+
         $.ajax({
-            url: '/Title/TitleListing',
+            url: '/Categories/CategoriesListing',
             type: 'GET',
             dataType: 'html',
             data: {},
             success: function (result) {
-                $("#divTitle").empty();
-                $("#divTitle").html(result);
+                $("#divACategories").empty();
+                $("#divACategories").html(result);
             },
             error: function () {
                 console.log("Error");
@@ -60,12 +63,12 @@
         });
     };
 
-    var handleEditTitle = function (id) {
-       
+    var handleEditCategories = function (id) {
+
         $.ajax({
-            url: '/Title/GetTitle',
+            url: '/Categories/GetCategories',
             type: 'GET',
-            dataType: 'HTML',
+            dataType: 'html',
             data: { "id": id },
             success: function (result) {
                 if (result.key == false) {
@@ -77,9 +80,9 @@
                     });
                 }
                 else {
-                    $("#CreateTitle").empty();
-                    $("#CreateTitle").html(result);
-                    $("#CreateTitle").modal("show");
+                    $("#CreateCategories").empty();
+                    $("#CreateCategories").html(result);
+                    $("#CreateCategories").modal("show");
                 }
 
             },
@@ -88,12 +91,11 @@
             }
         });
     };
+    var handleDeleteCategories = function (id) {
 
-    var handleDeleteTitle = function (id) {
-
-        $.confirm({
+           $.confirm({
             title: 'Delete Group',
-            content: 'Are you sure you want to delete this group?',
+            content: 'Are you sure you want to delete this Category?',
             theme: 'material',
             buttons: {
                 confirm: {
@@ -101,7 +103,7 @@
                     keys: ["enter"],
                     action: function () {
                         $.ajax({
-                            url: '/Title/DeleteTitle',
+                            url: '/Categories/DeleteCategories',
                             type: 'GET',
                             dataType: 'json',
                             data: { "id": id },
@@ -113,7 +115,7 @@
                                         showHideTransition: 'slide',
                                         icon: 'success'
                                     });
-                                    handleTitleList();
+                                    handleCategoriesList();
                                 }
                                 else {
                                     $.toast({
@@ -136,30 +138,42 @@
             }
         });
     };
-    //Public static functions
+    //public static
     return {
 
-        initCreateTitle: function () {
-            handleCreateTitle();
+        initCreateCategories: function () {
+
+
+            handleCreateCategories();
         },
-        initTitleSucsess: function (result) {
-            handleTitleSucsess(result);
+        initCategoriesSucsess: function (result) {
+
+            handleSucsessCategories(result);
+
         },
-        initTitleList: function () {
-            handleTitleList();
+        initCategoriesList: function () {
+
+            handleCategoriesList();
         },
-        initEditTitle: function (id) {
-            handleEditTitle(id);
+        initEditCategories: function (id) {
+
+            handleEditCategories(id);
         },
-        initDeleteTitle: function (id) {
-            handleDeleteTitle(id);
+        initDeleteCategories: function (id) {
+
+            handleDeleteCategories(id)
         },
 
-    }
+
+
+
+
+    
+    };
+
 
 }();
-
-//Document ready load page
 $(function () {
-    Title.initTitleList();
+
+    Categories.initCategoriesList();
 });
