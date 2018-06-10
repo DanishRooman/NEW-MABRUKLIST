@@ -12,10 +12,10 @@
         <EntityTypeShape EntityType="MABRUKLISTModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" />
         <EntityTypeShape EntityType="MABRUKLISTModel.mblist_address" Width="1.5" PointX="2.75" PointY="6.75" />
         <EntityTypeShape EntityType="MABRUKLISTModel.mblist_category" Width="1.5" PointX="4.75" PointY="6.75" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_Category_Table" Width="1.5" PointX="6.75" PointY="6.75" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_congregation" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_group" Width="1.5" PointX="7.75" PointY="3.75" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_neighborhoods" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_congregation" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_group" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_neighborhoods" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_service_category" Width="1.5" PointX="8.75" PointY="6.75" />
         <EntityTypeShape EntityType="MABRUKLISTModel.mblist_subtitle" Width="1.5" PointX="9.75" PointY="0.75" />
         <EntityTypeShape EntityType="MABRUKLISTModel.mblist_title" Width="1.5" PointX="0.75" PointY="9.75" />
         <EntityTypeShape EntityType="MABRUKLISTModel.mblist_type" Width="1.5" PointX="2.75" PointY="9.75" />

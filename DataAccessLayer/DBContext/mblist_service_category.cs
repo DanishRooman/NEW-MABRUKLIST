@@ -12,7 +12,7 @@ namespace DataAccessLayer.DBContext
     using System;
     using System.Collections.Generic;
     
-    public partial class mblist_Category_Table
+    public partial class mblist_service_category
     {
         public int Category_key { get; set; }
         public string Category_Name { get; set; }

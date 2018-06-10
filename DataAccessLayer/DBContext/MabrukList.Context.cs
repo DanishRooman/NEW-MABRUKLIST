@@ -32,10 +32,10 @@ namespace DataAccessLayer.DBContext
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<mblist_address> mblist_address { get; set; }
         public virtual DbSet<mblist_category> mblist_category { get; set; }
-        public virtual DbSet<mblist_Category_Table> mblist_Category_Table { get; set; }
         public virtual DbSet<mblist_congregation> mblist_congregation { get; set; }
         public virtual DbSet<mblist_group> mblist_group { get; set; }
         public virtual DbSet<mblist_neighborhoods> mblist_neighborhoods { get; set; }
+        public virtual DbSet<mblist_service_category> mblist_service_category { get; set; }
         public virtual DbSet<mblist_subtitle> mblist_subtitle { get; set; }
         public virtual DbSet<mblist_title> mblist_title { get; set; }
         public virtual DbSet<mblist_type> mblist_type { get; set; }

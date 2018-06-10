@@ -87,9 +87,6 @@
     <Compile Include="DBContext\mblist_category.cs">
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBContext\mblist_Category_Table.cs">
-      <DependentUpon>MabrukList.tt</DependentUpon>
-    </Compile>
     <Compile Include="DBContext\mblist_congregation.cs">
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>
@@ -97,6 +94,9 @@
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\mblist_neighborhoods.cs">
+      <DependentUpon>MabrukList.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\mblist_service_category.cs">
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\mblist_subtitle.cs">

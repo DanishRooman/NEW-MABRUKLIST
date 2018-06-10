@@ -30,7 +30,7 @@ namespace ColidColorlib.Controllers
             List<CategoriesDTO> CatList = new List<CategoriesDTO>();
             using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
             {
-                CatList = dbcontext.mblist_Category_Table.AsEnumerable().OrderByDescending(x => x.Category_key).Select(x => new CategoriesDTO
+                CatList = dbcontext.mblist_service_category.AsEnumerable().OrderByDescending(x => x.Category_key).Select(x => new CategoriesDTO
                 {
                     id = x.Category_key,
                     Category = x.Category_Name
@@ -51,18 +51,18 @@ namespace ColidColorlib.Controllers
                     {
                         if (dto.id == 0)
                         {
-                            var data = dbcontext.mblist_Category_Table.Where(x => x.Category_Name == dto.Category).FirstOrDefault();
+                            var data = dbcontext.mblist_service_category.Where(x => x.Category_Name == dto.Category).FirstOrDefault();
                             if (data != null)
                             {
                                 return Json(new { key = false, value = "Group already exist" }, JsonRequestBehavior.AllowGet);
                             }
                             else
                             {
-                                mblist_Category_Table CATtb = new mblist_Category_Table()
+                                mblist_service_category CATtb = new mblist_service_category()
                                 {
                                     Category_Name = dto.Category
                                 };
-                                dbcontext.mblist_Category_Table.Add(CATtb);
+                                dbcontext.mblist_service_category.Add(CATtb);
                                 dbcontext.SaveChanges();
                                 return Json(new { key = true, value = "Category added successfully" }, JsonRequestBehavior.AllowGet);
                             }
@@ -70,7 +70,7 @@ namespace ColidColorlib.Controllers
                         }
                         else
                         {
-                            var data = dbcontext.mblist_Category_Table.Find(dto.id);
+                            var data = dbcontext.mblist_service_category.Find(dto.id);
                             if (data != null)
                             {
                                 data.Category_Name = dto.Category;
@@ -107,7 +107,7 @@ namespace ColidColorlib.Controllers
                 CategoriesDTO Catgr = new CategoriesDTO();
                 using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                 {
-                    var cat = dbcontext.mblist_Category_Table.Find(id);
+                    var cat = dbcontext.mblist_service_category.Find(id);
                     if (cat != null)
                     {
                         Catgr.id = cat.Category_key;
@@ -134,10 +134,10 @@ namespace ColidColorlib.Controllers
             {
                 using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                 {
-                    var ctgry = dbcontext.mblist_Category_Table.Find(id);
+                    var ctgry = dbcontext.mblist_service_category.Find(id);
                     if (ctgry != null)
                     {
-                        dbcontext.mblist_Category_Table.Remove(ctgry);
+                        dbcontext.mblist_service_category.Remove(ctgry);
                         dbcontext.SaveChanges();
                         return Json(new { key = true, value = "Category deleted successfully" }, JsonRequestBehavior.AllowGet);
                     }
