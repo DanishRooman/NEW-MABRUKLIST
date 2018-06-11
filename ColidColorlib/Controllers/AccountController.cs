@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ColidColorlib.Models;
+using DataTransferObjects.Users;
 
 namespace ColidColorlib.Controllers
 {
@@ -498,10 +499,14 @@ namespace ColidColorlib.Controllers
             return View();
         }
 
+       
+
         public ActionResult AddUser()
         {
+            UserDto dt = new UserDto();
             return View();
         }
+
 
     }
 }
