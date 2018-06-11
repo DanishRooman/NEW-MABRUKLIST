@@ -11,9 +11,9 @@ namespace DataTransferObjects.Users
     {
         [Display(Name ="id")]
         public int Id { get; set; }
-        [Display(Name ="FirstName")]
+        [Display(Name ="First Name")]
         public string FirstName { get; set; }
-        [Display(Name ="LastName")]
+        [Display(Name ="Last Name")]
         public string LastName { get; set; }
         [Display(Name ="Title")]
         public int Title { get; set; }
@@ -45,11 +45,11 @@ namespace DataTransferObjects.Users
         public string Blood { get; set; }
         [Display(Name ="Donor")]
         public bool Donor { get; set; }
-        [Display(Name ="Relation Ship")]
+        [Display(Name ="Relationship")]
         public string Relationship { get; set; }
         [Display(Name ="Image")]
         public string Image { get; set; }
-        [Display(Name ="User")]
+        [Display(Name ="Username")]
         public string User { get; set; }
         [Display(Name ="Email")]
         public string Email { get; set; }

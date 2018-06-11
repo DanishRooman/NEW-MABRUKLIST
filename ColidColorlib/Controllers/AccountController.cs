@@ -500,7 +500,7 @@ namespace ColidColorlib.Controllers
         }
 
        
-
+        [HttpGet]
         public ActionResult AddUser()
         {
             UserDto dt = new UserDto();
