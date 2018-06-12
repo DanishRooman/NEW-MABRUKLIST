@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address\AddressDTO.cs" />
-    <Compile Include="Address\DispAttribute.cs" />
     <Compile Include="Categories\CategoriesDTO.cs" />
     <Compile Include="Category\CategoryDto.cs" />
     <Compile Include="Congregation\CongregationDTO.cs" />

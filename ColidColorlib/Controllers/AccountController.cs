@@ -10,6 +10,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ColidColorlib.Models;
 using DataTransferObjects.Users;
+using DataAccessLayer.DBContext;
+using DataTransferObjects.Title;
+using DataTransferObjects.Subtitle;
+using DataTransferObjects.Neighbourhood;
+using DataTransferObjects.Address;
+using DataTransferObjects.Group;
 
 namespace ColidColorlib.Controllers
 {
@@ -498,13 +504,53 @@ namespace ColidColorlib.Controllers
         {
             return View();
         }
+        public ActionResult Index() {
+
+            return View();
+        }
 
        
         [HttpGet]
         public ActionResult AddUser()
         {
             UserDto dt = new UserDto();
-            return View();
+            using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+            {
+                //Title
+                dt.titleList = dbcontext.mblist_title.AsEnumerable().Select(x => new TitleDTO
+                {
+                    id = x.title_key,
+                    Title = x.title_name
+                }).ToList();
+                //Subtitle
+                dt.subtitleList = dbcontext.mblist_subtitle.AsEnumerable().Select(x => new SubtitleDTO
+                {
+                    id = x.subtitle_key,
+                    subtitle = x.subtitle_name
+                }).ToList();
+
+                //Neighborhood
+
+                dt.NeighbourhoodList = dbcontext.mblist_neighborhoods.AsEnumerable().Select(x => new NeighbourhoodDTO
+                {
+                    id = x.neighborhoods_key,
+                    Neighbourhood = x.neighborhoods_name
+                }).ToList();
+                //Address
+                dt.AddressList = dbcontext.mblist_address.AsEnumerable().Select(x => new AddressDTO
+                {
+                    id = x.address_key,
+                    Address = x.address_name
+                }).ToList();
+                //Group
+                dt.GroupList = dbcontext.mblist_group.AsEnumerable().Select(x => new GroupDTO
+                {
+                    id = x.group_key,
+                    Group = x.group_name
+                }).ToList();
+            };
+                 
+            return View(dt);
         }
 
 

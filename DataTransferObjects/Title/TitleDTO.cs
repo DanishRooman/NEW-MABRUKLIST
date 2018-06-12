@@ -12,14 +12,9 @@ namespace DataTransferObjects.Title
     {
         [Display(Name = "Id")]
         public int id { get; set; }
-        public object Tit { get; set; }
         [Required]
         [Display(Name = "Title")]
         public string Title { get; set; }
 
-        public static implicit operator TitleDTO(GroupDTO v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

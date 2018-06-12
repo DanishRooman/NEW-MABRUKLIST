@@ -10,7 +10,6 @@ div,
 svg,
 select,
 textarea,
-span,
 img,
 table,
 label,
@@ -705,26 +704,8 @@ fieldset[disabled] .form-group.form-md-line-input .form-control {
     padding-left: 30px;
 }
 
-    .md-checkbox label > span {
-        display: block;
-        position: absolute;
-        left: 0;
-        -webkit-transition-duration: 0.3s;
-        -moz-transition-duration: 0.3s;
-        transition-duration: 0.3s;
-    }
+    
 
-        .md-checkbox label > span.inc {
-            background: #fff;
-            left: -20px;
-            top: -20px;
-            height: 60px;
-            width: 60px;
-            opacity: 0;
-            border-radius: 50% !important;
-            -moz-border-radius: 50% !important;
-            -webkit-border-radius: 50% !important;
-        }
 
     .md-checkbox label > .box {
         top: 0px;
@@ -970,26 +951,9 @@ fieldset[disabled] .form-group.form-md-line-input .form-control {
         padding-left: 30px;
     }
 
-        .md-radio label > span {
-            display: block;
-            position: absolute;
-            left: 0;
-            -webkit-transition-duration: 0.3s;
-            -moz-transition-duration: 0.3s;
-            transition-duration: 0.3s;
-        }
+        
 
-            .md-radio label > span.inc {
-                background: #fff;
-                left: -20px;
-                top: -20px;
-                height: 60px;
-                width: 60px;
-                opacity: 0;
-                border-radius: 50% !important;
-                -moz-border-radius: 50% !important;
-                -webkit-border-radius: 50% !important;
-            }
+            
 
         .md-radio label > .box {
             top: 0px;
@@ -1018,11 +982,6 @@ fieldset[disabled] .form-group.form-md-line-input .form-control {
             transform: scale(0);
         }
 
-        .md-radio label > span.inc {
-            -webkit-animation: growCircleRadio 0.3s ease;
-            -moz-animation: growCircleRadio 0.3s ease;
-            animation: growCircleRadio 0.3s ease;
-        }
 
     .md-radio input[type=radio]:checked ~ label > .check {
         opacity: 1;
@@ -1983,9 +1942,7 @@ Simple Line Icons Demo
         width: 100%;
     }
 
-        .simplelineicons-demo .item-box .item span {
-            font-size: 22px;
-        }
+        
 
 @media only screen and (min-width: 768px) {
     .simplelineicons-demo .item-box {
@@ -7142,9 +7099,6 @@ Form Layouts
     margin-bottom: 0;
 }
 
-.form-horizontal .radio > span {
-    margin-top: 2px;
-}
 
 /* Rows seperated form layout */
 .form .form-row-seperated .portlet-body {
@@ -8106,145 +8060,6 @@ Custom color buttons
         filter: alpha(opacity=0);
     }
 
-    .mt-radio > span,
-    .mt-checkbox > span {
-        border: 1px solid transparent;
-        position: absolute;
-        top: 0px;
-        left: 0;
-        height: 19px;
-        width: 19px;
-        background: #E6E6E6;
-    }
-
-        .mt-radio > span:after,
-        .mt-checkbox > span:after {
-            content: '';
-            position: absolute;
-            display: none;
-        }
-
-    .mt-radio:hover > input:not([disabled]) ~ span,
-    .mt-radio > input:focus ~ span,
-    .mt-checkbox:hover > input:not([disabled]) ~ span,
-    .mt-checkbox > input:focus ~ span {
-        background: #d9d9d9;
-        webkit-transition: all 0.3s;
-        -moz-transition: all 0.3s;
-        -ms-transition: all 0.3s;
-        -o-transition: all 0.3s;
-        transition: all 0.3s;
-    }
-
-    .mt-radio > input:checked ~ span,
-    .mt-checkbox > input:checked ~ span {
-        webkit-transition: all 0.3s;
-        -moz-transition: all 0.3s;
-        -ms-transition: all 0.3s;
-        -o-transition: all 0.3s;
-        transition: all 0.3s;
-        background: #d9d9d9;
-    }
-
-        .mt-radio > input:checked ~ span:after,
-        .mt-checkbox > input:checked ~ span:after {
-            display: block;
-        }
-
-    .mt-radio:hover > input:not([disabled]):checked ~ span,
-    .mt-radio > input:checked ~ span,
-    .mt-checkbox:hover > input:not([disabled]):checked ~ span,
-    .mt-checkbox > input:checked ~ span {
-        webkit-transition: all 0.3s;
-        -moz-transition: all 0.3s;
-        -ms-transition: all 0.3s;
-        -o-transition: all 0.3s;
-        transition: all 0.3s;
-        background: #d9d9d9;
-    }
-
-    .mt-radio > input:disabled ~ span,
-    .mt-checkbox > input:disabled ~ span {
-        opacity: 0.6;
-        filter: alpha(opacity=60);
-        pointer-events: none;
-    }
-
-    .mt-radio.mt-radio-outline > span, .mt-radio.mt-checkbox-outline > span,
-    .mt-checkbox.mt-radio-outline > span,
-    .mt-checkbox.mt-checkbox-outline > span {
-        border: 1px solid #d9d9d9;
-        background: none;
-    }
-
-    .mt-radio.mt-radio-outline:hover > input:not([disabled]) ~ span,
-    .mt-radio.mt-radio-outline > input:focus ~ span, .mt-radio.mt-checkbox-outline:hover > input:not([disabled]) ~ span,
-    .mt-radio.mt-checkbox-outline > input:focus ~ span,
-    .mt-checkbox.mt-radio-outline:hover > input:not([disabled]) ~ span,
-    .mt-checkbox.mt-radio-outline > input:focus ~ span,
-    .mt-checkbox.mt-checkbox-outline:hover > input:not([disabled]) ~ span,
-    .mt-checkbox.mt-checkbox-outline > input:focus ~ span {
-        border: 1px solid #d9d9d9;
-        background: none;
-    }
-
-    .mt-radio.mt-radio-outline > input:checked ~ span, .mt-radio.mt-checkbox-outline > input:checked ~ span,
-    .mt-checkbox.mt-radio-outline > input:checked ~ span,
-    .mt-checkbox.mt-checkbox-outline > input:checked ~ span {
-        border: 1px solid #d9d9d9;
-        background: none;
-    }
-
-    .mt-radio.mt-radio-outline:hover > input:not([disabled]):checked ~ span,
-    .mt-radio.mt-radio-outline > input:checked ~ span, .mt-radio.mt-checkbox-outline:hover > input:not([disabled]):checked ~ span,
-    .mt-radio.mt-checkbox-outline > input:checked ~ span,
-    .mt-checkbox.mt-radio-outline:hover > input:not([disabled]):checked ~ span,
-    .mt-checkbox.mt-radio-outline > input:checked ~ span,
-    .mt-checkbox.mt-checkbox-outline:hover > input:not([disabled]):checked ~ span,
-    .mt-checkbox.mt-checkbox-outline > input:checked ~ span {
-        border: 1px solid #d9d9d9;
-        background: none;
-    }
-
-    .mt-radio > span {
-        -webkit-border-radius: 50% !important;
-        -moz-border-radius: 50% !important;
-        -ms-border-radius: 50% !important;
-        -o-border-radius: 50% !important;
-        border-radius: 50% !important;
-    }
-
-        .mt-radio > span:after {
-            left: 6px;
-            top: 6px;
-            height: 6px;
-            width: 6px;
-            border-radius: 50%;
-            background: #666666;
-        }
-
-    .mt-radio > input:disabled ~ span:after {
-        background: #666666;
-    }
-
-th > .mt-radio.mt-radio-single,
-td > .mt-radio.mt-radio-single {
-    right: -5px;
-}
-
-.mt-checkbox > span:after {
-    left: 6px;
-    top: 3px;
-    width: 5px;
-    height: 10px;
-    border: solid #666666;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-.mt-checkbox > input:disabled ~ span:after {
-    border-color: #666666;
-}
 
 .form-inline .mt-checkbox {
     margin-left: 15px;

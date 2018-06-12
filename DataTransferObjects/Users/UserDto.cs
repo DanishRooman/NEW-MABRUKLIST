@@ -1,4 +1,9 @@
-﻿using System;
+﻿using DataTransferObjects.Address;
+using DataTransferObjects.Group;
+using DataTransferObjects.Neighbourhood;
+using DataTransferObjects.Subtitle;
+using DataTransferObjects.Title;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,55 +14,68 @@ namespace DataTransferObjects.Users
 {
     public class UserDto
     {
-        [Display(Name ="id")]
+        [Display(Name = "id")]
         public int Id { get; set; }
-        [Display(Name ="First Name")]
+        [Required]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
-        [Display(Name ="Last Name")]
+        [Required]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        [Display(Name ="Title")]
+        [Display(Name = "Title")]
         public int Title { get; set; }
-        [Display(Name ="SubTitle")]
+        [Display(Name = "SubTitle")]
         public int SubTitle { get; set; }
-        [Display(Name ="Neighbourhood")]
+        [Display(Name = "Neighbourhood")]
         public int Neighbourhood { get; set; }
-        [Display(Name ="Address")]
+        [Display(Name = "Address")]
         public int Address { get; set; }
-        [Display(Name ="Apartment")]
+        [Display(Name = "Apartment")]
         public string Apartment { get; set; }
-        [Display(Name ="Company")]
+        [Display(Name = "Company")]
         public string Company { get; set; }
-        [Display(Name ="Phone")]
+        [Display(Name = "Phone")]
         public string Phone { get; set; }
-        [Display(Name ="Cell phone")]
+        [Display(Name = "Cell phone")]
         public string Cellphone { get; set; }
-        [Display(Name ="Foreign")]
+        [Display(Name = "Foreign")]
         public string Foreign { get; set; }
-        [Display(Name ="Group")]
+        [Display(Name = "Group")]
         public int Group { get; set; }
-        [Display(Name ="Observation")]
+        [Display(Name = "Observation")]
         public string Observation { get; set; }
-        [Display(Name ="Children")]
+        [Display(Name = "Children")]
         public string Children { get; set; }
-        [Display(Name ="Single Surname")]
+        [Display(Name = "Single Surname")]
         public string SingleSurname { get; set; }
-        [Display(Name ="Blood")]
+        [Display(Name = "Blood")]
         public string Blood { get; set; }
-        [Display(Name ="Donor")]
+        [Display(Name = "Donor")]
         public bool Donor { get; set; }
-        [Display(Name ="Relationship")]
+        [Display(Name = "Relationship")]
         public string Relationship { get; set; }
-        [Display(Name ="Image")]
+        [Display(Name = "Image")]
         public string Image { get; set; }
-        [Display(Name ="Username")]
+        [Display(Name = "Username")]
         public string User { get; set; }
-        [Display(Name ="Email")]
+        [Required]
+        [Display(Name = "Email")]
         public string Email { get; set; }
-        [Display(Name ="Alternate Email")]
+        [Display(Name = "Alternate Email")]
         public string AlternateEmail { get; set; }
-        [Display(Name ="Password")]
+        [Required]
+        [Display(Name = "Password")]
         public string Password { get; set; }
-        [Display(Name ="Active")]
+        [Required]
+        [Display(Name = "Active")]
         public bool Active { get; set; }
+
+        //Drop-down Lists
+        public List<TitleDTO> titleList { get; set; }
+        public List<SubtitleDTO> subtitleList { get; set; } 
+        public List<NeighbourhoodDTO> NeighbourhoodList { get; set; }
+        public List<AddressDTO> AddressList { get; set; }
+        public List<GroupDTO> GroupList { get; set; }
+
     }
 }

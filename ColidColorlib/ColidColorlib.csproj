@@ -247,6 +247,8 @@
     <Content Include="Content\jquery-confirm.css" />
     <Content Include="Content\jquery.toast.min.css" />
     <Content Include="Content\responsive.bootstrap.min.css" />
+    <Content Include="Content\select2.min.css" />
+    <Content Include="Content\UserProfile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome.css" />
     <Content Include="fonts\font-awesome.min.css" />
@@ -266,6 +268,7 @@
     <Content Include="images\avatar-small-5.png" />
     <Content Include="images\avatar-small-6.png" />
     <Content Include="images\coadcanyon.gif" />
+    <Content Include="images\Danish Roman.jpg" />
     <Content Include="images\docean.gif" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\graphicriver.gif" />
@@ -276,6 +279,7 @@
     <Content Include="images\loogo mabruklist.png" />
     <Content Include="images\mail-arrow.png" />
     <Content Include="images\mobile2.png" />
+    <Content Include="images\pamela.jpg" />
     <Content Include="images\parallax-1.jpg" />
     <Content Include="images\parallax-2.jpg" />
     <Content Include="images\parallax-3.jpg" />
@@ -379,6 +383,7 @@
     <Content Include="javascript\raphael.min.js" />
     <Content Include="javascript\sb-admin-2.js" />
     <Content Include="javascript\scrollUp.min.js" />
+    <Content Include="javascript\select2.min.js" />
     <Content Include="javascript\ui-blockui.js" />
     <Content Include="javascript\wow.min.js" />
     <Content Include="Project Scripts\Address\Address.js" />
@@ -571,6 +576,7 @@
     <Content Include="Views\Categories\_AddCategories.cshtml" />
     <Content Include="Views\Categories\_CategoriesListing.cshtml" />
     <Content Include="Views\Account\AddUser.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -48,8 +48,9 @@ namespace ColidColorlib
                    "~/StyleSheet/morris.css",
                    "~/fonts/font-awesome.min.css",
                    "~/Content/jquery.toast.min.css",
-                   "~/Content/jquery-confirm.css"
-                  // "~/Content/components.css"
+                   "~/Content/jquery-confirm.css",
+                   "~/Content/select2.min.css",
+                    "~/Content/components.css"
                  ));
 
             bundles.Add(new StyleBundle("~/Contents/Datatables_Styles").Include(
@@ -75,7 +76,8 @@ namespace ColidColorlib
               "~/Scripts/Base.js",
               "~/Scripts/jquery.unobtrusive-ajax.js",
               "~/Scripts/jquery.validate.min.js",
-              "~/javascript/bootstrap.min.js"
+              "~/javascript/bootstrap.min.js",
+              "~/javascript/select2.min.js"
               ));
 
             bundles.Add(new ScriptBundle("~/Script/unobtrusive").Include(
