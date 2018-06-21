@@ -16,6 +16,7 @@ using DataTransferObjects.Subtitle;
 using DataTransferObjects.Neighbourhood;
 using DataTransferObjects.Address;
 using DataTransferObjects.Group;
+using DataTransferObjects.Roles;
 
 namespace ColidColorlib.Controllers
 {
@@ -166,7 +167,7 @@ namespace ColidColorlib.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,IsEnabled=false };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, IsEnabled = false };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -504,12 +505,13 @@ namespace ColidColorlib.Controllers
         {
             return View();
         }
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
 
             return View();
         }
 
-       
+
         [HttpGet]
         public ActionResult AddUser()
         {
@@ -548,10 +550,85 @@ namespace ColidColorlib.Controllers
                     id = x.group_key,
                     Group = x.group_name
                 }).ToList();
+                //Roles
+                dt.RolesList = dbcontext.AspNetRoles.AsEnumerable().Select(x => new RolesDTO
+                {
+                    id = x.Id,
+                    Roles = x.Name
+                }).ToList();
+
+
             };
-                 
+
             return View(dt);
         }
+        [HttpPost]
+        public async Task<ActionResult> AddOrUpdateUser(UserDto userInfo)
+        {
+
+            try
+            {
+                var user = new ApplicationUser { UserName = userInfo.User, Email = userInfo.Email, IsEnabled = userInfo.Active };
+                var result = await UserManager.CreateAsync(user, userInfo.Password);
+                if (result.Succeeded)
+                {
+                    //await this.UserManager.AddToRoleAsync(user.Id, userInfo.Role);
+                    using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                    {
+
+                        //var rol = dbcontext.AspNetRoles.Find(userInfo.Role);
+                        //string userId = user.Id;
+                        //string roleId = rol.Id;
+                       
+                        //this.UserManager.AddToRole(userId, roleId);
+
+                        mblist_user_info usrRole = new mblist_user_info()
+                        {
+                            usr_first_name = userInfo.FirstName,
+                            usr_last_name = userInfo.LastName,
+                            usr_cell_phone = userInfo.Cellphone,
+                            usr_foreign = userInfo.Foreign,
+                            usr_title_key = userInfo.Title,
+                            usr_group_key = userInfo.Group,
+                            usr_sub_title = userInfo.SubTitle,
+                            usr_observation = userInfo.Observation,
+                            usr_neighbourhood_key = userInfo.Neighbourhood,
+                            usr_children = userInfo.Children,
+                            usr_sur_name = userInfo.SingleSurname,
+                            usr_apartment = userInfo.Apartment,
+                            usr_blood = userInfo.Blood,
+                            usr_company = userInfo.Company,
+                            usr_phone = userInfo.Phone,
+                            usr_relationship = userInfo.Relationship,
+                            usr_donar = userInfo.Donor,
+                            usr_image_path = userInfo.Image,
+                            usr_aspnet_user = user.Id,
+
+                        };
+                        dbcontext.mblist_user_info.Add(usrRole);
+                        dbcontext.SaveChanges();
+                        return Json(new { key = true, value = "User added successfully" }, JsonRequestBehavior.AllowGet);
+
+
+
+                    };
+                }
+                else
+                {
+                    return Json(new { key = true, value = "Unable to save user" }, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new { key = false, value = "Unable to save the user" }, JsonRequestBehavior.AllowGet); ;
+
+            }
+
+        }
+
+
 
 
     }

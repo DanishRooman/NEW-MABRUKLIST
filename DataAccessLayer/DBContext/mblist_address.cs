@@ -14,7 +14,16 @@ namespace DataAccessLayer.DBContext
     
     public partial class mblist_address
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public mblist_address()
+        {
+            this.mblist_user_info = new HashSet<mblist_user_info>();
+        }
+    
         public int address_key { get; set; }
         public string address_name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<mblist_user_info> mblist_user_info { get; set; }
     }
 }

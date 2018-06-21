@@ -96,7 +96,7 @@ namespace ColidColorlib.Controllers
             catch (Exception)
             {
 
-                return Json(new { key = false, value = "Unable to save the Address" }, JsonRequestBehavior.AllowGet); ;
+                return Json(new { key = false, value = "Unable to save the Address" }, JsonRequestBehavior.AllowGet); 
             }
 
         }

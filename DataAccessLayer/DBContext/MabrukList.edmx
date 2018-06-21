@@ -65,6 +65,7 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="IsEnabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="mblist_address">
           <Key>
@@ -129,6 +130,33 @@
           <Property Name="type_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type_name" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
+        <EntityType Name="mblist_user_info">
+          <Key>
+            <PropertyRef Name="usr_key" />
+          </Key>
+          <Property Name="usr_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usr_first_name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="usr_last_name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="usr_cell_phone" Type="varchar" MaxLength="150" />
+          <Property Name="usr_foreign" Type="varchar" MaxLength="150" />
+          <Property Name="usr_title_key" Type="int" />
+          <Property Name="usr_group_key" Type="int" />
+          <Property Name="usr_sub_title" Type="int" />
+          <Property Name="usr_observation" Type="varchar" MaxLength="150" />
+          <Property Name="usr_neighbourhood_key" Type="int" />
+          <Property Name="usr_congregation_key" Type="int" />
+          <Property Name="usr_children" Type="varchar" MaxLength="150" />
+          <Property Name="usr_address" Type="int" />
+          <Property Name="usr_sur_name" Type="varchar" MaxLength="150" />
+          <Property Name="usr_apartment" Type="varchar" MaxLength="150" />
+          <Property Name="usr_blood" Type="varchar" MaxLength="150" />
+          <Property Name="usr_company" Type="varchar" MaxLength="150" />
+          <Property Name="usr_phone" Type="varchar" MaxLength="150" />
+          <Property Name="usr_relationship" Type="varchar" MaxLength="150" />
+          <Property Name="usr_donar" Type="bit" Nullable="false" />
+          <Property Name="usr_image_path" Type="varchar(max)" />
+          <Property Name="usr_aspnet_user" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -185,6 +213,104 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_mblist_user_info_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mblist_user_info" Type="Self.mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_aspnet_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_user_info_mblist_address">
+          <End Role="mblist_address" Type="Self.mblist_address" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mblist_user_info" Type="Self.mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_address">
+              <PropertyRef Name="address_key" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_address" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_user_info_mblist_congregation">
+          <End Role="mblist_congregation" Type="Self.mblist_congregation" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mblist_user_info" Type="Self.mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_congregation">
+              <PropertyRef Name="congregation_key" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_congregation_key" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_user_info_mblist_group">
+          <End Role="mblist_group" Type="Self.mblist_group" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mblist_user_info" Type="Self.mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_group">
+              <PropertyRef Name="group_key" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_group_key" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_user_info_mblist_neighborhoods">
+          <End Role="mblist_neighborhoods" Type="Self.mblist_neighborhoods" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mblist_user_info" Type="Self.mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_neighborhoods">
+              <PropertyRef Name="neighborhoods_key" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_neighbourhood_key" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_user_info_mblist_subtitle">
+          <End Role="mblist_subtitle" Type="Self.mblist_subtitle" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mblist_user_info" Type="Self.mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_subtitle">
+              <PropertyRef Name="subtitle_key" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_sub_title" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_user_info_mblist_title">
+          <End Role="mblist_title" Type="Self.mblist_title" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mblist_user_info" Type="Self.mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_title">
+              <PropertyRef Name="title_key" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_title_key" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MABRUKLISTModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -201,6 +327,7 @@
           <EntitySet Name="mblist_subtitle" EntityType="Self.mblist_subtitle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_title" EntityType="Self.mblist_title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_type" EntityType="Self.mblist_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mblist_user_info" EntityType="Self.mblist_user_info" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -216,6 +343,34 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_AspNetUsers" Association="Self.FK_mblist_user_info_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_mblist_address" Association="Self.FK_mblist_user_info_mblist_address">
+            <End Role="mblist_address" EntitySet="mblist_address" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_mblist_congregation" Association="Self.FK_mblist_user_info_mblist_congregation">
+            <End Role="mblist_congregation" EntitySet="mblist_congregation" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_mblist_group" Association="Self.FK_mblist_user_info_mblist_group">
+            <End Role="mblist_group" EntitySet="mblist_group" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_mblist_neighborhoods" Association="Self.FK_mblist_user_info_mblist_neighborhoods">
+            <End Role="mblist_neighborhoods" EntitySet="mblist_neighborhoods" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_mblist_subtitle" Association="Self.FK_mblist_user_info_mblist_subtitle">
+            <End Role="mblist_subtitle" EntitySet="mblist_subtitle" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_mblist_title" Association="Self.FK_mblist_user_info_mblist_title">
+            <End Role="mblist_title" EntitySet="mblist_title" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -237,6 +392,7 @@
           <EntitySet Name="mblist_subtitle" EntityType="MABRUKLISTModel.mblist_subtitle" />
           <EntitySet Name="mblist_title" EntityType="MABRUKLISTModel.mblist_title" />
           <EntitySet Name="mblist_type" EntityType="MABRUKLISTModel.mblist_type" />
+          <EntitySet Name="mblist_user_info" EntityType="MABRUKLISTModel.mblist_user_info" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="MABRUKLISTModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -244,6 +400,34 @@
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="MABRUKLISTModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_AspNetUsers" Association="MABRUKLISTModel.FK_mblist_user_info_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_mblist_address" Association="MABRUKLISTModel.FK_mblist_user_info_mblist_address">
+            <End Role="mblist_address" EntitySet="mblist_address" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_mblist_congregation" Association="MABRUKLISTModel.FK_mblist_user_info_mblist_congregation">
+            <End Role="mblist_congregation" EntitySet="mblist_congregation" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_mblist_group" Association="MABRUKLISTModel.FK_mblist_user_info_mblist_group">
+            <End Role="mblist_group" EntitySet="mblist_group" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_mblist_neighborhoods" Association="MABRUKLISTModel.FK_mblist_user_info_mblist_neighborhoods">
+            <End Role="mblist_neighborhoods" EntitySet="mblist_neighborhoods" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_mblist_subtitle" Association="MABRUKLISTModel.FK_mblist_user_info_mblist_subtitle">
+            <End Role="mblist_subtitle" EntitySet="mblist_subtitle" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_user_info_mblist_title" Association="MABRUKLISTModel.FK_mblist_user_info_mblist_title">
+            <End Role="mblist_title" EntitySet="mblist_title" />
+            <End Role="mblist_user_info" EntitySet="mblist_user_info" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="MABRUKLISTModel.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -305,8 +489,10 @@
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="MABRUKLISTModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="MABRUKLISTModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="mblist_user_info" Relationship="MABRUKLISTModel.FK_mblist_user_info_AspNetUsers" FromRole="AspNetUsers" ToRole="mblist_user_info" />
           <NavigationProperty Name="AspNetRoles" Relationship="MABRUKLISTModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
         <EntityType Name="mblist_address">
@@ -315,6 +501,7 @@
           </Key>
           <Property Name="address_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="address_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mblist_user_info" Relationship="MABRUKLISTModel.FK_mblist_user_info_mblist_address" FromRole="mblist_address" ToRole="mblist_user_info" />
         </EntityType>
         <EntityType Name="mblist_category">
           <Key>
@@ -329,6 +516,7 @@
           </Key>
           <Property Name="congregation_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="congregation_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mblist_user_info" Relationship="MABRUKLISTModel.FK_mblist_user_info_mblist_congregation" FromRole="mblist_congregation" ToRole="mblist_user_info" />
         </EntityType>
         <EntityType Name="mblist_group">
           <Key>
@@ -336,6 +524,7 @@
           </Key>
           <Property Name="group_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="group_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mblist_user_info" Relationship="MABRUKLISTModel.FK_mblist_user_info_mblist_group" FromRole="mblist_group" ToRole="mblist_user_info" />
         </EntityType>
         <EntityType Name="mblist_neighborhoods">
           <Key>
@@ -343,6 +532,7 @@
           </Key>
           <Property Name="neighborhoods_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="neighborhoods_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mblist_user_info" Relationship="MABRUKLISTModel.FK_mblist_user_info_mblist_neighborhoods" FromRole="mblist_neighborhoods" ToRole="mblist_user_info" />
         </EntityType>
         <EntityType Name="mblist_service_category">
           <Key>
@@ -357,6 +547,7 @@
           </Key>
           <Property Name="subtitle_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="subtitle_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mblist_user_info" Relationship="MABRUKLISTModel.FK_mblist_user_info_mblist_subtitle" FromRole="mblist_subtitle" ToRole="mblist_user_info" />
         </EntityType>
         <EntityType Name="mblist_title">
           <Key>
@@ -364,6 +555,7 @@
           </Key>
           <Property Name="title_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="title_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mblist_user_info" Relationship="MABRUKLISTModel.FK_mblist_user_info_mblist_title" FromRole="mblist_title" ToRole="mblist_user_info" />
         </EntityType>
         <EntityType Name="mblist_type">
           <Key>
@@ -371,6 +563,40 @@
           </Key>
           <Property Name="type_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mblist_user_info">
+          <Key>
+            <PropertyRef Name="usr_key" />
+          </Key>
+          <Property Name="usr_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usr_first_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usr_last_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usr_cell_phone" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usr_foreign" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usr_title_key" Type="Int32" />
+          <Property Name="usr_group_key" Type="Int32" />
+          <Property Name="usr_sub_title" Type="Int32" />
+          <Property Name="usr_observation" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usr_neighbourhood_key" Type="Int32" />
+          <Property Name="usr_congregation_key" Type="Int32" />
+          <Property Name="usr_children" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usr_address" Type="Int32" />
+          <Property Name="usr_sur_name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usr_apartment" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usr_blood" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usr_company" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usr_phone" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usr_relationship" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="usr_donar" Type="Boolean" Nullable="false" />
+          <Property Name="usr_image_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="usr_aspnet_user" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="MABRUKLISTModel.FK_mblist_user_info_AspNetUsers" FromRole="mblist_user_info" ToRole="AspNetUsers" />
+          <NavigationProperty Name="mblist_address" Relationship="MABRUKLISTModel.FK_mblist_user_info_mblist_address" FromRole="mblist_user_info" ToRole="mblist_address" />
+          <NavigationProperty Name="mblist_congregation" Relationship="MABRUKLISTModel.FK_mblist_user_info_mblist_congregation" FromRole="mblist_user_info" ToRole="mblist_congregation" />
+          <NavigationProperty Name="mblist_group" Relationship="MABRUKLISTModel.FK_mblist_user_info_mblist_group" FromRole="mblist_user_info" ToRole="mblist_group" />
+          <NavigationProperty Name="mblist_neighborhoods" Relationship="MABRUKLISTModel.FK_mblist_user_info_mblist_neighborhoods" FromRole="mblist_user_info" ToRole="mblist_neighborhoods" />
+          <NavigationProperty Name="mblist_subtitle" Relationship="MABRUKLISTModel.FK_mblist_user_info_mblist_subtitle" FromRole="mblist_user_info" ToRole="mblist_subtitle" />
+          <NavigationProperty Name="mblist_title" Relationship="MABRUKLISTModel.FK_mblist_user_info_mblist_title" FromRole="mblist_user_info" ToRole="mblist_title" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="MABRUKLISTModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
@@ -397,6 +623,104 @@
             </Principal>
             <Dependent Role="AspNetUserLogins">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_user_info_AspNetUsers">
+          <End Type="MABRUKLISTModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MABRUKLISTModel.mblist_user_info" Role="mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_aspnet_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_user_info_mblist_address">
+          <End Type="MABRUKLISTModel.mblist_address" Role="mblist_address" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MABRUKLISTModel.mblist_user_info" Role="mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_address">
+              <PropertyRef Name="address_key" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_address" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_user_info_mblist_congregation">
+          <End Type="MABRUKLISTModel.mblist_congregation" Role="mblist_congregation" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MABRUKLISTModel.mblist_user_info" Role="mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_congregation">
+              <PropertyRef Name="congregation_key" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_congregation_key" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_user_info_mblist_group">
+          <End Type="MABRUKLISTModel.mblist_group" Role="mblist_group" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MABRUKLISTModel.mblist_user_info" Role="mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_group">
+              <PropertyRef Name="group_key" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_group_key" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_user_info_mblist_neighborhoods">
+          <End Type="MABRUKLISTModel.mblist_neighborhoods" Role="mblist_neighborhoods" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MABRUKLISTModel.mblist_user_info" Role="mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_neighborhoods">
+              <PropertyRef Name="neighborhoods_key" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_neighbourhood_key" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_user_info_mblist_subtitle">
+          <End Type="MABRUKLISTModel.mblist_subtitle" Role="mblist_subtitle" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MABRUKLISTModel.mblist_user_info" Role="mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_subtitle">
+              <PropertyRef Name="subtitle_key" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_sub_title" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_user_info_mblist_title">
+          <End Type="MABRUKLISTModel.mblist_title" Role="mblist_title" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MABRUKLISTModel.mblist_user_info" Role="mblist_user_info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_title">
+              <PropertyRef Name="title_key" />
+            </Principal>
+            <Dependent Role="mblist_user_info">
+              <PropertyRef Name="usr_title_key" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -450,6 +774,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="MABRUKLISTModel.AspNetUsers">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
@@ -534,6 +859,34 @@
               <MappingFragment StoreEntitySet="mblist_type">
                 <ScalarProperty Name="type_name" ColumnName="type_name" />
                 <ScalarProperty Name="type_key" ColumnName="type_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mblist_user_info">
+            <EntityTypeMapping TypeName="MABRUKLISTModel.mblist_user_info">
+              <MappingFragment StoreEntitySet="mblist_user_info">
+                <ScalarProperty Name="usr_aspnet_user" ColumnName="usr_aspnet_user" />
+                <ScalarProperty Name="usr_image_path" ColumnName="usr_image_path" />
+                <ScalarProperty Name="usr_donar" ColumnName="usr_donar" />
+                <ScalarProperty Name="usr_relationship" ColumnName="usr_relationship" />
+                <ScalarProperty Name="usr_phone" ColumnName="usr_phone" />
+                <ScalarProperty Name="usr_company" ColumnName="usr_company" />
+                <ScalarProperty Name="usr_blood" ColumnName="usr_blood" />
+                <ScalarProperty Name="usr_apartment" ColumnName="usr_apartment" />
+                <ScalarProperty Name="usr_sur_name" ColumnName="usr_sur_name" />
+                <ScalarProperty Name="usr_address" ColumnName="usr_address" />
+                <ScalarProperty Name="usr_children" ColumnName="usr_children" />
+                <ScalarProperty Name="usr_congregation_key" ColumnName="usr_congregation_key" />
+                <ScalarProperty Name="usr_neighbourhood_key" ColumnName="usr_neighbourhood_key" />
+                <ScalarProperty Name="usr_observation" ColumnName="usr_observation" />
+                <ScalarProperty Name="usr_sub_title" ColumnName="usr_sub_title" />
+                <ScalarProperty Name="usr_group_key" ColumnName="usr_group_key" />
+                <ScalarProperty Name="usr_title_key" ColumnName="usr_title_key" />
+                <ScalarProperty Name="usr_foreign" ColumnName="usr_foreign" />
+                <ScalarProperty Name="usr_cell_phone" ColumnName="usr_cell_phone" />
+                <ScalarProperty Name="usr_last_name" ColumnName="usr_last_name" />
+                <ScalarProperty Name="usr_first_name" ColumnName="usr_first_name" />
+                <ScalarProperty Name="usr_key" ColumnName="usr_key" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

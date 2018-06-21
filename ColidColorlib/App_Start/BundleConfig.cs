@@ -50,7 +50,8 @@ namespace ColidColorlib
                    "~/Content/jquery.toast.min.css",
                    "~/Content/jquery-confirm.css",
                    "~/Content/select2.min.css",
-                    "~/Content/components.css"
+                    "~/Content/components.css",
+                    "~/Content/UserProfile.css"
                  ));
 
             bundles.Add(new StyleBundle("~/Contents/Datatables_Styles").Include(

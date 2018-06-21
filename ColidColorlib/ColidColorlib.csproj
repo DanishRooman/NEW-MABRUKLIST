@@ -204,6 +204,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NeighbourhoodController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SubtitleController.cs" />
     <Compile Include="Controllers\TitleController.cs" />
     <Compile Include="Controllers\TypeController.cs" />
@@ -401,9 +402,11 @@
     <Content Include="Project Scripts\Congregation\Congregation.js" />
     <Content Include="Project Scripts\Group\Group.js" />
     <Content Include="Project Scripts\Neighbourhood\Neighbourhood.js" />
+    <Content Include="Project Scripts\Roles\Roles.js" />
     <Content Include="Project Scripts\Subtitle\Subtitle.js" />
     <Content Include="Project Scripts\Title\Title.js" />
     <Content Include="Project Scripts\Type\Type.js" />
+    <Content Include="Project Scripts\User\Users.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\Base.js" />
@@ -482,7 +485,6 @@
     <Content Include="StyleSheet\owl.carousel.min.css" />
     <Content Include="StyleSheet\responsive.css" />
     <Content Include="StyleSheet\sb-admin-2.css" />
-    <Content Include="StyleSheet\sb-admin-2.min.css" />
     <Content Include="StyleSheet\style.css" />
     <Content Include="StyleSheet\themify-icons.css" />
     <Content Include="Web.config" />
@@ -586,6 +588,9 @@
     <Content Include="Views\Categories\_CategoriesListing.cshtml" />
     <Content Include="Views\Account\AddUser.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\_AddRoles.cshtml" />
+    <Content Include="Views\Roles\_RolesListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

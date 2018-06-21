@@ -1,6 +1,7 @@
 ﻿using DataTransferObjects.Address;
 using DataTransferObjects.Group;
 using DataTransferObjects.Neighbourhood;
+using DataTransferObjects.Roles;
 using DataTransferObjects.Subtitle;
 using DataTransferObjects.Title;
 using System;
@@ -61,14 +62,16 @@ namespace DataTransferObjects.Users
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
-        [Display(Name = "Alternate Email")]
-        public string AlternateEmail { get; set; }
+        [Required]
+        [Display(Name = "Role")]
+        public string Role { get; set; }
         [Required]
         [Display(Name = "Password")]
         public string Password { get; set; }
         [Required]
         [Display(Name = "Active")]
         public bool Active { get; set; }
+        
 
         //Drop-down Lists
         public List<TitleDTO> titleList { get; set; }
@@ -76,6 +79,7 @@ namespace DataTransferObjects.Users
         public List<NeighbourhoodDTO> NeighbourhoodList { get; set; }
         public List<AddressDTO> AddressList { get; set; }
         public List<GroupDTO> GroupList { get; set; }
+        public List<RolesDTO> RolesList { get; set; }
 
     }
 }
