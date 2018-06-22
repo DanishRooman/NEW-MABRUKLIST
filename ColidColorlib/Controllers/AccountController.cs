@@ -551,7 +551,7 @@ namespace ColidColorlib.Controllers
                 //Roles
                 dt.RolesList = dbcontext.AspNetRoles.AsEnumerable().Select(x => new RolesDTO
                 {
-                    id = x.Id,
+                    id = x.Name,
                     Roles = x.Name
                 }).ToList();
 
@@ -563,22 +563,16 @@ namespace ColidColorlib.Controllers
         [HttpPost]
         public async Task<ActionResult> AddOrUpdateUser(UserDto userInfo)
         {
-
             try
             {
                 var user = new ApplicationUser { UserName = userInfo.User, Email = userInfo.Email, IsEnabled = userInfo.Active };
                 var result = await UserManager.CreateAsync(user, userInfo.Password);
                 if (result.Succeeded)
                 {
-                    //await this.UserManager.AddToRoleAsync(user.Id, userInfo.Role);
+                    await this.UserManager.AddToRoleAsync(user.Id, userInfo.Role);
+
                     using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                     {
-
-                        //var rol = dbcontext.AspNetRoles.Find(userInfo.Role);
-                        //string userId = user.Id;
-                        //string roleId = rol.Id;
-                       
-                        //this.UserManager.AddToRole(userId, roleId);
 
                         mblist_user_info usrRole = new mblist_user_info()
                         {
