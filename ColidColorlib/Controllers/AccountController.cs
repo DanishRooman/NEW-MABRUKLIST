@@ -500,7 +500,6 @@ namespace ColidColorlib.Controllers
         }
         #endregion
 
-
         public ActionResult Admin()
         {
             return View();
@@ -510,7 +509,6 @@ namespace ColidColorlib.Controllers
 
             return View();
         }
-
 
         [HttpGet]
         public ActionResult AddUser()
@@ -627,9 +625,6 @@ namespace ColidColorlib.Controllers
             }
 
         }
-
-
-
 
     }
 }

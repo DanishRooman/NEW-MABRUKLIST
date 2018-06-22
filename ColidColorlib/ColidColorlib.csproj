@@ -200,6 +200,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CongregationController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -591,6 +592,8 @@
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\_AddRoles.cshtml" />
     <Content Include="Views\Roles\_RolesListing.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Events\_AddEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
