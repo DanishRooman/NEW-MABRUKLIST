@@ -224,6 +224,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -251,14 +254,17 @@
     <Content Include="assets\global\img\remove-icon-small.png" />
     <Content Include="assets\global\img\syncfusion-icons-white.png" />
     <Content Include="assets\global\img\syncfusion-icons.png" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\components.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
+    <Content Include="Content\datetimepicker.css" />
     <Content Include="Content\jquery-confirm.css" />
     <Content Include="Content\jquery.toast.min.css" />
     <Content Include="Content\responsive.bootstrap.min.css" />
     <Content Include="Content\select2.min.css" />
+    <Content Include="Content\stepProcess.css" />
     <Content Include="Content\UserProfile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome.css" />
@@ -401,6 +407,7 @@
     <Content Include="Project Scripts\Categories\Categories.js" />
     <Content Include="Project Scripts\Category\Category.js" />
     <Content Include="Project Scripts\Congregation\Congregation.js" />
+    <Content Include="Project Scripts\Event\Event.js" />
     <Content Include="Project Scripts\Group\Group.js" />
     <Content Include="Project Scripts\Neighbourhood\Neighbourhood.js" />
     <Content Include="Project Scripts\Roles\Roles.js" />
@@ -411,6 +418,8 @@
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\Base.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -429,6 +438,9 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="javascript\package.json" />
     <Content Include="javascript\bower.json" />
+    <Content Include="Content\_bootstrap-datetimepicker.less" />
+    <Content Include="Content\bootstrap-datetimepicker-build.less" />
+    <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\MABRUKLIST.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap.min.js" />
@@ -452,9 +464,14 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\responsive.bootstrap.min.js" />
+    <Content Include="Scripts\StepProcess.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="StyleSheet\animate.css" />
     <Content Include="StyleSheet\bootstrap-social.css" />
@@ -594,6 +611,7 @@
     <Content Include="Views\Roles\_RolesListing.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\_AddEvent.cshtml" />
+    <Content Include="Views\Events\_AddContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
