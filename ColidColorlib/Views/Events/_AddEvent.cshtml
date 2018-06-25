@@ -119,7 +119,7 @@
                                                         <div class="form-group">
                                                             @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-1" })
                                                             <div class="col-md-11">
-                                                                @Html.TextAreaFor(model => model.Comment, 5, 110, new { @class = "form-control", @id = "txtDescription" })
+                                                                @Html.TextAreaFor(model => model.Comment, 15, 110, new { @class = "form-control", @id = "txtDescription" })
                                                                 @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
                                                             </div>
                                                         </div>
@@ -263,7 +263,9 @@
 
 <script type="text/javascript">
     $(function () {
-        $("#txtDescription").summernote();
+        $("#txtDescription").summernote({
+            height: 200
+        });
     });
 </script>
 

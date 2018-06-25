@@ -5,23 +5,38 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="usr">Group:</label>
+                        <label for="usr">Group</label>
                         @Html.DropDownList("Groups", (IEnumerable<SelectListItem>)ViewBag.groups, "-- Select Group --", new { id = "ddlgroups", @class = "form-control" })
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="usr">Congregations:</label>
+                        <label for="usr">Congregations</label>
                         @Html.DropDownList("Congregations", (IEnumerable<SelectListItem>)ViewBag.congregations, "-- Select Congregation --", new { id = "ddlCongregations", @class = "form-control" })
                     </div>
 
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="usr">Nieghbourhood:</label>
+                        <label for="usr">Nieghbourhood</label>
                         @Html.DropDownList("Nieghbourhood", (IEnumerable<SelectListItem>)ViewBag.nieghbourhood, "-- Select Nieghbourhood --", new { id = "ddlNieghbourhood", @class = "form-control" })
                     </div>
+
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-hover table-striped" id="tblContacts" style="width:100% !important">
+                        <thead>
+                            <tr>
+                                <th width="70%">Users</th>
+                                <th width="30%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
 
                 </div>
             </div>
@@ -29,3 +44,19 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+    $(function () {
+        //Change Events for filters
+        $("#ddlgroups").change(function () {
+            Event.initContactDatatable();
+        });
+        $("#ddlCongregations").change(function () {
+            Event.initContactDatatable();
+        });
+        $("#ddlNieghbourhood").change(function () {
+            Event.initContactDatatable();
+        });
+    });
+</script>

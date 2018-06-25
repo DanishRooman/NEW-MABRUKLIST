@@ -54,6 +54,7 @@
     <Compile Include="Subtitle\SubtitleDTO.cs" />
     <Compile Include="Title\TitleDTO.cs" />
     <Compile Include="Types\TypeDto.cs" />
+    <Compile Include="Users\ContactUsersDto.cs" />
     <Compile Include="Users\UserDto.cs" />
   </ItemGroup>
   <ItemGroup>
