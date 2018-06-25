@@ -1,16 +1,14 @@
-﻿var Event=function(){
+﻿var Event = function () {
 
-    var handleDropdownList = function (e) {
-        debugger
-        //Ajax call
+    var handleRenderContact = function () {
         $.ajax({
             url: '/Events/AddContact',
             type: 'GET',
             dataType: 'HTML',
             data: {},
             success: function (result) {
-                $('.ddlList').html(result);
-                $('')
+                $('#step-2').empty();
+                $('#step-2').html(result);
             },
             error: function () {
                 console.log("Error");
@@ -18,13 +16,13 @@
         });
     };
     return {
-        initDropDownList: function (e) {
-        
-            handleDropdownList(e);
+        initRenderContact: function () {
+            handleRenderContact();
         },
-
     };
-
-
-
 }();
+
+
+$(function () {
+    Event.initRenderContact();
+});

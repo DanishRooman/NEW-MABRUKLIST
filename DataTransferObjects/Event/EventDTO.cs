@@ -27,7 +27,7 @@ namespace DataTransferObjects.Event
         public string hour { get; set; }
         [Display(Name = "Address")]
         public string Address { get; set; }
-        [Display(Name = "Comment")]
+        [Display(Name = "Description")]
         public string Comment { get; set; }
 
         //Drop-down Lists
