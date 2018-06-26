@@ -2,68 +2,72 @@
 @Styles.Render("~/Content/summernote")
 
 <link href="~/Content/stepProcess.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
 @{
     ViewBag.Title = "AddEvent";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-@using (Ajax.BeginForm("AddOrUpdateEvent", "Events", new AjaxOptions { OnSuccess = "User.initUserSucsess" }))
-{
 
-    @*<h2 class="text-center font-bold pt-4 pb-5 mb-5"><strong>Registration form with steps</strong></h2>*@
-    <div class="container">
 
-        <br />
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h4>Add Events</h4>
-                    </div>
-                    <div class="panel-body">
-                        <br />
-                        <!-- Stepper -->
-                        <div class="steps-form-2">
-                            <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
-                                <div class="steps-step-2">
-                                    <a href="#step-1" type="button" class="btn btn-amber btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" title="Event Details"><i class="fa fa-calendar" aria-hidden="true"></i></a>
-                                    <h5>Event Details</h5>
-                                </div>
-                                <div class="steps-step-2">
-                                    <a href="#step-2" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Choose Contacts"><i class="fa fa-user" aria-hidden="true"></i></a>
-                                    <h5>Choose Contacts</h5>
-                                </div>
-                                <div class="steps-step-2">
-                                    <a href="#step-3" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Check Guests"><i class="fa fa-users" aria-hidden="true"></i></a>
-                                    <h5>Check Guests</h5>
-                                </div>
-                                <div class="steps-step-2">
-                                    <a href="#step-4" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Create sub-event"><i class="fa fa-clock-o" aria-hidden="true"></i></a>
-                                    <h5>Create Sub-event</h5>
-                                </div>
-                                <div class="steps-step-2">
-                                    <a href="#step-5" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Create sub-event"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                    <h5>Verfiy Event Data</h5>
-                                </div>
-                                <div class="steps-step-2">
-                                    <a href="#step-6" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Create sub-event"><i class="fa fa-envelope" aria-hidden="true"></i></a>
-                                    <h5>Send Invitations</h5>
-                                </div>
+@*<h2 class="text-center font-bold pt-4 pb-5 mb-5"><strong>Registration form with steps</strong></h2>*@
+<div class="container">
+
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Add Events</h4>
+                </div>
+                <div class="panel-body">
+                    <br />
+                    <!-- Stepper -->
+                    <div class="steps-form-2">
+                        <div class="steps-row-2 setup-panel-2 d-flex justify-content-between">
+                            <div class="steps-step-2">
+                                <a href="#step-1" type="button" class="btn btn-amber btn-circle-2 waves-effect ml-0" data-toggle="tooltip" data-placement="top" title="Event Details"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                                <h5>Event Details</h5>
+                            </div>
+                            <div class="steps-step-2">
+                                <a href="#step-2" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Choose Contacts"><i class="fa fa-user" aria-hidden="true"></i></a>
+                                <h5>Choose Contacts</h5>
+                            </div>
+                            <div class="steps-step-2">
+                                <a href="#step-3" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Check Guests"><i class="fa fa-users" aria-hidden="true"></i></a>
+                                <h5>Check Guests</h5>
+                            </div>
+                            <div class="steps-step-2">
+                                <a href="#step-4" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Create sub-event"><i class="fa fa-clock-o" aria-hidden="true"></i></a>
+                                <h5>Create Sub-event</h5>
+                            </div>
+                            <div class="steps-step-2">
+                                <a href="#step-5" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Create sub-event"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                <h5>Verfiy Event Data</h5>
+                            </div>
+                            <div class="steps-step-2">
+                                <a href="#step-6" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect mr-0" data-toggle="tooltip" data-placement="top" title="Create sub-event"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                                <h5>Send Invitations</h5>
                             </div>
                         </div>
-                        <br />
+                    </div>
+                    <br />
 
-                        <div class="row setup-content-2" id="step-1">
-                            <div class="col-md-12">
-                                @*<h3 class="font-weight-bold pl-0 my-4"><strong>Basic Information</strong></h3>*@
-                                <!--try-->
-                                <div clasa="container">
+                    <div class="row setup-content-2" id="step-1">
+                        <div class="col-md-12">
+                            @*<h3 class="font-weight-bold pl-0 my-4"><strong>Basic Information</strong></h3>*@
+                            <!--try-->
+                            <div clasa="container">
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="panel">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel">
 
-                                                <div class="panel-body">
-                                                    <br />
+                                            <div class="panel-body">
+                                                <br />
+                                                @using (Ajax.BeginForm("AddOrUpdateEvent", "Events", new AjaxOptions { OnSuccess = "User.initUserSucsess" }))
+                                                {
                                                     <div class="form-horizontal">
 
                                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -71,16 +75,15 @@
                                                             @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-1" })
                                                             <div class="col-md-11">
                                                                 @Html.DropDownListFor(model => model.Category, new SelectList(Model.eventCategoryList, "id", "Category"), "---Select Category---", new { @class = "form-control select2" })
-                                                                @*@Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })*@
                                                                 @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
                                                             </div>
                                                         </div>
                                                         <br />
                                                         <div class="form-group">
-                                                            @Html.LabelFor(model => model.Event, htmlAttributes: new { @class = "control-label col-md-1" })
+                                                            @Html.LabelFor(model => model.EventFor, htmlAttributes: new { @class = "control-label col-md-1" })
                                                             <div class="col-md-11">
-                                                                @Html.EditorFor(model => model.Event, new { htmlAttributes = new { @class = "form-control" } })
-                                                                @Html.ValidationMessageFor(model => model.Event, "", new { @class = "text-danger" })
+                                                                @Html.DropDownListFor(model => model.EventFor, new SelectList(Model.eventTypesList, "id", "Type"), "---Select Types---", new { @class = "form-control select2" })
+                                                                @Html.ValidationMessageFor(model => model.EventFor, "", new { @class = "text-danger" })
                                                             </div>
                                                         </div>
                                                         <br />
@@ -100,13 +103,13 @@
                                                             </div>
                                                         </div>
                                                         <br />
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.hour, htmlAttributes: new { @class = "control-label col-md-1" })
-                                                            <div class="col-md-11">
-                                                                @Html.EditorFor(model => model.hour, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                                @Html.ValidationMessageFor(model => model.hour, "", new { @class = "text-danger" })
-                                                            </div>
-                                                        </div>
+                                                        @*<div class="form-group">
+                                                                @Html.LabelFor(model => model.hour, htmlAttributes: new { @class = "control-label col-md-1" })
+                                                                <div class="col-md-11">
+                                                                    @Html.EditorFor(model => model.hour, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                                                    @Html.ValidationMessageFor(model => model.hour, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>*@
                                                         <br />
                                                         <div class="form-group">
                                                             @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-1" })
@@ -129,51 +132,54 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                }
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                @*<button class="btn btn-mdb-color btn-rounded nextBtn-2 float-right" type="button">Next</button>*@
                             </div>
+
+                            @*<button class="btn btn-mdb-color btn-rounded nextBtn-2 float-right" type="button">Next</button>*@
                         </div>
+                    </div>
 
 
-                        <!-- Second Step -->
-                        <div class="row setup-content-2" id="step-2">
+                    <!-- Second Step -->
+                    <div class="row setup-content-2" id="step-2">
 
-                        </div>
+                    </div>
 
-                        <!-- Third Step -->
-                        <div class="row setup-content-2" id="step-3">
-                            <div class="col-md-12">
-                                <h3 class="font-weight-bold pl-0 my-4"><strong>Terms and conditions</strong></h3>
-                                <div class="form-check">
-                                    <input type="checkbox" id="checkbox111" class="form-check-input">
-                                    <label for="checkbox111" class="form-check-label">I agree to the terms and conditions</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" id="checkbox112" class="form-check-input">
-                                    <label for="checkbox112" class="form-check-label">I want to receive newsletter</label>
-                                </div>
-                                <button class="btn btn-mdb-color btn-rounded prevBtn-2 float-left" type="button">Previous</button>
-                                <button class="btn btn-mdb-color btn-rounded nextBtn-2 float-right" type="button">Next</button>
+                    <!-- Third Step -->
+                    <div class="row setup-content-2" id="step-3">
+                        <div class="col-md-12">
+                            <h3 class="font-weight-bold pl-0 my-4"><strong>Terms and conditions</strong></h3>
+                            <div class="form-check">
+                                <input type="checkbox" id="checkbox111" class="form-check-input">
+                                <label for="checkbox111" class="form-check-label">I agree to the terms and conditions</label>
                             </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="checkbox112" class="form-check-input">
+                                <label for="checkbox112" class="form-check-label">I want to receive newsletter</label>
+                            </div>
+                            <button class="btn btn-mdb-color btn-rounded prevBtn-2 float-left" type="button">Previous</button>
+                            <button class="btn btn-mdb-color btn-rounded nextBtn-2 float-right" type="button">Next</button>
                         </div>
+                    </div>
 
-                        <!-- Fourth Step -->
-                        <div class="row setup-content-2" id="step-4">
-                            <div class="col-md-12">
-                                <div clasa="container">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="panel panel-primary">
-                                                <div class="panel-heading">
-                                                    <h4>Sub-event Details</h4>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <br />
+                    <!-- Fourth Step -->
+                    <div class="row setup-content-2" id="step-4">
+                        <div class="col-md-12">
+                            <div clasa="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h4>Sub-event Details</h4>
+                                            </div>
+                                            <div class="panel-body">
+                                                <br />
+                                                @using (Ajax.BeginForm("AddOrUpdateEvent", "Events", new AjaxOptions { OnSuccess = "User.initUserSucsess" }))
+                                                {
                                                     <div class="form-horizontal">
 
                                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -187,10 +193,10 @@
                                                         </div>
                                                         <br />
                                                         <div class="form-group">
-                                                            @Html.LabelFor(model => model.Event, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                            @Html.LabelFor(model => model.EventFor, htmlAttributes: new { @class = "control-label col-md-2" })
                                                             <div class="col-md-10">
-                                                                @Html.EditorFor(model => model.Event, new { htmlAttributes = new { @class = "form-control" } })
-                                                                @Html.ValidationMessageFor(model => model.Event, "", new { @class = "text-danger" })
+                                                                @Html.EditorFor(model => model.EventFor, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.EventFor, "", new { @class = "text-danger" })
                                                             </div>
                                                         </div>
                                                         <br />
@@ -205,18 +211,18 @@
                                                         <div class="form-group">
                                                             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
                                                             <div class="col-md-10">
-                                                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker",@disabled="disabled", @readonly = "readonly" } })
                                                                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                                                             </div>
                                                         </div>
                                                         <br />
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.hour, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                            <div class="col-md-10">
-                                                                @Html.EditorFor(model => model.hour, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                                @Html.ValidationMessageFor(model => model.hour, "", new { @class = "text-danger" })
-                                                            </div>
-                                                        </div>
+                                                        @*<div class="form-group">
+                                                                @Html.LabelFor(model => model.hour, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                                <div class="col-md-10">
+                                                                    @Html.EditorFor(model => model.hour, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                                                    @Html.ValidationMessageFor(model => model.hour, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>*@
                                                         <br />
                                                         <div class="form-group">
                                                             @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -239,7 +245,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -251,8 +257,9 @@
             </div>
         </div>
     </div>
+</div>
 
-}
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -261,11 +268,13 @@
     @Scripts.Render("~/Script/Events")
 }
 
+
 <script type="text/javascript">
     $(function () {
         $("#txtDescription").summernote({
             height: 200
         });
+        $('.datepicker ').datetimepicker();
     });
 </script>
 

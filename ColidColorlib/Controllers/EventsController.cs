@@ -5,6 +5,7 @@ using DataTransferObjects.Congregation;
 using DataTransferObjects.Event;
 using DataTransferObjects.Group;
 using DataTransferObjects.Neighbourhood;
+using DataTransferObjects.Types;
 using DataTransferObjects.Users;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,14 @@ namespace ColidColorlib.Controllers
                 {
                     Id = x.cat_key,
                     Category = x.cat_name
+                }).ToList();
+
+                //Types
+                evnt.eventTypesList = dbcontext.mblist_type.AsEnumerable().Select(x =>  new TypeDto {
+                        
+                     id=x.type_key,
+                     Type=x.type_name
+
                 }).ToList();
             };
             return PartialView("_AddEvent", evnt);

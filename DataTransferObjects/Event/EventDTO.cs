@@ -1,4 +1,5 @@
 ﻿using DataTransferObjects.Category;
+using DataTransferObjects.Types;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,8 +18,8 @@ namespace DataTransferObjects.Event
         [Display(Name = "Category")]
         public int Category { get; set; }
         [Required]
-        [Display(Name = "Event")]
-        public int Event { get; set; }
+        [Display(Name = "Type")]
+        public int EventFor { get; set; }
         [Display(Name = "Title")]
         public string Title { get; set; }
         [Display(Name = "Date")]
@@ -33,6 +34,7 @@ namespace DataTransferObjects.Event
         //Drop-down Lists
        
         public List<CategoryDto> eventCategoryList { get; set; }
+        public List<TypeDto> eventTypesList { get; set; }
 
         
     }
