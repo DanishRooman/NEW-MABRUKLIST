@@ -1,7 +1,7 @@
 ﻿var Event=function(){
 
     var handleDropdownList = function (e) {
-       
+        debugger
         //Ajax call
         $.ajax({
             url: '/Events/AddContact',
