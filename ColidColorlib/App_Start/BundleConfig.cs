@@ -102,21 +102,6 @@ namespace ColidColorlib
             bundles.Add(new StyleBundle("~/Content/component_Styles").Include(
                            "~/Content/components.css"
                            ));
-
-            bundles.Add(new ScriptBundle("~/Script/Events").Include(
-               "~/Project Scripts/Event/Event.js"
-               ));
-
-            bundles.Add(new ScriptBundle("~/Script/steps").Include(
-                    "~/Scripts/StepProcess.js"
-               ));
-            bundles.Add(new StyleBundle("~/Content/summernote").Include(
-                "~/Content/summernote.css"
-                ));
-            bundles.Add(new ScriptBundle("~/Script/summernote").Include(
-                "~/Scripts/summernote.js"
-                ));
-
         }
     }
 }

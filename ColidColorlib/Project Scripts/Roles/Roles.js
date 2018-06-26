@@ -20,6 +20,7 @@
 
     };
     var handleRolesSucsess = function (result) {
+        debugger
         if (result.key) {
 
             $.toast({
@@ -59,6 +60,7 @@
 
     };
     var handleDeleteRoles = function (id) {
+        debugger
         $.confirm({
             title: 'Delete Roles',
             content: 'Are you sure you want to delete this Roles?',
@@ -112,6 +114,7 @@
     return {
 
         initCreateRoles: function () {
+
             handleCreateRoles();
         },
         initRolesSucsess: function (result) {
