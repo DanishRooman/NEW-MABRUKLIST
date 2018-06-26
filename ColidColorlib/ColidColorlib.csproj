@@ -260,7 +260,6 @@
     <Content Include="Content\components.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\datetimepicker.css" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\jquery-confirm.css" />
     <Content Include="Content\jquery.toast.min.css" />
     <Content Include="Content\lang\summernote-ar-AR.js" />
@@ -498,10 +497,6 @@
     <Content Include="Content\font\summernote.eot" />
     <Content Include="Content\font\summernote.ttf" />
     <Content Include="Content\font\summernote.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\MABRUKLIST.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap.min.js" />
