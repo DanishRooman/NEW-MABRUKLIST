@@ -66,7 +66,7 @@
 
                                             <div class="panel-body">
                                                 <br />
-                                                @using (Ajax.BeginForm("AddOrUpdateEvents", "Events", new AjaxOptions { OnSuccess = "User.initUserSucsess" }))
+                                                @using (Ajax.BeginForm("AddOrUpdateEvents", "Events", new AjaxOptions { OnSuccess = "User.initUserSucsess",HttpMethod="POST" }))
                                                 {
                                                    
                                                     <div class="form-horizontal">

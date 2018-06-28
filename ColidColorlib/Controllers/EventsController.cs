@@ -7,6 +7,7 @@ using DataTransferObjects.Group;
 using DataTransferObjects.Neighbourhood;
 using DataTransferObjects.Types;
 using DataTransferObjects.Users;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,10 +37,11 @@ namespace ColidColorlib.Controllers
                 }).ToList();
 
                 //Types
-                evnt.eventTypesList = dbcontext.mblist_type.AsEnumerable().Select(x =>  new TypeDto {
-                        
-                     id=x.type_key,
-                     Type=x.type_name
+                evnt.eventTypesList = dbcontext.mblist_type.AsEnumerable().Select(x => new TypeDto
+                {
+
+                    id = x.type_key,
+                    Type = x.type_name
 
                 }).ToList();
             };
@@ -104,21 +106,25 @@ namespace ColidColorlib.Controllers
                 return Json(users, JsonRequestBehavior.AllowGet);
             }
         }
+        [ValidateInput(false)]
         [HttpPost]
-        public ActionResult AddOrUpdateEvents(EventDTO dtoEvent) {
-
+        public ActionResult AddOrUpdateEvents(EventDTO dtoEvent)
+        {
             try
             {
                 using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                 {
+                    //Following line is used to get logged in userid
+                    string usrkey = User.Identity.GetUserId();
                     mblis_events evn = new mblis_events()
                     {
-                        event_category_key=dtoEvent.Category,
-                        event_type_key=dtoEvent.EventFor,
-                        event_title=dtoEvent.Title,
-                        event_address=dtoEvent.Address,
-                        event_date=dtoEvent.Date,
-                        event_discription=dtoEvent.Comment
+                        event_category_key = dtoEvent.Category,
+                        event_type_key = dtoEvent.EventFor,
+                        event_title = dtoEvent.Title,
+                        event_address = dtoEvent.Address,
+                        event_date = dtoEvent.Date,
+                        event_discription = dtoEvent.Comment,
+
 
                     };
                     dbcontext.mblis_events.Add(evn);
@@ -133,7 +139,7 @@ namespace ColidColorlib.Controllers
 
                 return Json(new { key = false, value = "Unable to save the event" }, JsonRequestBehavior.AllowGet); ;
             }
-           
+
 
         }
 
