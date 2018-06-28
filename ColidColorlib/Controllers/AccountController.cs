@@ -614,7 +614,7 @@ namespace ColidColorlib.Controllers
             catch (Exception ex)
             {
 
-                return Json(new { key = false, value = "Unable to save the user" }, JsonRequestBehavior.AllowGet); ;
+                return Json(new { key = false, value = "Unable to save the user" }, JsonRequestBehavior.AllowGet);
 
             }
 

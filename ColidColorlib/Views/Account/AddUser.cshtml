@@ -263,14 +263,22 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10 text-right">
-                                 
-                                    @Html.ActionLink("Back", "Index", "Account", null, new { @class = "btn btn-danger" })
-                                    <input type="submit" value="Save" onclick="" class="btn btn-primary" />
+                                <div class="row">
+                                    <div style="margin-left:9 0px;">
+                                        Admin:@Html.RadioButton("Gender", "Male")
+                                        User:@Html.RadioButton("Gender", "Female")
+                                    </div>
                                 </div>
                             </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10 text-right">
 
-                        </div>
+                                        @Html.ActionLink("Back", "Index", "Account", null, new { @class = "btn btn-danger" })
+                                        <input type="submit" value="Save" onclick="" class="btn btn-primary" />
+                                    </div>
+                                </div>
+
+                            </div>
                     </div>
 
                 </div>

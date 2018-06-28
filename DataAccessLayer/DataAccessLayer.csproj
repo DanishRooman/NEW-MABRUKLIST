@@ -87,9 +87,6 @@
     <Compile Include="DBContext\mblist_category.cs">
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>
-    <Compile Include="DBContext\mblist_chooseEvent.cs">
-      <DependentUpon>MabrukList.tt</DependentUpon>
-    </Compile>
     <Compile Include="DBContext\mblist_congregation.cs">
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>
@@ -115,6 +112,9 @@
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\mblist_user_info.cs">
+      <DependentUpon>MabrukList.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\mblis_events.cs">
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

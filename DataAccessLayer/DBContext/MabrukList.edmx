@@ -67,6 +67,18 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IsEnabled" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="mblis_events">
+          <Key>
+            <PropertyRef Name="event_key" />
+          </Key>
+          <Property Name="event_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="event_category_key" Type="int" />
+          <Property Name="event_type_key" Type="int" />
+          <Property Name="event_title" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="event_date" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="event_address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="event_discription" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
         <EntityType Name="mblist_address">
           <Key>
             <PropertyRef Name="address_key" />
@@ -80,15 +92,6 @@
           </Key>
           <Property Name="cat_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cat_name" Type="varchar" MaxLength="150" Nullable="false" />
-        </EntityType>
-        <EntityType Name="mblist_chooseEvent">
-          <Key>
-            <PropertyRef Name="choose_key" />
-          </Key>
-          <Property Name="choose_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="chooseGroup_key" Type="int" />
-          <Property Name="chooseCongregation_key" Type="int" />
-          <Property Name="chooseNeighbourhood_key" Type="int" />
         </EntityType>
         <EntityType Name="mblist_congregation">
           <Key>
@@ -334,9 +337,9 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mblis_events" EntityType="Self.mblis_events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_address" EntityType="Self.mblist_address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_category" EntityType="Self.mblist_category" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="mblist_chooseEvent" EntityType="Self.mblist_chooseEvent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_congregation" EntityType="Self.mblist_congregation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_event" EntityType="Self.mblist_event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_group" EntityType="Self.mblist_group" Schema="dbo" store:Type="Tables" />
@@ -401,9 +404,9 @@
           <EntitySet Name="AspNetUserClaims" EntityType="MABRUKLISTModel.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="MABRUKLISTModel.AspNetUserLogins" />
           <EntitySet Name="AspNetUsers" EntityType="MABRUKLISTModel.AspNetUsers" />
+          <EntitySet Name="mblis_events" EntityType="MABRUKLISTModel.mblis_events" />
           <EntitySet Name="mblist_address" EntityType="MABRUKLISTModel.mblist_address" />
           <EntitySet Name="mblist_category" EntityType="MABRUKLISTModel.mblist_category" />
-          <EntitySet Name="mblist_chooseEvent" EntityType="MABRUKLISTModel.mblist_chooseEvent" />
           <EntitySet Name="mblist_congregation" EntityType="MABRUKLISTModel.mblist_congregation" />
           <EntitySet Name="mblist_event" EntityType="MABRUKLISTModel.mblist_event" />
           <EntitySet Name="mblist_group" EntityType="MABRUKLISTModel.mblist_group" />
@@ -515,6 +518,18 @@
           <NavigationProperty Name="mblist_user_info" Relationship="MABRUKLISTModel.FK_mblist_user_info_AspNetUsers" FromRole="AspNetUsers" ToRole="mblist_user_info" />
           <NavigationProperty Name="AspNetRoles" Relationship="MABRUKLISTModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
+        <EntityType Name="mblis_events">
+          <Key>
+            <PropertyRef Name="event_key" />
+          </Key>
+          <Property Name="event_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="event_category_key" Type="Int32" />
+          <Property Name="event_type_key" Type="Int32" />
+          <Property Name="event_title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="event_date" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="event_address" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="event_discription" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="mblist_address">
           <Key>
             <PropertyRef Name="address_key" />
@@ -529,15 +544,6 @@
           </Key>
           <Property Name="cat_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cat_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="mblist_chooseEvent">
-          <Key>
-            <PropertyRef Name="choose_key" />
-          </Key>
-          <Property Name="choose_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="chooseGroup_key" Type="Int32" />
-          <Property Name="chooseCongregation_key" Type="Int32" />
-          <Property Name="chooseNeighbourhood_key" Type="Int32" />
         </EntityType>
         <EntityType Name="mblist_congregation">
           <Key>
@@ -826,6 +832,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="mblis_events">
+            <EntityTypeMapping TypeName="MABRUKLISTModel.mblis_events">
+              <MappingFragment StoreEntitySet="mblis_events">
+                <ScalarProperty Name="event_discription" ColumnName="event_discription" />
+                <ScalarProperty Name="event_address" ColumnName="event_address" />
+                <ScalarProperty Name="event_date" ColumnName="event_date" />
+                <ScalarProperty Name="event_title" ColumnName="event_title" />
+                <ScalarProperty Name="event_type_key" ColumnName="event_type_key" />
+                <ScalarProperty Name="event_category_key" ColumnName="event_category_key" />
+                <ScalarProperty Name="event_key" ColumnName="event_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="mblist_address">
             <EntityTypeMapping TypeName="MABRUKLISTModel.mblist_address">
               <MappingFragment StoreEntitySet="mblist_address">
@@ -839,16 +858,6 @@
               <MappingFragment StoreEntitySet="mblist_category">
                 <ScalarProperty Name="cat_name" ColumnName="cat_name" />
                 <ScalarProperty Name="cat_key" ColumnName="cat_key" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="mblist_chooseEvent">
-            <EntityTypeMapping TypeName="MABRUKLISTModel.mblist_chooseEvent">
-              <MappingFragment StoreEntitySet="mblist_chooseEvent">
-                <ScalarProperty Name="chooseNeighbourhood_key" ColumnName="chooseNeighbourhood_key" />
-                <ScalarProperty Name="chooseCongregation_key" ColumnName="chooseCongregation_key" />
-                <ScalarProperty Name="chooseGroup_key" ColumnName="chooseGroup_key" />
-                <ScalarProperty Name="choose_key" ColumnName="choose_key" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

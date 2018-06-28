@@ -104,7 +104,38 @@ namespace ColidColorlib.Controllers
                 return Json(users, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpPost]
+        public ActionResult AddOrUpdateEvents(EventDTO dtoEvent) {
 
+            try
+            {
+                using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                {
+                    mblis_events evn = new mblis_events()
+                    {
+                        event_category_key=dtoEvent.Category,
+                        event_type_key=dtoEvent.EventFor,
+                        event_title=dtoEvent.Title,
+                        event_address=dtoEvent.Address,
+                        event_date=dtoEvent.Date,
+                        event_discription=dtoEvent.Comment
+
+                    };
+                    dbcontext.mblis_events.Add(evn);
+                    dbcontext.SaveChanges();
+                    return Json(new { key = true, value = "event added successfully" }, JsonRequestBehavior.AllowGet);
+
+
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new { key = false, value = "Unable to save the event" }, JsonRequestBehavior.AllowGet); ;
+            }
+           
+
+        }
 
     }
 }
