@@ -50,6 +50,29 @@
             }
         });
     };
+    var handleCreateEvent = function (result) {
+
+        if (result.key) {
+
+            $.toast({
+                heading: 'Success',
+                text: result.value,
+                showHideTransition: 'slide',
+                icon: 'success'
+            });
+            $(".txtEventId").val(result.eventKey);
+            $("#linkStep_2").click();
+        }
+        else {
+            $.toast({
+                heading: 'Error',
+                text: result.value,
+                showHideTransition: 'fade',
+                icon: 'error'
+            });
+        }
+
+    };
     return {
         initRenderContact: function () {
             handleRenderContact();

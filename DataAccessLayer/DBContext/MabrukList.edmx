@@ -67,18 +67,6 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IsEnabled" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="mblis_events">
-          <Key>
-            <PropertyRef Name="event_key" />
-          </Key>
-          <Property Name="event_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="event_category_key" Type="int" />
-          <Property Name="event_type_key" Type="int" />
-          <Property Name="event_title" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="event_date" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="event_address" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="event_discription" Type="varchar" MaxLength="150" Nullable="false" />
-        </EntityType>
         <EntityType Name="mblist_address">
           <Key>
             <PropertyRef Name="address_key" />
@@ -106,6 +94,28 @@
           </Key>
           <Property Name="event_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="event_name" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mblist_event_guests">
+          <Key>
+            <PropertyRef Name="guest_key" />
+          </Key>
+          <Property Name="guest_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="guest_event_key" Type="int" Nullable="false" />
+          <Property Name="guest_user_key" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mblist_events_detail">
+          <Key>
+            <PropertyRef Name="event_detail_key" />
+          </Key>
+          <Property Name="event_detail_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="event_detail_category_key" Type="int" Nullable="false" />
+          <Property Name="event_detail_type_key" Type="int" Nullable="false" />
+          <Property Name="event_detail_title" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="event_detail_date" Type="datetime" Nullable="false" />
+          <Property Name="event_detail_address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="event_detail_discription" Type="varchar" MaxLength="150" />
+          <Property Name="event_detail_user_key" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="event_parent" Type="int" />
         </EntityType>
         <EntityType Name="mblist_group">
           <Key>
@@ -232,6 +242,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_mblist_event_guests_mblist_events_detail">
+          <End Role="mblist_events_detail" Type="Self.mblist_events_detail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mblist_event_guests" Type="Self.mblist_event_guests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_events_detail">
+              <PropertyRef Name="event_detail_key" />
+            </Principal>
+            <Dependent Role="mblist_event_guests">
+              <PropertyRef Name="guest_event_key" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_events_detail_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mblist_events_detail" Type="Self.mblist_events_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="mblist_events_detail">
+              <PropertyRef Name="event_detail_user_key" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_events_detail_mblist_events_detail">
+          <End Role="mblist_events_detail" Type="Self.mblist_events_detail" Multiplicity="0..1" />
+          <End Role="mblist_events_detail1" Type="Self.mblist_events_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_events_detail">
+              <PropertyRef Name="event_detail_key" />
+            </Principal>
+            <Dependent Role="mblist_events_detail1">
+              <PropertyRef Name="event_parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_mblist_user_info_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -337,11 +387,12 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="mblis_events" EntityType="Self.mblis_events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_address" EntityType="Self.mblist_address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_category" EntityType="Self.mblist_category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_congregation" EntityType="Self.mblist_congregation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_event" EntityType="Self.mblist_event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mblist_event_guests" EntityType="Self.mblist_event_guests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mblist_events_detail" EntityType="Self.mblist_events_detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_group" EntityType="Self.mblist_group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_neighborhoods" EntityType="Self.mblist_neighborhoods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_service_category" EntityType="Self.mblist_service_category" Schema="dbo" store:Type="Tables" />
@@ -364,6 +415,18 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_event_guests_mblist_events_detail" Association="Self.FK_mblist_event_guests_mblist_events_detail">
+            <End Role="mblist_events_detail" EntitySet="mblist_events_detail" />
+            <End Role="mblist_event_guests" EntitySet="mblist_event_guests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_events_detail_AspNetUsers" Association="Self.FK_mblist_events_detail_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="mblist_events_detail" EntitySet="mblist_events_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_events_detail_mblist_events_detail" Association="Self.FK_mblist_events_detail_mblist_events_detail">
+            <End Role="mblist_events_detail" EntitySet="mblist_events_detail" />
+            <End Role="mblist_events_detail1" EntitySet="mblist_events_detail" />
           </AssociationSet>
           <AssociationSet Name="FK_mblist_user_info_AspNetUsers" Association="Self.FK_mblist_user_info_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -404,11 +467,12 @@
           <EntitySet Name="AspNetUserClaims" EntityType="MABRUKLISTModel.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="MABRUKLISTModel.AspNetUserLogins" />
           <EntitySet Name="AspNetUsers" EntityType="MABRUKLISTModel.AspNetUsers" />
-          <EntitySet Name="mblis_events" EntityType="MABRUKLISTModel.mblis_events" />
           <EntitySet Name="mblist_address" EntityType="MABRUKLISTModel.mblist_address" />
           <EntitySet Name="mblist_category" EntityType="MABRUKLISTModel.mblist_category" />
           <EntitySet Name="mblist_congregation" EntityType="MABRUKLISTModel.mblist_congregation" />
           <EntitySet Name="mblist_event" EntityType="MABRUKLISTModel.mblist_event" />
+          <EntitySet Name="mblist_event_guests" EntityType="MABRUKLISTModel.mblist_event_guests" />
+          <EntitySet Name="mblist_events_detail" EntityType="MABRUKLISTModel.mblist_events_detail" />
           <EntitySet Name="mblist_group" EntityType="MABRUKLISTModel.mblist_group" />
           <EntitySet Name="mblist_neighborhoods" EntityType="MABRUKLISTModel.mblist_neighborhoods" />
           <EntitySet Name="mblist_service_category" EntityType="MABRUKLISTModel.mblist_service_category" />
@@ -424,6 +488,10 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
+          <AssociationSet Name="FK_mblist_events_detail_AspNetUsers" Association="MABRUKLISTModel.FK_mblist_events_detail_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="mblist_events_detail" EntitySet="mblist_events_detail" />
+          </AssociationSet>
           <AssociationSet Name="FK_mblist_user_info_AspNetUsers" Association="MABRUKLISTModel.FK_mblist_user_info_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="mblist_user_info" EntitySet="mblist_user_info" />
@@ -435,6 +503,14 @@
           <AssociationSet Name="FK_mblist_user_info_mblist_congregation" Association="MABRUKLISTModel.FK_mblist_user_info_mblist_congregation">
             <End Role="mblist_congregation" EntitySet="mblist_congregation" />
             <End Role="mblist_user_info" EntitySet="mblist_user_info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_event_guests_mblist_events_detail" Association="MABRUKLISTModel.FK_mblist_event_guests_mblist_events_detail">
+            <End Role="mblist_events_detail" EntitySet="mblist_events_detail" />
+            <End Role="mblist_event_guests" EntitySet="mblist_event_guests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mblist_events_detail_mblist_events_detail" Association="MABRUKLISTModel.FK_mblist_events_detail_mblist_events_detail">
+            <End Role="mblist_events_detail" EntitySet="mblist_events_detail" />
+            <End Role="mblist_events_detail1" EntitySet="mblist_events_detail" />
           </AssociationSet>
           <AssociationSet Name="FK_mblist_user_info_mblist_group" Association="MABRUKLISTModel.FK_mblist_user_info_mblist_group">
             <End Role="mblist_group" EntitySet="mblist_group" />
@@ -515,20 +591,9 @@
           <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="MABRUKLISTModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="MABRUKLISTModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="mblist_events_detail" Relationship="MABRUKLISTModel.FK_mblist_events_detail_AspNetUsers" FromRole="AspNetUsers" ToRole="mblist_events_detail" />
           <NavigationProperty Name="mblist_user_info" Relationship="MABRUKLISTModel.FK_mblist_user_info_AspNetUsers" FromRole="AspNetUsers" ToRole="mblist_user_info" />
           <NavigationProperty Name="AspNetRoles" Relationship="MABRUKLISTModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
-        </EntityType>
-        <EntityType Name="mblis_events">
-          <Key>
-            <PropertyRef Name="event_key" />
-          </Key>
-          <Property Name="event_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="event_category_key" Type="Int32" />
-          <Property Name="event_type_key" Type="Int32" />
-          <Property Name="event_title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="event_date" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="event_address" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="event_discription" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="mblist_address">
           <Key>
@@ -559,6 +624,33 @@
           </Key>
           <Property Name="event_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="event_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mblist_event_guests">
+          <Key>
+            <PropertyRef Name="guest_key" />
+          </Key>
+          <Property Name="guest_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="guest_event_key" Type="Int32" Nullable="false" />
+          <Property Name="guest_user_key" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="mblist_events_detail" Relationship="MABRUKLISTModel.FK_mblist_event_guests_mblist_events_detail" FromRole="mblist_event_guests" ToRole="mblist_events_detail" />
+        </EntityType>
+        <EntityType Name="mblist_events_detail">
+          <Key>
+            <PropertyRef Name="event_detail_key" />
+          </Key>
+          <Property Name="event_detail_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="event_detail_category_key" Type="Int32" Nullable="false" />
+          <Property Name="event_detail_type_key" Type="Int32" Nullable="false" />
+          <Property Name="event_detail_title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="event_detail_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="event_detail_address" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="event_detail_discription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="event_detail_user_key" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="event_parent" Type="Int32" />
+          <NavigationProperty Name="AspNetUsers" Relationship="MABRUKLISTModel.FK_mblist_events_detail_AspNetUsers" FromRole="mblist_events_detail" ToRole="AspNetUsers" />
+          <NavigationProperty Name="mblist_event_guests" Relationship="MABRUKLISTModel.FK_mblist_event_guests_mblist_events_detail" FromRole="mblist_events_detail" ToRole="mblist_event_guests" />
+          <NavigationProperty Name="mblist_events_detail1" Relationship="MABRUKLISTModel.FK_mblist_events_detail_mblist_events_detail" FromRole="mblist_events_detail" ToRole="mblist_events_detail1" />
+          <NavigationProperty Name="mblist_events_detail2" Relationship="MABRUKLISTModel.FK_mblist_events_detail_mblist_events_detail" FromRole="mblist_events_detail1" ToRole="mblist_events_detail" />
         </EntityType>
         <EntityType Name="mblist_group">
           <Key>
@@ -668,6 +760,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_mblist_events_detail_AspNetUsers">
+          <End Type="MABRUKLISTModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MABRUKLISTModel.mblist_events_detail" Role="mblist_events_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="mblist_events_detail">
+              <PropertyRef Name="event_detail_user_key" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_mblist_user_info_AspNetUsers">
           <End Type="MABRUKLISTModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -707,6 +813,32 @@
             </Principal>
             <Dependent Role="mblist_user_info">
               <PropertyRef Name="usr_congregation_key" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_event_guests_mblist_events_detail">
+          <End Type="MABRUKLISTModel.mblist_events_detail" Role="mblist_events_detail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MABRUKLISTModel.mblist_event_guests" Role="mblist_event_guests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_events_detail">
+              <PropertyRef Name="event_detail_key" />
+            </Principal>
+            <Dependent Role="mblist_event_guests">
+              <PropertyRef Name="guest_event_key" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mblist_events_detail_mblist_events_detail">
+          <End Type="MABRUKLISTModel.mblist_events_detail" Role="mblist_events_detail" Multiplicity="0..1" />
+          <End Type="MABRUKLISTModel.mblist_events_detail" Role="mblist_events_detail1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mblist_events_detail">
+              <PropertyRef Name="event_detail_key" />
+            </Principal>
+            <Dependent Role="mblist_events_detail1">
+              <PropertyRef Name="event_parent" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -832,19 +964,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="mblis_events">
-            <EntityTypeMapping TypeName="MABRUKLISTModel.mblis_events">
-              <MappingFragment StoreEntitySet="mblis_events">
-                <ScalarProperty Name="event_discription" ColumnName="event_discription" />
-                <ScalarProperty Name="event_address" ColumnName="event_address" />
-                <ScalarProperty Name="event_date" ColumnName="event_date" />
-                <ScalarProperty Name="event_title" ColumnName="event_title" />
-                <ScalarProperty Name="event_type_key" ColumnName="event_type_key" />
-                <ScalarProperty Name="event_category_key" ColumnName="event_category_key" />
-                <ScalarProperty Name="event_key" ColumnName="event_key" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="mblist_address">
             <EntityTypeMapping TypeName="MABRUKLISTModel.mblist_address">
               <MappingFragment StoreEntitySet="mblist_address">
@@ -874,6 +993,30 @@
               <MappingFragment StoreEntitySet="mblist_event">
                 <ScalarProperty Name="event_name" ColumnName="event_name" />
                 <ScalarProperty Name="event_key" ColumnName="event_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mblist_event_guests">
+            <EntityTypeMapping TypeName="MABRUKLISTModel.mblist_event_guests">
+              <MappingFragment StoreEntitySet="mblist_event_guests">
+                <ScalarProperty Name="guest_user_key" ColumnName="guest_user_key" />
+                <ScalarProperty Name="guest_event_key" ColumnName="guest_event_key" />
+                <ScalarProperty Name="guest_key" ColumnName="guest_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mblist_events_detail">
+            <EntityTypeMapping TypeName="MABRUKLISTModel.mblist_events_detail">
+              <MappingFragment StoreEntitySet="mblist_events_detail">
+                <ScalarProperty Name="event_parent" ColumnName="event_parent" />
+                <ScalarProperty Name="event_detail_user_key" ColumnName="event_detail_user_key" />
+                <ScalarProperty Name="event_detail_discription" ColumnName="event_detail_discription" />
+                <ScalarProperty Name="event_detail_address" ColumnName="event_detail_address" />
+                <ScalarProperty Name="event_detail_date" ColumnName="event_detail_date" />
+                <ScalarProperty Name="event_detail_title" ColumnName="event_detail_title" />
+                <ScalarProperty Name="event_detail_type_key" ColumnName="event_detail_type_key" />
+                <ScalarProperty Name="event_detail_category_key" ColumnName="event_detail_category_key" />
+                <ScalarProperty Name="event_detail_key" ColumnName="event_detail_key" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

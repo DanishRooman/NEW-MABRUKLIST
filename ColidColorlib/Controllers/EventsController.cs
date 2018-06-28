@@ -116,20 +116,44 @@ namespace ColidColorlib.Controllers
                 {
                     //Following line is used to get logged in userid
                     string usrkey = User.Identity.GetUserId();
-                    mblis_events evn = new mblis_events()
+                    if (dtoEvent.id != 0)
                     {
-                        event_category_key = dtoEvent.Category,
-                        event_type_key = dtoEvent.EventFor,
-                        event_title = dtoEvent.Title,
-                        event_address = dtoEvent.Address,
-                        event_date = dtoEvent.Date,
-                        event_discription = dtoEvent.Comment,
+                        var Data = dbcontext.mblist_events_detail.Find(dtoEvent.id);
+                        if (Data != null)
+                        {
+                            Data.event_detail_category_key = dtoEvent.Category;
+                            Data.event_detail_type_key = dtoEvent.EventFor;
+                            Data.event_detail_title = dtoEvent.Title;
+                            Data.event_detail_address = dtoEvent.Date;
+                            Data.event_detail_discription = dtoEvent.Comment;
+                            Data.event_detail_user_key = usrkey;
+                            dbcontext.SaveChanges();
+                            return Json(new { key = true, value = "event updated successfully", eventKey = Data.event_detail_key }, JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                        {
+                            return Json(new { key = false, value = "event event not found"}, JsonRequestBehavior.AllowGet);
+                        }
+                    }
+                    else
+                    {
+                        mblist_events_detail evn = new mblist_events_detail()
+                        {
+                            event_detail_category_key = dtoEvent.Category,
+                            event_detail_type_key = dtoEvent.EventFor,
+                            event_detail_title = dtoEvent.Title,
+                            event_detail_address = dtoEvent.Address,
+                            event_detail_date = Convert.ToDateTime(dtoEvent.Date),
+                            event_detail_discription = dtoEvent.Comment,
+                            event_detail_user_key = usrkey
+
+                        };
+                        dbcontext.mblist_events_detail.Add(evn);
+                        dbcontext.SaveChanges();
+                        return Json(new { key = true, value = "event added successfully", eventKey = evn.event_detail_key }, JsonRequestBehavior.AllowGet);
 
 
-                    };
-                    dbcontext.mblis_events.Add(evn);
-                    dbcontext.SaveChanges();
-                    return Json(new { key = true, value = "event added successfully" }, JsonRequestBehavior.AllowGet);
+                    }
 
 
                 };

@@ -111,12 +111,17 @@ namespace ColidColorlib
                     "~/Scripts/StepProcess.js"
                ));
             bundles.Add(new StyleBundle("~/Content/summernote").Include(
-                "~/Content/summernote.css"
+                "~/Content/summernote.css",
+                "~/Content/stepProcess.css",
+                "~/Content/bootstrap-datetimepicker.min.css"
                 ));
             bundles.Add(new ScriptBundle("~/Script/summernote").Include(
                 "~/Scripts/summernote.js"
                 ));
-
+            bundles.Add(new ScriptBundle("~/Script/MomentDatepickar").Include(
+                "~/Scripts/moment.js",
+                "~/Scripts/bootstrap-datetimepicker.js"
+                ));
         }
     }
 }

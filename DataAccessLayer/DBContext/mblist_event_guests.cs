@@ -12,14 +12,12 @@ namespace DataAccessLayer.DBContext
     using System;
     using System.Collections.Generic;
     
-    public partial class mblis_events
+    public partial class mblist_event_guests
     {
-        public int event_key { get; set; }
-        public Nullable<int> event_category_key { get; set; }
-        public Nullable<int> event_type_key { get; set; }
-        public string event_title { get; set; }
-        public string event_date { get; set; }
-        public string event_address { get; set; }
-        public string event_discription { get; set; }
+        public int guest_key { get; set; }
+        public int guest_event_key { get; set; }
+        public string guest_user_key { get; set; }
+    
+        public virtual mblist_events_detail mblist_events_detail { get; set; }
     }
 }
