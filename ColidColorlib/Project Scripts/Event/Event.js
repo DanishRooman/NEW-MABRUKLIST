@@ -1,5 +1,5 @@
 ﻿var Event = function () {
-
+    var gTable;
     var handleRenderContact = function () {
         $.ajax({
             url: '/Events/AddContact',
@@ -28,7 +28,7 @@
             type: "GET",
             cache: false,
             success: function (result) {
-                $('#tblContacts').DataTable({
+                gTable = $('#tblContacts').DataTable({
                     "destroy": true,
                     "data": result,
                     "columnDefs": [{
@@ -73,12 +73,22 @@
         }
 
     };
+    var handleChooseContacts = function () {
+        gTable = $('#tblContacts').DataTable();
+        gTable.rows().every(function (rowIdx, tableLoop, rowLoop) {
+            debugger
+            var data = this.data();
+        });
+    };
     return {
         initRenderContact: function () {
             handleRenderContact();
         },
         initContactDatatable: function () {
             handleContactDatatable();
+        },
+        initChooseContacts: function () {
+            handleChooseContacts();
         },
     };
 }();
