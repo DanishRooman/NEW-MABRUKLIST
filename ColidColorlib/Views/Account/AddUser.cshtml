@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<script src="~/Project Scripts/AddUser/AddUser.js"></script>
 
-@*<link href="~/Content/UserProfile.css" rel="stylesheet" />*@
-@using (Ajax.BeginForm("AddOrUpdateUser", "Account", new AjaxOptions { OnSuccess = "User.initUserSucsess" }))
+@using (Ajax.BeginForm("AddOrUpdateUser", "Account", new AjaxOptions { OnSuccess = "AddUser.initSucessAddUser" }))
 {
 
     <div class="container">
@@ -57,14 +57,7 @@
                                         @Html.ValidationMessageFor(model => model.AlternateEmail, "", new { @class = "text-danger" })
                                     </div>
                                 </div>*@
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.DropDownListFor(model => model.Role, new SelectList(Model.RolesList, "id", "Roles"), "-- Select Role --", new { @class = "form-control select2" })
-                                    @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
+                         
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -72,7 +65,13 @@
                                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -82,16 +81,25 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div style="margin-left:200px;">
+                                        Admin:@Html.RadioButton("Admin", "Admin")
+                                        User:@Html.RadioButton("User", "User")
+                                    </div>
+                                </div>
+                            </div>
 
                             @*<div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
                                         <input type="submit" value="Save Contact" class="btn btn-primary" />
                                     </div>
-                                </div>*@
+                                </div>*@   
                         </div>
                     </div>
                 </div>
                 <hr />
+
 
                 @*<br />*@
                 <div class="row" style="padding-bottom:20px;">
@@ -262,14 +270,7 @@
                                     @Html.ValidationMessageFor(model => model.Relationship, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div style="margin-left:9 0px;">
-                                        Admin:@Html.RadioButton("Gender", "Male")
-                                        User:@Html.RadioButton("Gender", "Female")
-                                    </div>
-                                </div>
-                            </div>
+                         
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10 text-right">
 

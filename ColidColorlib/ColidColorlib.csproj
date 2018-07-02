@@ -459,6 +459,7 @@
     <Content Include="javascript\ui-blockui.js" />
     <Content Include="javascript\wow.min.js" />
     <Content Include="Project Scripts\Address\Address.js" />
+    <Content Include="Project Scripts\AddUser\AddUser.js" />
     <Content Include="Project Scripts\Categories\Categories.js" />
     <Content Include="Project Scripts\Category\Category.js" />
     <Content Include="Project Scripts\Congregation\Congregation.js" />

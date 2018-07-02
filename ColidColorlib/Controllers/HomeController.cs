@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer.DBContext;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +26,20 @@ namespace ColidColorlib.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        public JsonResult IsUserExist(string User)
+        {
+            using (MABRUKLISTEntities dbContext = new MABRUKLISTEntities())
+            {
+                return Json(!dbContext.AspNetUsers.Any(x => x.UserName == User), JsonRequestBehavior.AllowGet);
+            };
+        }
+        public JsonResult IsEmailExist(string Email)
+        {
+            using (MABRUKLISTEntities dbContext = new MABRUKLISTEntities())
+            {
+                return Json(!dbContext.AspNetUsers.Any(x => x.Email == Email), JsonRequestBehavior.AllowGet);
+            };
         }
     }
 }

@@ -73,12 +73,21 @@
         }
 
     };
+
+   var handleCreateDataEvent = function () {
+        debugger
+        alert("Hello World");
+   };
+
     return {
         initRenderContact: function () {
             handleRenderContact();
         },
         initContactDatatable: function () {
             handleContactDatatable();
+        },
+        initcreateDataEvent: function () {
+            handleCreateDataEvent();
         },
     };
 }();

@@ -1,4 +1,5 @@
-﻿using DataTransferObjects.Address;
+﻿using DataAccessLayer.DBContext;
+using DataTransferObjects.Address;
 using DataTransferObjects.Group;
 using DataTransferObjects.Neighbourhood;
 using DataTransferObjects.Roles;
@@ -10,6 +11,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace DataTransferObjects.Users
 {
@@ -58,28 +60,44 @@ namespace DataTransferObjects.Users
         [Display(Name = "Image")]
         public string Image { get; set; }
         [Display(Name = "Username")]
+        [Required]
+        [ScaffoldColumn(false)]
+        [RegularExpression(@"^[^\s\,]+$", ErrorMessage = "Username Cannot Have Spaces")]
         public string User { get; set; }
         [Required]
         [Display(Name = "Email")]
+        [MaxLength(50)]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
         [Required]
         [Display(Name = "Role")]
         public string Role { get; set; }
-        [Required]
+
         [Display(Name = "Password")]
+        [Required(ErrorMessage = "Password is required")]
+        [StringLength(150, ErrorMessage = "Must be between 8 and 150 characters", MinimumLength = 8)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "Confirm Password is required")]
+        [StringLength(150, ErrorMessage = "Must be between 8 and 150 characters", MinimumLength = 8)]
+        [DataType(DataType.Password)]
+        [Compare("Password")]
+        public string ConfirmPassword { get; set; }
+
         [Required]
         [Display(Name = "Active")]
         public bool Active { get; set; }
-        
+
 
         //Drop-down Lists
         public List<TitleDTO> titleList { get; set; }
-        public List<SubtitleDTO> subtitleList { get; set; } 
+        public List<SubtitleDTO> subtitleList { get; set; }
         public List<NeighbourhoodDTO> NeighbourhoodList { get; set; }
         public List<AddressDTO> AddressList { get; set; }
         public List<GroupDTO> GroupList { get; set; }
         public List<RolesDTO> RolesList { get; set; }
 
     }
+
 }
