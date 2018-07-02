@@ -80,6 +80,12 @@
             var data = this.data();
         });
     };
+
+   var handleCreateDataEvent = function () {
+        debugger
+        alert("Hello World");
+   };
+
     return {
         initRenderContact: function () {
             handleRenderContact();
@@ -89,6 +95,9 @@
         },
         initChooseContacts: function () {
             handleChooseContacts();
+        },
+        initcreateDataEvent: function () {
+            handleCreateDataEvent();
         },
     };
 }();

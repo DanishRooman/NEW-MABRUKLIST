@@ -565,11 +565,27 @@ namespace ColidColorlib.Controllers
         {
             try
             {
+                using (MABRUKLISTEntities dbContext = new MABRUKLISTEntities())
+                {
+                    if (dbContext.AspNetUsers.Any(x => x.Email == userInfo.Email))
+                    {
+                        return Json(new { key = false, value = "Email is already assigned to other user" }, JsonRequestBehavior.AllowGet);
+                    }
+                    if (dbContext.AspNetUsers.Any(x => x.UserName == userInfo.User))
+                    {
+                        return Json(new { key = false, value = "Username is already assigned to other user" }, JsonRequestBehavior.AllowGet);
+                    }
+
+                };
+
                 var user = new ApplicationUser { UserName = userInfo.User, Email = userInfo.Email, IsEnabled = userInfo.Active };
                 var result = await UserManager.CreateAsync(user, userInfo.Password);
+
+
                 if (result.Succeeded)
                 {
-                    await this.UserManager.AddToRoleAsync(user.Id, userInfo.Role);
+                    //if (userInfo.Role != null)
+                    //    await this.UserManager.AddToRoleAsync(user.Id, userInfo.Role);
 
                     using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                     {
