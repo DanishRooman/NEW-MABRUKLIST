@@ -74,17 +74,17 @@
 
     };
     var handleChooseContacts = function () {
+        
         gTable = $('#tblContacts').DataTable();
         gTable.rows().every(function (rowIdx, tableLoop, rowLoop) {
             debugger
             var data = this.data();
+            var obj = $.parseHTML(data.Action);
+            var userid = $(obj).val();
         });
     };
 
-   var handleCreateDataEvent = function () {
-        debugger
-        alert("Hello World");
-   };
+  
 
     return {
         initRenderContact: function () {
@@ -96,9 +96,7 @@
         initChooseContacts: function () {
             handleChooseContacts();
         },
-        initcreateDataEvent: function () {
-            handleCreateDataEvent();
-        },
+       
     };
 }();
 
