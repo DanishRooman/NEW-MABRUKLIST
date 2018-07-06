@@ -30,6 +30,9 @@
             cache: false,
             success: function (result) {
                 gTable = $('#tblContacts').DataTable({
+                    "paging": false,
+                    "ordering": false,
+                    "info": false,
                     "destroy": true,
                     "data": result,
                     "columnDefs": [{
@@ -73,18 +76,19 @@
         }
     };
     var handleChooseContacts = function () {
+        debugger
         var guests = [];
         gTable = $('#tblContacts').DataTable();
         var eventId = $(".txtEventId").val();
         if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
-            gTable.rows().every(function (rowIdx, tableLoop, rowLoop) {
-                var data = this.data();
-                var obj = $.parseHTML(data.Action);
-                if ($(obj).attr("confirmed") == "true") {
-                    var userid = $(obj).val();
+            $('#tblContacts > tbody  > tr').each(function () {
+                var cbox = $(this).find(".userscbox:first");
+                if (cbox.prop("checked") == true) {
+                    var userid = cbox.val();
                     guests.push({ userId: userid, EventId: eventId });
                 }
             });
+
             if (guests.length > 0) {
                 guests = JSON.stringify({ 'guests': guests });
                 $.ajax({
@@ -93,8 +97,25 @@
                     type: 'POST',
                     url: '/Events/AddGuests',
                     data: guests,
-                    success: function (data) {
+                    success: function (result) {
+                        if (result.key) {
 
+                            $.toast({
+                                heading: 'Success',
+                                text: result.value,
+                                showHideTransition: 'slide',
+                                icon: 'success'
+                            });
+                            $("#linkStep_3").click();
+                        }
+                        else {
+                            $.toast({
+                                heading: 'Error',
+                                text: result.value,
+                                showHideTransition: 'fade',
+                                icon: 'error'
+                            });
+                        }
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         alert("Error");

@@ -32,7 +32,7 @@
                                 <h5>Choose Contacts</h5>
                             </div>
                             <div class="steps-step-2">
-                                <a href="#step-3" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Check Guests"><i class="fa fa-users" aria-hidden="true"></i></a>
+                                <a href="#step-3" id="linkStep_3" type="button" class="btn btn-blue-grey btn-circle-2 waves-effect" data-toggle="tooltip" data-placement="top" title="Check Guests"><i class="fa fa-users" aria-hidden="true"></i></a>
                                 <h5>Check Guests</h5>
                             </div>
                             <div class="steps-step-2">
@@ -173,12 +173,13 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <br />
-                                        @using (Ajax.BeginForm("AddOrUpdateEvents", "Events", new AjaxOptions { OnSuccess = "User.initUserSucsess" }))
+                                        @using (Ajax.BeginForm("AddSubevent", "Events", new AjaxOptions { OnSuccess = "User.initCreateEvent" }))
                                         {
                                             <div class="form-horizontal">
 
                                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                                 @Html.HiddenFor(model => model.id, new { htmlAttributes = new { @class = "txtEventId" } })
+
                                                 <div class="form-group">
                                                     @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
                                                     <div class="col-md-10">
@@ -191,7 +192,7 @@
                                                 <div class="form-group">
                                                     @Html.LabelFor(model => model.EventFor, htmlAttributes: new { @class = "control-label col-md-2" })
                                                     <div class="col-md-10">
-                                                        @Html.EditorFor(model => model.EventFor, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.DropDownListFor(model => model.EventFor, new SelectList(Model.eventTypesList, "id", "Type"), "---Select Types---", new { @class = "form-control select2" })
                                                         @Html.ValidationMessageFor(model => model.EventFor, "", new { @class = "text-danger" })
                                                     </div>
                                                 </div>
