@@ -57,6 +57,7 @@
     <Compile Include="ChooseEvent\ChooseEventDTO.cs" />
     <Compile Include="Congregation\CongregationDTO.cs" />
     <Compile Include="Event\EventDTO.cs" />
+    <Compile Include="Event\EventGuests.cs" />
     <Compile Include="Group\GroupDTO.cs" />
     <Compile Include="Neighbourhood\NeighbourhoodDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -74,17 +74,38 @@
 
     };
     var handleChooseContacts = function () {
-        
+        var guestLists = [];
         gTable = $('#tblContacts').DataTable();
+        var eventId = $(".txtEventId").val();
         gTable.rows().every(function (rowIdx, tableLoop, rowLoop) {
             debugger
             var data = this.data();
             var obj = $.parseHTML(data.Action);
             var userid = $(obj).val();
+            guestLists.push({ "userId": userid, "EventId": eventId });
         });
+        if (guestLists.length > 0) {
+            var datalist = JSON.stringify({ guests: guestLists })
+            $.ajax({
+                url: '/Events/AddGuests',
+                data: datalist,
+                type: "post",
+                cache: false,
+                success: function (data) {
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("Error");
+                }
+            });
+        }
+        else {
+            alert("Please select a user");
+        }
+
     };
 
-  
+
 
     return {
         initRenderContact: function () {
@@ -96,7 +117,7 @@
         initChooseContacts: function () {
             handleChooseContacts();
         },
-       
+
     };
 }();
 

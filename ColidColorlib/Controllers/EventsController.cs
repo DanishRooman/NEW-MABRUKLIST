@@ -48,6 +48,14 @@ namespace ColidColorlib.Controllers
             return PartialView("_AddEvent", evnt);
         }
 
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult AddGuests(List<EventGuests> guests)
+        {
+            return Json(JsonRequestBehavior.AllowGet);
+        }
+
+
         [HttpGet]
         public ActionResult AddContact()
         {
@@ -106,6 +114,7 @@ namespace ColidColorlib.Controllers
                 return Json(users, JsonRequestBehavior.AllowGet);
             }
         }
+
         [ValidateInput(false)]
         [HttpPost]
         public ActionResult AddOrUpdateEvents(EventDTO dtoEvent)
@@ -132,7 +141,7 @@ namespace ColidColorlib.Controllers
                         }
                         else
                         {
-                            return Json(new { key = false, value = "event event not found"}, JsonRequestBehavior.AllowGet);
+                            return Json(new { key = false, value = "event event not found" }, JsonRequestBehavior.AllowGet);
                         }
                     }
                     else
@@ -166,6 +175,8 @@ namespace ColidColorlib.Controllers
 
 
         }
+
+
 
     }
 }
