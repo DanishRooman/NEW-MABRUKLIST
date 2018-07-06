@@ -22,7 +22,6 @@
                         <label for="usr">Nieghbourhood</label>
                         @Html.DropDownList("Nieghbourhood", (IEnumerable<SelectListItem>)ViewBag.nieghbourhood, "-- Select Nieghbourhood --", new { id = "ddlNieghbourhood", @class = "form-control" })
                     </div>
-
                 </div>
             </div>
             <hr />
@@ -38,10 +37,10 @@
                         <tbody></tbody>
                     </table>
                     <div class="row">
-
+                        <br />
                         <div class="col-md-12" style="text-align:right;">
+                            @Html.ActionLink("Previous", "Index", "Events", new { @class = "btn btn-success" })
                             <button type="button" class="btn btn-primary" onclick="Event.initChooseContacts()">Save</button>
-                            <button type="button" class="btn btn-success">Previous</button>
                         </div>
                     </div>
                 </div>
@@ -50,8 +49,6 @@
         </div>
     </div>
 </div>
-
-
 <script type="text/javascript">
     $(function () {
         //Change Events for filters.

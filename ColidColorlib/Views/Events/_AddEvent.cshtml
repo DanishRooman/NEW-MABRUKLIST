@@ -16,7 +16,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4>Add Events</h4>
-                    <input type="hidden" value="0" class="txtEventId"/>
+                    <input type="hidden" value="0" class="txtEventId" />
                 </div>
                 <div class="panel-body">
                     <br />
@@ -63,11 +63,11 @@
 
                                             <div class="panel-body">
                                                 <br />
-                                                @using (Ajax.BeginForm("AddOrUpdateEvents", "Events", new AjaxOptions { OnSuccess = "User.initUserSucsess",HttpMethod="POST" }))
+                                                @using (Ajax.BeginForm("AddOrUpdateEvents", "Events", new AjaxOptions { OnSuccess = "User.initUserSucsess", HttpMethod = "POST" }))
                                                 {
-                                                   
+
                                                     <div class="form-horizontal">
-                                                        
+
                                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                                         @Html.HiddenFor(model => model.id, new { htmlAttributes = new { @class = "txtEventId" } })
                                                         <div class="form-group">
@@ -125,8 +125,9 @@
                                                                 @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <div class="col-md-offset-2 col-md-10">
+                                                        <div class="row">
+                                                            <div class="col-md-12" style="text-align:right;">
+                                                                @Html.ActionLink("Previous", "Index", "Events", new { @class = "btn btn-success" })
                                                                 <input type="submit" value="Save" class="btn btn-primary" />
                                                             </div>
                                                         </div>
@@ -171,83 +172,75 @@
                             <div clasa="container">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="panel panel-primary">
-                                            <div class="panel-heading">
-                                                <h4>Sub-event Details</h4>
-                                            </div>
-                                            <div class="panel-body">
-                                                <br />
-                                                @using (Ajax.BeginForm("AddOrUpdateEvents", "Events", new AjaxOptions { OnSuccess = "User.initUserSucsess" }))
-                                                {
-                                                    <div class="form-horizontal">
-                                                   
-                                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                                        @Html.HiddenFor(model => model.id, new { htmlAttributes = new { @class = "txtEventId" } })
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                            <div class="col-md-10">
-                                                                @Html.DropDownListFor(model => model.Category, new SelectList(Model.eventCategoryList, "id", "Category"), "---Select Category---", new { @class = "form-control select2" })
-                                                                @*@Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })*@
-                                                                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
-                                                            </div>
-                                                        </div>
-                                                        <br />
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.EventFor, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                            <div class="col-md-10">
-                                                                @Html.EditorFor(model => model.EventFor, new { htmlAttributes = new { @class = "form-control" } })
-                                                                @Html.ValidationMessageFor(model => model.EventFor, "", new { @class = "text-danger" })
-                                                            </div>
-                                                        </div>
-                                                        <br />
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                            <div class="col-md-10">
-                                                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                                                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                                                            </div>
-                                                        </div>
-                                                        <br />
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                            <div class="col-md-10">
-                                                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker",@disabled="disabled", @readonly = "readonly" } })
-                                                                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-                                                            </div>
-                                                        </div>
-                                                        <br />
-                                                        @*<div class="form-group">
-                                                                @Html.LabelFor(model => model.hour, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                                <div class="col-md-10">
-                                                                    @Html.EditorFor(model => model.hour, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                                    @Html.ValidationMessageFor(model => model.hour, "", new { @class = "text-danger" })
-                                                                </div>
-                                                            </div>*@
-                                                        <br />
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                            <div class="col-md-10">
-                                                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                                                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-                                                            </div>
-                                                        </div>
-                                                        <br />
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                            <div class="col-md-10">
-                                                                @Html.TextAreaFor(model => model.Comment, 5, 110, new { htmlAttributes = new { @class = "form-control" } })
-                                                                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="col-md-offset-2 col-md-10">
-                                                                <input type="submit" value="Save" class="btn btn-primary" />
-                                                            </div>
-                                                        </div>
+                                        <br />
+                                        @using (Ajax.BeginForm("AddOrUpdateEvents", "Events", new AjaxOptions { OnSuccess = "User.initUserSucsess" }))
+                                        {
+                                            <div class="form-horizontal">
+
+                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                @Html.HiddenFor(model => model.id, new { htmlAttributes = new { @class = "txtEventId" } })
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.DropDownListFor(model => model.Category, new SelectList(Model.eventCategoryList, "id", "Category"), "---Select Category---", new { @class = "form-control select2" })
+                                                        @*@Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                        @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
                                                     </div>
-                                                }
+                                                </div>
+                                                <br />
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.EventFor, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.EventFor, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.EventFor, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <br />
+
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.TextAreaFor(model => model.Comment, 5, 131, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12" style="text-align:right;">
+                                                        @Html.ActionLink("Previous", "Index", "Events", new { @class = "btn btn-success" })
+                                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                                    </div>
+                                                </div>
+
                                             </div>
-                                        </div>
+                                        }
+
+
                                     </div>
                                 </div>
                             </div>

@@ -1,4 +1,5 @@
 ﻿var Event = function () {
+   // private static function
     var gTable;
     var handleRenderContact = function () {
         $.ajax({
@@ -71,10 +72,9 @@
                 icon: 'error'
             });
         }
-
     };
     var handleChooseContacts = function () {
-        
+
         gTable = $('#tblContacts').DataTable();
         gTable.rows().every(function (rowIdx, tableLoop, rowLoop) {
             debugger
@@ -84,8 +84,10 @@
         });
     };
 
-  
+    
 
+
+    //public static function
     return {
         initRenderContact: function () {
             handleRenderContact();
@@ -96,7 +98,9 @@
         initChooseContacts: function () {
             handleChooseContacts();
         },
-       
+
+        
+
     };
 }();
 
@@ -104,5 +108,7 @@
 $(function () {
     Event.initRenderContact();
     Event.initContactDatatable();
+  
 });
+
 

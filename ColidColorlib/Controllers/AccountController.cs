@@ -17,6 +17,7 @@ using DataTransferObjects.Neighbourhood;
 using DataTransferObjects.Address;
 using DataTransferObjects.Group;
 using DataTransferObjects.Roles;
+using System.Collections.Generic;
 
 namespace ColidColorlib.Controllers
 {
@@ -635,6 +636,52 @@ namespace ColidColorlib.Controllers
             }
 
         }
+        [HttpGet]
+        public ActionResult AddUserListing()
+        {
+            List<UserDto> userlist = new List<UserDto>();
+            using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+            {
+                userlist = dbcontext.mblist_user_info.AsEnumerable().OrderByDescending(x => x.usr_key).Select(x => new UserDto
+                {
+                    FirstName = x.usr_first_name,
+                    User = x.AspNetUsers.UserName,
+                    Email = x.AspNetUsers.Email,
+                }).ToList();
+                return PartialView("_AddUserListing", userlist);
+
+            };
+
+
+        }
+
+        public ActionResult DeleteUser(int id)
+        {
+         try
+            {
+                using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                {
+                    var user = dbcontext.mblist_user_info.Find(id);
+                   
+                    if (user != null)
+                    {
+                        dbcontext.mblist_user_info.Remove(user);
+                        dbcontext.SaveChanges();
+                        return Json(new { key = true, value = "user deleted successfully" }, JsonRequestBehavior.AllowGet);
+                    }
+                    else {
+
+                        return Json(new { key = false, value = "user not Found its Deleted from data base!!" }, JsonRequestBehavior.AllowGet);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new { key = false, value = "Unable to edit the User" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
 
     }
 }
