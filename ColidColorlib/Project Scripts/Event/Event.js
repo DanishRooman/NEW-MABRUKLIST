@@ -1,5 +1,5 @@
 ﻿var Event = function () {
-   // private static function
+    // private static function
     var gTable;
     var handleRenderContact = function () {
         $.ajax({
@@ -52,7 +52,6 @@
         });
     };
     var handleCreateEvent = function (result) {
-
         if (result.key) {
 
             $.toast({
@@ -74,23 +73,26 @@
         }
     };
     var handleChooseContacts = function () {
-        var guestLists = [];
+        var guests = [];
         gTable = $('#tblContacts').DataTable();
         var eventId = $(".txtEventId").val();
         gTable.rows().every(function (rowIdx, tableLoop, rowLoop) {
-            debugger
             var data = this.data();
             var obj = $.parseHTML(data.Action);
-            var userid = $(obj).val();
-            guestLists.push({ "userId": userid, "EventId": eventId });
+            if ($(obj).attr("confirmed") == "true")
+            {
+                var userid = $(obj).val();
+                guests.push({ userId: userid, EventId: eventId });
+            }
         });
-        if (guestLists.length > 0) {
-            var datalist = JSON.stringify({ guests: guestLists })
+        if (guests.length > 0) {
+            guests = JSON.stringify({ 'guests': guests });
             $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: 'POST',
                 url: '/Events/AddGuests',
-                data: datalist,
-                type: "post",
-                cache: false,
+                data: guests,
                 success: function (data) {
 
                 },
@@ -100,7 +102,12 @@
             });
         }
         else {
-            alert("Please select a user");
+            $.toast({
+                heading: 'Error',
+                text: "Please select a user",
+                showHideTransition: 'fade',
+                icon: 'error'
+            });
         }
 
     };
@@ -119,7 +126,9 @@
         initChooseContacts: function () {
             handleChooseContacts();
         },
-
+        initCreateEvent: function (data) {
+            handleCreateEvent(data);
+        }
     };
 }();
 
@@ -127,7 +136,7 @@
 $(function () {
     Event.initRenderContact();
     Event.initContactDatatable();
-  
+
 });
 
 

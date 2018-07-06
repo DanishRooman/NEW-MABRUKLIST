@@ -47,8 +47,7 @@ namespace ColidColorlib.Controllers
             };
             return PartialView("_AddEvent", evnt);
         }
-
-        [ValidateInput(false)]
+        
         [HttpPost]
         public ActionResult AddGuests(List<EventGuests> guests)
         {
@@ -109,7 +108,7 @@ namespace ColidColorlib.Controllers
                 var users = allusers.Select(x => new ContactUsersDto
                 {
                     Users = x.usr_first_name + " " + x.usr_last_name,
-                    Action = "<input type='checkbox' value='" + x.AspNetUsers.Id + "'>"
+                    Action = "<input class='userscbox' confirmed='false' type='checkbox' value='" + x.AspNetUsers.Id + "'>"
                 }).ToList();
                 return Json(users, JsonRequestBehavior.AllowGet);
             }
@@ -194,9 +193,9 @@ namespace ColidColorlib.Controllers
                         event_detail_title = sbevntdto.Title,
                         event_detail_address = sbevntdto.Address,
                         event_detail_date = Convert.ToDateTime(sbevntdto.Date),
-                        event_detail_discription = sbevntdto.Comment,
+                        event_detail_discription = sbevntdto.Comment
 
-                        event_detail_user_key = 
+                        
                     };
                     dbcontext.mblist_events_detail.Add(sbven);
                     dbcontext.SaveChanges();

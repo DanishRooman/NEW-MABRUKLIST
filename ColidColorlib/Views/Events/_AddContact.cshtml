@@ -61,5 +61,16 @@
         $("#ddlNieghbourhood").change(function () {
             Event.initContactDatatable();
         });
+
+        $(document).on("change", ".userscbox",function () {
+            if ($(this).prop("checked") == true) {
+                $(this).attr("confirmed", "true");
+            }
+            else
+            {
+                 $(this).attr("confirmed", "false");
+            }
+        });
+
     });
 </script>
