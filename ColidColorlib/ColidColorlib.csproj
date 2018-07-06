@@ -678,6 +678,7 @@
     <Content Include="Views\Events\_AddEvent.cshtml" />
     <Content Include="Views\Events\_AddContact.cshtml" />
     <Content Include="Views\Events\_InvitationCard.cshtml" />
+    <Content Include="Views\Account\_AddUserListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

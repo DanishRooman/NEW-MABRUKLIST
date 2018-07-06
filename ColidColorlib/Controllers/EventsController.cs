@@ -148,6 +148,7 @@ namespace ColidColorlib.Controllers
                     {
                         mblist_events_detail evn = new mblist_events_detail()
                         {
+                            
                             event_detail_category_key = dtoEvent.Category,
                             event_detail_type_key = dtoEvent.EventFor,
                             event_detail_title = dtoEvent.Title,
@@ -176,7 +177,43 @@ namespace ColidColorlib.Controllers
 
         }
 
+        //SubEvent Mathod
+        [HttpPost]
+        public ActionResult AddSubevent(EventDTO sbevntdto) {
+            try
+            {
+                using (MABRUKLISTEntities dbcontext=new MABRUKLISTEntities()) 
+                {
+                    string sbevntkey = User.Identity.GetUserId();
+                 
+                    mblist_events_detail sbven = new mblist_events_detail()
+                    {
 
+                        event_detail_category_key = sbevntdto.Category,
+                        event_detail_type_key = sbevntdto.EventFor,
+                        event_detail_title = sbevntdto.Title,
+                        event_detail_address = sbevntdto.Address,
+                        event_detail_date = Convert.ToDateTime(sbevntdto.Date),
+                        event_detail_discription = sbevntdto.Comment,
+
+                        event_detail_user_key = 
+                    };
+                    dbcontext.mblist_events_detail.Add(sbven);
+                    dbcontext.SaveChanges();
+                    return Json(new { key = true, value = "Subevent added successfully", sbevntkey = sbven.event_detail_key }, JsonRequestBehavior.AllowGet);
+              
+                };
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+
+         }
+        
 
     }
 }

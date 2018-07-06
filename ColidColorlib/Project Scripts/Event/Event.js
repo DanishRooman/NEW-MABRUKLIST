@@ -1,4 +1,5 @@
 ﻿var Event = function () {
+   // private static function
     var gTable;
     var handleRenderContact = function () {
         $.ajax({
@@ -71,7 +72,6 @@
                 icon: 'error'
             });
         }
-
     };
     var handleChooseContacts = function () {
         var guestLists = [];
@@ -107,6 +107,8 @@
 
 
 
+
+    //public static function
     return {
         initRenderContact: function () {
             handleRenderContact();
@@ -125,5 +127,7 @@
 $(function () {
     Event.initRenderContact();
     Event.initContactDatatable();
+  
 });
+
 
