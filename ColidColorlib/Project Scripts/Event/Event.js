@@ -76,39 +76,49 @@
         var guests = [];
         gTable = $('#tblContacts').DataTable();
         var eventId = $(".txtEventId").val();
-        gTable.rows().every(function (rowIdx, tableLoop, rowLoop) {
-            var data = this.data();
-            var obj = $.parseHTML(data.Action);
-            if ($(obj).attr("confirmed") == "true")
-            {
-                var userid = $(obj).val();
-                guests.push({ userId: userid, EventId: eventId });
-            }
-        });
-        if (guests.length > 0) {
-            guests = JSON.stringify({ 'guests': guests });
-            $.ajax({
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                type: 'POST',
-                url: '/Events/AddGuests',
-                data: guests,
-                success: function (data) {
-
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert("Error");
+        if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
+            gTable.rows().every(function (rowIdx, tableLoop, rowLoop) {
+                var data = this.data();
+                var obj = $.parseHTML(data.Action);
+                if ($(obj).attr("confirmed") == "true") {
+                    var userid = $(obj).val();
+                    guests.push({ userId: userid, EventId: eventId });
                 }
             });
+            if (guests.length > 0) {
+                guests = JSON.stringify({ 'guests': guests });
+                $.ajax({
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    type: 'POST',
+                    url: '/Events/AddGuests',
+                    data: guests,
+                    success: function (data) {
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert("Error");
+                    }
+                });
+            }
+            else {
+                $.toast({
+                    heading: 'Error',
+                    text: "Please select a user",
+                    showHideTransition: 'fade',
+                    icon: 'error'
+                });
+            }
         }
         else {
             $.toast({
                 heading: 'Error',
-                text: "Please select a user",
+                text: "Please add an Event",
                 showHideTransition: 'fade',
                 icon: 'error'
             });
         }
+
 
     };
 
