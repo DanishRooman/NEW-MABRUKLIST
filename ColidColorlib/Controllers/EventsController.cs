@@ -179,7 +179,7 @@ namespace ColidColorlib.Controllers
             {
                 using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                 {
-                    DateTime invitationDate = DateTime.ParseExact(dtoEvent.Date, "MM/dd/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+                    DateTime invitationDate = DateTime.ParseExact(dtoEvent.Date, "MM/dd/yyyy h:mm tt", null);
                     //Following line is used to get logged in userid
                     string usrkey = User.Identity.GetUserId();
                     if (dtoEvent.id != 0)
