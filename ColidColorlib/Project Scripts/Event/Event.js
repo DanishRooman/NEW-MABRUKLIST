@@ -16,6 +16,66 @@
             }
         });
     };
+    var handleSetInvitation = function (eventID) {
+        $.ajax({
+            url: '/Events/SetInvitationCard',
+            type: 'GET',
+            dataType: 'HTML',
+            data: { "eventID": eventID },
+            success: function (result) {
+                $('#step-6').empty();
+                $('#step-6').html(result);
+            },
+            error: function () {
+                console.log("Error");
+            }
+        });
+    };
+
+
+    var handleSendEmail = function () {
+        var eventId = $(".txtEventId").val();
+        if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
+            $.ajax({
+                url: '/Events/SendInvitations',
+                type: 'GET',
+                dataType: 'HTML',
+                data: { "eventID": eventId },
+                success: function (result) {
+                    result = JSON.parse(result);
+                    if (result.key) {
+                        $.toast({
+                            heading: 'Success',
+                            text: result.value,
+                            showHideTransition: 'slide',
+                            icon: 'success'
+                        });
+                    }
+                    else {
+                        $.toast({
+                            heading: 'Error',
+                            text: result.value,
+                            showHideTransition: 'fade',
+                            icon: 'error'
+                        });
+                    }
+                },
+                error: function () {
+                    console.log("Error");
+                }
+            });
+        }
+        else {
+            $.toast({
+                heading: 'Error',
+                text: "Please add an event",
+                showHideTransition: 'fade',
+                icon: 'error'
+            });
+        }
+
+    };
+
     var handleContactDatatable = function () {
         var group = $("#ddlgroups").val();
         group = group != undefined ? group : "";
@@ -65,6 +125,7 @@
             });
             $(".txtEventId").val(result.eventKey);
             $("#linkStep_2").click();
+            handleSetInvitation(result.eventKey);
         }
         else {
             $.toast({
@@ -75,8 +136,38 @@
             });
         }
     };
+
+    var handleSendInvitations = function () {
+        var eventId = $(".txtEventId").val();
+        if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
+            $.ajax({
+                url: "/Events/SendInvitations",
+                data: { "group": eventId },
+                type: "GET",
+                cache: false,
+                success: function (result) {
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $.toast({
+                        heading: 'Error',
+                        text: "Unable to process your request. Please contact your admin",
+                        showHideTransition: 'fade',
+                        icon: 'error'
+                    });
+                }
+            });
+        }
+        else {
+            $.toast({
+                heading: 'Error',
+                text: "Please add an Event",
+                showHideTransition: 'fade',
+                icon: 'error'
+            });
+        }
+    };
     var handleChooseContacts = function () {
-        debugger
         var guests = [];
         gTable = $('#tblContacts').DataTable();
         var eventId = $(".txtEventId").val();
@@ -106,7 +197,7 @@
                                 showHideTransition: 'slide',
                                 icon: 'success'
                             });
-                            $("#linkStep_3").click();
+                            $("#linkStep_6").click();
                         }
                         else {
                             $.toast({
@@ -159,7 +250,11 @@
         },
         initCreateEvent: function (data) {
             handleCreateEvent(data);
+        },
+        initSendEmail: function () {
+            handleSendEmail();
         }
+
     };
 }();
 
