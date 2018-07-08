@@ -585,8 +585,11 @@ namespace ColidColorlib.Controllers
 
                 if (result.Succeeded)
                 {
-                    //if (userInfo.Role != null)
-                    //    await this.UserManager.AddToRoleAsync(user.Id, userInfo.Role);
+                    if (userInfo.Role != null)
+                    {
+                        await this.UserManager.AddToRoleAsync(user.Id, userInfo.Role);
+                    }
+
 
                     using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                     {
@@ -644,9 +647,11 @@ namespace ColidColorlib.Controllers
             {
                 userlist = dbcontext.mblist_user_info.AsEnumerable().OrderByDescending(x => x.usr_key).Select(x => new UserDto
                 {
-                    FirstName = x.usr_first_name,
+                    Id = x.usr_key,
+                    FirstName = (x.mblist_title != null ? (x.mblist_title.title_name + " ") : string.Empty) + x.usr_first_name + " " + x.usr_last_name,
                     User = x.AspNetUsers.UserName,
                     Email = x.AspNetUsers.Email,
+                    Foreign = x.AspNetUsers.IsEnabled == true ? "Active" : "Inactive",
                 }).ToList();
                 return PartialView("_AddUserListing", userlist);
 
@@ -657,19 +662,26 @@ namespace ColidColorlib.Controllers
 
         public ActionResult DeleteUser(int id)
         {
-         try
+            try
             {
                 using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                 {
                     var user = dbcontext.mblist_user_info.Find(id);
-                   
+
                     if (user != null)
                     {
+                        var aspuser = dbcontext.AspNetUsers.Find(user.usr_aspnet_user);
                         dbcontext.mblist_user_info.Remove(user);
                         dbcontext.SaveChanges();
+                        if (aspuser != null)
+                        {
+                            dbcontext.AspNetUsers.Remove(aspuser);
+                            dbcontext.SaveChanges();
+                        }
                         return Json(new { key = true, value = "user deleted successfully" }, JsonRequestBehavior.AllowGet);
                     }
-                    else {
+                    else
+                    {
 
                         return Json(new { key = false, value = "user not Found its Deleted from data base!!" }, JsonRequestBehavior.AllowGet);
                     }

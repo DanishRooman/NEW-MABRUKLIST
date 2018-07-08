@@ -86,7 +86,7 @@ namespace DataTransferObjects.Users
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name = "Active")]
+        [Display(Name = "Status")]
         public bool Active { get; set; }
 
 

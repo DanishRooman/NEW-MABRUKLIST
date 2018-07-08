@@ -1,9 +1,7 @@
 ﻿var User = function () {
     //Private Static
 var handleUserSucsess = function (result) {
-
         if (result.key) {
-
             $.toast({
                 heading: 'Success',
                 text: result.value,
@@ -11,7 +9,6 @@ var handleUserSucsess = function (result) {
                 icon: 'success'
             });
             $("#CreateGroup").modal("hide");
-
         }
         else {
             $.toast({
@@ -21,11 +18,8 @@ var handleUserSucsess = function (result) {
                 icon: 'error'
             });
         }
-
-
 };
     var handleCreateList = function () {
-        debugger
         $.ajax({
             url: '/Account/AddUserListing',
             type: 'GET',
@@ -66,7 +60,7 @@ var handleUserSucsess = function (result) {
                                         showHideTransition: 'slide',
                                         icon: 'success'
                                     });
-                                    handleGroupList();
+                                    handleCreateList();
                                 }
                                 else {
                                     $.toast({
@@ -96,27 +90,17 @@ var handleUserSucsess = function (result) {
     return {
 
         initUserSucsess: function (result) {
-
             handleUserSucsess(result);
-
-
         },
         initUserList: function () {
-
             handleCreateList();
         },
         initDeleteUser: function (id) {
-
             handleDeleteUser(id);
-
         },
-
     };
-
-
 
 }();
 $(function () {
-
     User.initUserList();
 });
