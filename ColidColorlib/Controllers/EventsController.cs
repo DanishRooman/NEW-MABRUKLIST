@@ -164,7 +164,8 @@ namespace ColidColorlib.Controllers
                 }
                 var users = allusers.Select(x => new ContactUsersDto
                 {
-                    Users = x.usr_first_name + " " + x.usr_last_name,
+                    Id = x.usr_key,
+                    Users = (x.mblist_title != null ? x.mblist_title.title_name + " " : string.Empty) + (x.usr_first_name + " " + x.usr_last_name),
                     Action = "<input class='userscbox' confirmed='false' type='checkbox' value='" + x.AspNetUsers.Id + "'>"
                 }).ToList();
                 return Json(users, JsonRequestBehavior.AllowGet);
@@ -333,8 +334,6 @@ namespace ColidColorlib.Controllers
                         event_detail_address = sbevntdto.Address,
                         event_detail_date = Convert.ToDateTime(sbevntdto.Date),
                         event_detail_discription = sbevntdto.Comment
-
-
                     };
                     dbcontext.mblist_events_detail.Add(sbven);
                     dbcontext.SaveChanges();
@@ -347,9 +346,56 @@ namespace ColidColorlib.Controllers
 
                 throw;
             }
+        }
 
 
 
+
+        [HttpGet]
+        public ActionResult VerifyContacts(int eventId)
+        {
+            List<ContactUsersDto> eventUsers = new List<ContactUsersDto>();
+            using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+            {
+                var allusers = dbcontext.mblist_event_guests.Where(x => x.guest_event_key == eventId);
+                if (allusers.Any())
+                {
+                    eventUsers = allusers.AsEnumerable().Select(x => new ContactUsersDto
+                    {
+                        Id = dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault() != null ? (dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().usr_key) : 0,
+                        Users = dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault() != null ? ((dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().mblist_title != null ? dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().mblist_title.title_name + " " : string.Empty) + dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().usr_first_name + " " + dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().usr_last_name) : string.Empty,
+                        Action = "<button type='button' class='btn btn-danger' onclick='Event.initRemoveContact(" + x.guest_key + ")'><i class='fa fa-close'></i> Remove Contact </button>"
+                    }).ToList();
+                }
+
+            }
+            return PartialView("_VerifyContacts", eventUsers);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteGuest(int guestKey)
+        {
+            try
+            {
+                using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                {
+                    var guest = dbcontext.mblist_event_guests.Find(guestKey);
+                    if (guest != null)
+                    {
+                        dbcontext.mblist_event_guests.Remove(guest);
+                        dbcontext.SaveChanges();
+                        return Json(new { key = true, value = "Contact removed successfully" }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { key = false, value = "Contact not found or deleted" }, JsonRequestBehavior.AllowGet);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return Json(new { key = false, value = "Unable to process your request.Please contact your admin" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
 

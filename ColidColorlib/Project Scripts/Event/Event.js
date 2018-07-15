@@ -32,6 +32,22 @@
         });
     };
 
+    var handleVerifyContacts = function (eventID) {
+        $.ajax({
+            url: '/Events/VerifyContacts',
+            type: 'GET',
+            dataType: 'HTML',
+            data: { "eventID": eventID },
+            success: function (result) {
+                $('#step-3').empty();
+                $('#step-3').html(result);
+            },
+            error: function () {
+                console.log("Error");
+            }
+        });
+    };
+
 
     var handleSendEmail = function () {
         var eventId = $(".txtEventId").val();
@@ -90,16 +106,19 @@
             cache: false,
             success: function (result) {
                 gTable = $('#tblContacts').DataTable({
+                    "destroy": true,
                     "paging": false,
                     "ordering": false,
                     "info": false,
-                    "destroy": true,
                     "data": result,
                     "columnDefs": [{
                         orderable: false,
-                        targets: 1
+                        targets: 2
                     }],
                     "columns": [
+                        {
+                            "data": "Id"
+                        },
                      {
                          "data": "Users"
                      },
@@ -197,7 +216,8 @@
                                 showHideTransition: 'slide',
                                 icon: 'success'
                             });
-                            $("#linkStep_6").click();
+                            $("#linkStep_3").click();
+                            handleVerifyContacts(eventId);
                         }
                         else {
                             $.toast({
@@ -234,7 +254,55 @@
 
     };
 
+    var handleRemoveContact = function (guestKey) {
+        $.confirm({
+            title: 'Delete Group',
+            content: 'Are you sure you want to remove this contact?',
+            theme: 'material',
+            buttons: {
+                confirm: {
+                    btnClass: "btn-blue",
+                    keys: ["enter"],
+                    action: function () {
+                        $.ajax({
+                            url: '/Events/DeleteGuest',
+                            type: 'GET',
+                            dataType: 'json',
+                            data: { "guestKey": guestKey },
+                            success: function (result) {
+                                if (result.key) {
+                                    $.toast({
+                                        heading: 'Success',
+                                        text: result.value,
+                                        showHideTransition: 'slide',
+                                        icon: 'success'
+                                    });
+                                    var eventId = $(".txtEventId").val();
+                                    if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
+                                        handleVerifyContacts(eventId);
+                                    }
+                                }
+                                else {
+                                    $.toast({
+                                        heading: 'Error',
+                                        text: result.value,
+                                        showHideTransition: 'fade',
+                                        icon: 'error'
+                                    });
+                                }
+                            },
+                            error: function () {
+                                console.log("Error");
+                            }
+                        });
+                    }
+                },
+                cancel: function () {
 
+                },
+            }
+        });
+    };
 
 
     //public static function
@@ -253,6 +321,9 @@
         },
         initSendEmail: function () {
             handleSendEmail();
+        },
+        initRemoveContact: function (guestKey) {
+            handleRemoveContact(guestKey);
         }
 
     };

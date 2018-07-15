@@ -8,6 +8,7 @@ namespace DataTransferObjects.Users
 {
     public class ContactUsersDto
     {
+        public int Id { get; set; }
         public string Users { get; set; }
         public string Action { get; set; }
     }

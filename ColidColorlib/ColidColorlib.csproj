@@ -203,6 +203,7 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvitationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NeighbourhoodController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -679,9 +680,11 @@
     <Content Include="Views\Events\_AddContact.cshtml" />
     <Content Include="Views\Events\_InvitationCard.cshtml" />
     <Content Include="Views\Account\_AddUserListing.cshtml" />
+    <Content Include="Views\Events\_VerifyContacts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Invitations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DataTransferObjects.Users.ContactUsersDto>
+
+<div class="col-md-12">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Users)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Action)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Users)
+                </td>
+                <td>
+                    @Html.Raw(item.Action) @*@Html.DisplayFor(modelItem => item.Action)*@
+                    
+                </td>
+
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<br />
+
+<div class="col-md-12 text-right">
+    <button class="btn btn-mdb-color btn-primary btn-rounded prevBtn-2 float-left" type="button">Previous</button>
+    <button class="btn btn-mdb-color btn-success btn-rounded nextBtn-2 float-right" type="button">Next</button>
+</div>
