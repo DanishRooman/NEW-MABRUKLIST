@@ -102,6 +102,9 @@ namespace ColidColorlib
             bundles.Add(new StyleBundle("~/Content/component_Styles").Include(
                            "~/Content/components.css"
                            ));
+            bundles.Add(new StyleBundle("~/Content/fileInput").Include(
+                          "~/Content/fileinput.min.css"
+                          ));
 
             bundles.Add(new ScriptBundle("~/Script/Events").Include(
                "~/Project Scripts/Event/Event.js"
@@ -122,6 +125,16 @@ namespace ColidColorlib
                 "~/Scripts/moment.js",
                 "~/Scripts/bootstrap-datetimepicker.js"
                 ));
+            bundles.Add(new ScriptBundle("~/Script/Invitation").Include(
+               "~/Project Scripts/Invitation/Invitation.js"
+               ));
+            bundles.Add(new ScriptBundle("~/Script/InvitationFiles").Include(
+               "~/Scripts/piexif.js",
+               "~/Scripts/sortable.min.js",
+               "~/Scripts/popper.min.js",
+               "~/Scripts/fileinput.js",
+               "~/Scripts/LANG.js"
+               ));
         }
     }
 }

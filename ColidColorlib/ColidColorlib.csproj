@@ -261,6 +261,7 @@
     <Content Include="Content\components.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\datetimepicker.css" />
+    <Content Include="Content\fileinput.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\jquery-confirm.css" />
     <Content Include="Content\jquery.toast.min.css" />
@@ -392,6 +393,7 @@
     <Content Include="images\themeforest.gif" />
     <Content Include="images\videgub.gif" />
     <Content Include="img\invitation_card.png" />
+    <Content Include="img\loading.gif" />
     <Content Include="img\remove-icon-small.png" />
     <Content Include="javascript\app.js" />
     <Content Include="javascript\bootstrap.js" />
@@ -466,6 +468,7 @@
     <Content Include="Project Scripts\Congregation\Congregation.js" />
     <Content Include="Project Scripts\Event\Event.js" />
     <Content Include="Project Scripts\Group\Group.js" />
+    <Content Include="Project Scripts\Invitation\Invitation.js" />
     <Content Include="Project Scripts\Neighbourhood\Neighbourhood.js" />
     <Content Include="Project Scripts\Roles\Roles.js" />
     <Content Include="Project Scripts\Subtitle\Subtitle.js" />
@@ -509,6 +512,8 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap.min.js" />
     <Content Include="Scripts\dataTables.responsive.min.js" />
+    <Content Include="Scripts\fileinput.js" />
+    <Content Include="Scripts\fileinput.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -521,6 +526,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\LANG.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
@@ -532,9 +538,16 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\piexif.js" />
+    <Content Include="Scripts\piexif.min.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\purify.js" />
+    <Content Include="Scripts\purify.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\responsive.bootstrap.min.js" />
+    <Content Include="Scripts\sortable.js" />
+    <Content Include="Scripts\sortable.min.js" />
     <Content Include="Scripts\StepProcess.js" />
     <Content Include="Scripts\summernote.js" />
     <Content Include="Scripts\_references.js" />
@@ -681,10 +694,11 @@
     <Content Include="Views\Events\_InvitationCard.cshtml" />
     <Content Include="Views\Account\_AddUserListing.cshtml" />
     <Content Include="Views\Events\_VerifyContacts.cshtml" />
+    <Content Include="Views\Invitations\Index.cshtml" />
+    <Content Include="Views\Invitations\FileUploadModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Invitations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

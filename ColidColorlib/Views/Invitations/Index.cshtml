@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@Scripts.Render("~/Script/Invitation")
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">Invitation Gallery</h1>
+        <button type="button" class="btn btn-primary" onclick="Invitation.initAddInvitation();"><i class="fa fa-plus font"></i> Add New</button>
+        <br /><br />
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-bar-chart-o fa-fw"></i> Invitation Cards
+                <div class="pull-right">
+
+                </div>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div id="divInvitations">
+
+                </div>
+            </div>
+        </div>
+     
+    </div>
+</div>
+
+
+<div id="InvitationUploadModal" class="modal fade" role="dialog">
+</div>
+
+
+

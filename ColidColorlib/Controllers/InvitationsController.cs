@@ -13,5 +13,17 @@ namespace ColidColorlib.Controllers
         {
             return View();
         }
+
+        public ActionResult FileUploadModal()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult UploadInvitations()
+        {
+            int count = Request.Files.Count;
+            return Json(true,JsonRequestBehavior.AllowGet);
+        }
     }
 }
