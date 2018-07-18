@@ -124,6 +124,13 @@
           <Property Name="group_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="group_name" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
+        <EntityType Name="mblist_invitation_cards">
+          <Key>
+            <PropertyRef Name="inviation_key" />
+          </Key>
+          <Property Name="inviation_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="invitation_img_path" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="mblist_neighborhoods">
           <Key>
             <PropertyRef Name="neighborhoods_key" />
@@ -394,6 +401,7 @@
           <EntitySet Name="mblist_event_guests" EntityType="Self.mblist_event_guests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_events_detail" EntityType="Self.mblist_events_detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_group" EntityType="Self.mblist_group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mblist_invitation_cards" EntityType="Self.mblist_invitation_cards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_neighborhoods" EntityType="Self.mblist_neighborhoods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_service_category" EntityType="Self.mblist_service_category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mblist_subtitle" EntityType="Self.mblist_subtitle" Schema="dbo" store:Type="Tables" />
@@ -474,6 +482,7 @@
           <EntitySet Name="mblist_event_guests" EntityType="MABRUKLISTModel.mblist_event_guests" />
           <EntitySet Name="mblist_events_detail" EntityType="MABRUKLISTModel.mblist_events_detail" />
           <EntitySet Name="mblist_group" EntityType="MABRUKLISTModel.mblist_group" />
+          <EntitySet Name="mblist_invitation_cards" EntityType="MABRUKLISTModel.mblist_invitation_cards" />
           <EntitySet Name="mblist_neighborhoods" EntityType="MABRUKLISTModel.mblist_neighborhoods" />
           <EntitySet Name="mblist_service_category" EntityType="MABRUKLISTModel.mblist_service_category" />
           <EntitySet Name="mblist_subtitle" EntityType="MABRUKLISTModel.mblist_subtitle" />
@@ -659,6 +668,13 @@
           <Property Name="group_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="group_name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="mblist_user_info" Relationship="MABRUKLISTModel.FK_mblist_user_info_mblist_group" FromRole="mblist_group" ToRole="mblist_user_info" />
+        </EntityType>
+        <EntityType Name="mblist_invitation_cards">
+          <Key>
+            <PropertyRef Name="inviation_key" />
+          </Key>
+          <Property Name="inviation_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="invitation_img_path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="mblist_neighborhoods">
           <Key>
@@ -1025,6 +1041,14 @@
               <MappingFragment StoreEntitySet="mblist_group">
                 <ScalarProperty Name="group_name" ColumnName="group_name" />
                 <ScalarProperty Name="group_key" ColumnName="group_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mblist_invitation_cards">
+            <EntityTypeMapping TypeName="MABRUKLISTModel.mblist_invitation_cards">
+              <MappingFragment StoreEntitySet="mblist_invitation_cards">
+                <ScalarProperty Name="invitation_img_path" ColumnName="invitation_img_path" />
+                <ScalarProperty Name="inviation_key" ColumnName="inviation_key" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

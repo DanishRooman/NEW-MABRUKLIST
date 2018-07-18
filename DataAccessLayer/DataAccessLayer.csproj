@@ -102,6 +102,9 @@
     <Compile Include="DBContext\mblist_group.cs">
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBContext\mblist_invitation_cards.cs">
+      <DependentUpon>MabrukList.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBContext\mblist_neighborhoods.cs">
       <DependentUpon>MabrukList.tt</DependentUpon>
     </Compile>

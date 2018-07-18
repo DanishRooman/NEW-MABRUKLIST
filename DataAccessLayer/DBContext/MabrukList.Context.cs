@@ -37,6 +37,7 @@ namespace DataAccessLayer.DBContext
         public virtual DbSet<mblist_event_guests> mblist_event_guests { get; set; }
         public virtual DbSet<mblist_events_detail> mblist_events_detail { get; set; }
         public virtual DbSet<mblist_group> mblist_group { get; set; }
+        public virtual DbSet<mblist_invitation_cards> mblist_invitation_cards { get; set; }
         public virtual DbSet<mblist_neighborhoods> mblist_neighborhoods { get; set; }
         public virtual DbSet<mblist_service_category> mblist_service_category { get; set; }
         public virtual DbSet<mblist_subtitle> mblist_subtitle { get; set; }

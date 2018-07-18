@@ -321,6 +321,9 @@
     <Content Include="Content\summernote-lite.js" />
     <Content Include="Content\summernote.css" />
     <Content Include="Content\summernote.min.js" />
+    <Content Include="Content\uploader\cards.css" />
+    <Content Include="Content\uploader\jquery.dm-uploader.min.css" />
+    <Content Include="Content\uploader\styles.css" />
     <Content Include="Content\UserProfile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome.css" />
@@ -352,6 +355,7 @@
     <Content Include="images\loogo mabruklist.png" />
     <Content Include="images\mail-arrow.png" />
     <Content Include="images\mobile2.png" />
+    <Content Include="images\noimage.jpg" />
     <Content Include="images\pamela.jpg" />
     <Content Include="images\parallax-1.jpg" />
     <Content Include="images\parallax-2.jpg" />
@@ -512,13 +516,14 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap.min.js" />
     <Content Include="Scripts\dataTables.responsive.min.js" />
-    <Content Include="Scripts\fileinput.js" />
-    <Content Include="Scripts\fileinput.min.js" />
+    <Content Include="Scripts\demo-config.js" />
+    <Content Include="Scripts\demo-ui.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="javascript\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.dm-uploader.min.js" />
     <Content Include="Scripts\jquery.toast.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -526,7 +531,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\LANG.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
@@ -538,16 +542,11 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
-    <Content Include="Scripts\piexif.js" />
-    <Content Include="Scripts\piexif.min.js" />
-    <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\purify.js" />
     <Content Include="Scripts\purify.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\responsive.bootstrap.min.js" />
-    <Content Include="Scripts\sortable.js" />
-    <Content Include="Scripts\sortable.min.js" />
     <Content Include="Scripts\StepProcess.js" />
     <Content Include="Scripts\summernote.js" />
     <Content Include="Scripts\_references.js" />
@@ -584,7 +583,9 @@
     <Content Include="StyleSheet\style.css" />
     <Content Include="StyleSheet\themify-icons.css" />
     <Content Include="TemplatesEmail\InvitationCard.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -699,6 +700,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Invitations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
