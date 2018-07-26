@@ -59,6 +59,7 @@
     <Compile Include="Event\EventDTO.cs" />
     <Compile Include="Event\EventGuests.cs" />
     <Compile Include="Group\GroupDTO.cs" />
+    <Compile Include="Invitation\InvitationDto.cs" />
     <Compile Include="Neighbourhood\NeighbourhoodDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\RolesDTO.cs" />

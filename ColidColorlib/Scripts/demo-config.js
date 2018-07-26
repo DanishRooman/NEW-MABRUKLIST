@@ -58,6 +58,7 @@ $(function () {
                     showHideTransition: 'slide',
                     icon: 'success'
                 });
+                Invitation.initInvitationList();
             }
             else {
                 ui_add_log('Server Response for file #' + id + ': ' + JSON.stringify(data.value));

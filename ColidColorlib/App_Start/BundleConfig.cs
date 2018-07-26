@@ -59,6 +59,10 @@ namespace ColidColorlib
                 "~/Content/responsive.bootstrap.min.css"
                 ));
 
+            bundles.Add(new StyleBundle("~/Contents/lightbox").Include(
+              "~/Content/lightbox/css/style.css"
+               ));
+
             bundles.Add(new ScriptBundle("~/Script/Datatable_Scripts").Include(
                 "~/Scripts/jquery.dataTables.min.js",
                 "~/Scripts/dataTables.bootstrap.min.js",
@@ -135,6 +139,10 @@ namespace ColidColorlib
                 "~/Scripts/demo-ui.js",
                 "~/Scripts/demo-config.js"
                ));
+            bundles.Add(new ScriptBundle("~/Script/lightbox").Include(
+               "~/Content/lightbox/js/lightzoom.js"
+              ));
+
         }
     }
 }

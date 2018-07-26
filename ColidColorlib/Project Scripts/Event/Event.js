@@ -16,6 +16,9 @@
             }
         });
     };
+    var handleZoom = function ($this) {
+        $($this).parents(".thumbnail:first").find(".lightzoom:first").click();
+    };
     var handleSetInvitation = function (eventID) {
         $.ajax({
             url: '/Events/SetInvitationCard',
@@ -23,14 +26,59 @@
             dataType: 'HTML',
             data: { "eventID": eventID },
             success: function (result) {
-                $('#step-6').empty();
-                $('#step-6').html(result);
+                $('#templateArea').empty();
+                $('#templateArea').html(result);
             },
             error: function () {
                 console.log("Error");
             }
         });
     };
+
+    var handleSetTemplate = function (templateKey) {
+        var eventId = $(".txtEventId").val();
+        if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
+            $.ajax({
+                url: '/Events/SetInvitationTemplate',
+                type: 'GET',
+                dataType: 'HTML',
+                data: { "eventID": eventId, "templateKey": templateKey },
+                success: function (result) {
+                    $('#templateArea').empty();
+                    $('#templateArea').html(result);
+                    $("#templatesModal").modal("hide");
+                },
+                error: function () {
+                    console.log("Error");
+                }
+            });
+        }
+        else {
+            $.toast({
+                heading: 'Error',
+                text: "Please create an event",
+                showHideTransition: 'fade',
+                icon: 'error'
+            });
+        }
+    };
+    var handleInvitationTemplates = function () {
+        $.ajax({
+            url: '/Events/InvitationTemplates',
+            type: 'GET',
+            dataType: 'HTML',
+            data: {},
+            success: function (result) {
+                $("#templatesModal").empty();
+                $("#templatesModal").html(result);
+                $("#templatesModal").modal("show");
+            },
+            error: function () {
+                console.log("Error");
+            }
+        });
+    };
+
 
     var handleVerifyContacts = function (eventID) {
         $.ajax({
@@ -156,6 +204,27 @@
         }
     };
 
+    var handleCreateSubEvent = function (result) {
+        if (result.key) {
+
+            $.toast({
+                heading: 'Success',
+                text: result.value,
+                showHideTransition: 'slide',
+                icon: 'success'
+            });
+            $("#linkStep_5").click();
+        }
+        else {
+            $.toast({
+                heading: 'Error',
+                text: result.value,
+                showHideTransition: 'fade',
+                icon: 'error'
+            });
+        }
+    };
+
     var handleSendInvitations = function () {
         var eventId = $(".txtEventId").val();
         if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
@@ -186,6 +255,7 @@
             });
         }
     };
+
     var handleChooseContacts = function () {
         var guests = [];
         gTable = $('#tblContacts').DataTable();
@@ -304,8 +374,34 @@
         });
     };
 
+    var handleSetColors = function () {
+        var eventId = $(".txtEventId").val();
+        if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
+            $.ajax({
+                url: '/Events/SetColorsModal',
+                type: 'GET',
+                dataType: 'HTML',
+                data: { "eventId": eventId },
+                success: function (result) {
+                    $("#setColorsModal").empty();
+                    $("#setColorsModal").html(result);
+                    $("#setColorsModal").modal("show");
+                },
+                error: function () {
+                    console.log("Error");
+                }
+            });
+        }
+        else {
+            $.toast({
+                heading: 'Error',
+                text: "Please create an event",
+                showHideTransition: 'fade',
+                icon: 'error'
+            });
+        }
+    };
 
-    //public static function
     return {
         initRenderContact: function () {
             handleRenderContact();
@@ -319,13 +415,27 @@
         initCreateEvent: function (data) {
             handleCreateEvent(data);
         },
+        initCreateSubEvent: function (data) {
+            handleCreateSubEvent(data);
+        },
         initSendEmail: function () {
             handleSendEmail();
         },
         initRemoveContact: function (guestKey) {
             handleRemoveContact(guestKey);
-        }
-
+        },
+        initInvitationTemplates: function () {
+            handleInvitationTemplates();
+        },
+        initZoom: function ($this) {
+            handleZoom($this);
+        },
+        initSetTemplate: function (id) {
+            handleSetTemplate(id);
+        },
+        initSetColors: function () {
+            handleSetColors();
+        },
     };
 }();
 

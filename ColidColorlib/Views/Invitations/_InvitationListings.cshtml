@@ -1,0 +1,28 @@
+﻿@model IEnumerable<DataTransferObjects.Invitation.InvitationDto>
+
+@Styles.Render("~/Contents/lightbox")
+@Scripts.Render("~/Script/lightbox")
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="@item.path" class="lightzoom">
+                    <img src="@item.path" alt="Invitation" style="width:100%; height:300px !important;">
+                </a>
+                <div class="caption text-center bg-primary">
+                   @* <a href="Javascript:void(0);" onclick="Invitation.deleteInvitation('@item.Id')"><i class="fa fa-trash text-primary" aria-hidden="true"></i></a> &nbsp;*@
+                    <a href="Javascript:void(0);" onclick="Invitation.initZoom(this)"><i class="fa fa-search text-primary"></i></a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('.lightzoom').lightzoom();
+    });
+</script>
+

@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.DBContext;
+using DataTransferObjects.Invitation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -78,6 +79,54 @@ namespace ColidColorlib.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult InvitationListings()
+        {
+            List<InvitationDto> inviteList = new List<InvitationDto>();
+            using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+            {
+                inviteList = dbcontext.mblist_invitation_cards.AsEnumerable().OrderByDescending(x => x.inviation_key).Select(x => new InvitationDto
+                {
+                    Id = x.inviation_key,
+                    path = x.invitation_img_path
+                }).ToList();
+            };
+            return PartialView("_InvitationListings", inviteList);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteInvitation(int Id)
+        {
+            try
+            {
+                using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                {
+                    var invitation = dbcontext.mblist_invitation_cards.Find(Id);
+                    if (invitation != null)
+                    {
+                        string path = invitation.invitation_img_path;
+                        string fullPath = Request.MapPath(path);
+                        if (System.IO.File.Exists(fullPath))
+                        {
+                            System.IO.File.Delete(fullPath);
+                        }
+                        dbcontext.mblist_invitation_cards.Remove(invitation);
+                        dbcontext.SaveChanges();
+                        return Json(new { key = true, value = "Invitation Deleted successfully" }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { key = false, value = "Invitation not found" }, JsonRequestBehavior.AllowGet);
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                return Json(new { key = false, value = "Unable to process your request. Please contact your admin." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+       
 
     }
 }

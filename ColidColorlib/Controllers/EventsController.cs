@@ -4,6 +4,7 @@ using DataTransferObjects.ChooseEvent;
 using DataTransferObjects.Congregation;
 using DataTransferObjects.Event;
 using DataTransferObjects.Group;
+using DataTransferObjects.Invitation;
 using DataTransferObjects.Neighbourhood;
 using DataTransferObjects.Types;
 using DataTransferObjects.Users;
@@ -136,6 +137,27 @@ namespace ColidColorlib.Controllers
                 var events = dbcontaxt.mblist_events_detail.Find(eventID);
                 if (events != null)
                 {
+                    ViewBag.background = string.Empty;
+                    ViewBag.EventTitle = events.event_detail_title;
+                    ViewBag.DateTime = events.event_detail_date;
+                    ViewBag.Address = events.event_detail_address;
+                    ViewBag.type = dbcontaxt.mblist_type.Find(events.event_detail_type_key) != null ? dbcontaxt.mblist_type.Find(events.event_detail_type_key).type_name : string.Empty;
+                }
+            };
+            return PartialView("_InvitationCard");
+        }
+
+
+        [HttpGet]
+        public ActionResult SetInvitationTemplate(int eventID,int templateKey)
+        {
+            using (MABRUKLISTEntities dbcontaxt = new MABRUKLISTEntities())
+            {
+                var template = dbcontaxt.mblist_invitation_cards.Find(templateKey);
+                var events = dbcontaxt.mblist_events_detail.Find(eventID);
+                if (events != null)
+                {
+                    ViewBag.background = template != null ? template.invitation_img_path : string.Empty;
                     ViewBag.EventTitle = events.event_detail_title;
                     ViewBag.DateTime = events.event_detail_date;
                     ViewBag.Address = events.event_detail_address;
@@ -315,7 +337,9 @@ namespace ColidColorlib.Controllers
         }
 
 
+
         //SubEvent Mathod
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult AddSubevent(EventDTO sbevntdto)
         {
@@ -323,28 +347,35 @@ namespace ColidColorlib.Controllers
             {
                 using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                 {
-                    string sbevntkey = User.Identity.GetUserId();
-
-                    mblist_events_detail sbven = new mblist_events_detail()
+                    string usrkey = User.Identity.GetUserId();
+                    if (sbevntdto.id != 0)
                     {
-                        event_parent = sbevntdto.id,
-                        event_detail_category_key = sbevntdto.Category,
-                        event_detail_type_key = sbevntdto.EventFor,
-                        event_detail_title = sbevntdto.Title,
-                        event_detail_address = sbevntdto.Address,
-                        event_detail_date = Convert.ToDateTime(sbevntdto.Date),
-                        event_detail_discription = sbevntdto.Comment
-                    };
-                    dbcontext.mblist_events_detail.Add(sbven);
-                    dbcontext.SaveChanges();
-                    return Json(new { key = true, value = "Subevent added successfully", sbevntkey = sbven.event_detail_key }, JsonRequestBehavior.AllowGet);
+                        mblist_events_detail sbven = new mblist_events_detail()
+                        {
+                            event_detail_user_key = usrkey,
+                            event_parent = sbevntdto.id,
+                            event_detail_category_key = sbevntdto.Category,
+                            event_detail_type_key = sbevntdto.EventFor,
+                            event_detail_title = sbevntdto.Title,
+                            event_detail_address = sbevntdto.Address,
+                            event_detail_date = Convert.ToDateTime(sbevntdto.Date),
+                            event_detail_discription = sbevntdto.Comment
+                        };
+                        dbcontext.mblist_events_detail.Add(sbven);
+                        dbcontext.SaveChanges();
+                        return Json(new { key = true, value = "Subevent added successfully", sbevntkey = sbven.event_detail_key }, JsonRequestBehavior.AllowGet);
+
+                    }
+                    else
+                    {
+                        return Json(new { key = false, value = "Please create an event" }, JsonRequestBehavior.AllowGet);
+                    }
 
                 };
             }
             catch (Exception)
             {
-
-                throw;
+                return Json(new { key = false, value = "Unable to process your request. Please contact your admin" }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -398,6 +429,26 @@ namespace ColidColorlib.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult InvitationTemplates()
+        {
+            List<InvitationDto> inviteList = new List<InvitationDto>();
+            using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+            {
+                inviteList = dbcontext.mblist_invitation_cards.AsEnumerable().OrderByDescending(x => x.inviation_key).Select(x => new InvitationDto
+                {
+                    Id = x.inviation_key,
+                    path = x.invitation_img_path
+                }).ToList();
+            };
+            return PartialView("_InvitationTemplates", inviteList);
+        }
+
+        [HttpGet]
+        public ActionResult SetColorsModal(int eventId)
+        {
+            return PartialView("_SetColors");
+        }
 
     }
 }
