@@ -620,6 +620,7 @@
     <Content Include="StyleSheet\sb-admin-2.css" />
     <Content Include="StyleSheet\style.css" />
     <Content Include="StyleSheet\themify-icons.css" />
+    <Content Include="TemplatesEmail\ColorfulInvitationCard.html" />
     <Content Include="TemplatesEmail\InvitationCard.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
