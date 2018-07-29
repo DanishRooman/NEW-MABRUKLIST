@@ -142,6 +142,9 @@ namespace ColidColorlib.Controllers
                     ViewBag.DateTime = events.event_detail_date;
                     ViewBag.Address = events.event_detail_address;
                     ViewBag.type = dbcontaxt.mblist_type.Find(events.event_detail_type_key) != null ? dbcontaxt.mblist_type.Find(events.event_detail_type_key).type_name : string.Empty;
+                    ViewBag.subjectcolor = events.event_subject_color;
+                    ViewBag.fontcolor = events.event_font_color;
+                    ViewBag.subject = events.event_subject;
                 }
             };
             return PartialView("_InvitationCard");
@@ -149,7 +152,7 @@ namespace ColidColorlib.Controllers
 
 
         [HttpGet]
-        public ActionResult SetInvitationTemplate(int eventID,int templateKey)
+        public ActionResult SetInvitationTemplate(int eventID, int templateKey)
         {
             using (MABRUKLISTEntities dbcontaxt = new MABRUKLISTEntities())
             {
@@ -157,11 +160,14 @@ namespace ColidColorlib.Controllers
                 var events = dbcontaxt.mblist_events_detail.Find(eventID);
                 if (events != null)
                 {
+                    events.event_template_Id = templateKey;
                     ViewBag.background = template != null ? template.invitation_img_path : string.Empty;
                     ViewBag.EventTitle = events.event_detail_title;
                     ViewBag.DateTime = events.event_detail_date;
                     ViewBag.Address = events.event_detail_address;
                     ViewBag.type = dbcontaxt.mblist_type.Find(events.event_detail_type_key) != null ? dbcontaxt.mblist_type.Find(events.event_detail_type_key).type_name : string.Empty;
+                    ViewBag.fontcolor = events.event_font_color;
+                    ViewBag.subjectcolor = events.event_subject_color;
                 }
             };
             return PartialView("_InvitationCard");
@@ -237,7 +243,10 @@ namespace ColidColorlib.Controllers
                             event_detail_address = dtoEvent.Address,
                             event_detail_date = invitationDate,
                             event_detail_discription = dtoEvent.Comment,
-                            event_detail_user_key = usrkey
+                            event_detail_user_key = usrkey,
+                            event_subject_color = "brown",
+                            event_font_color = "#000",
+                            event_subject = "You are invited for an event"
 
                         };
                         dbcontext.mblist_events_detail.Add(evn);
@@ -456,7 +465,7 @@ namespace ColidColorlib.Controllers
             List<SubEventDTO> list = new List<SubEventDTO>();
             using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
             {
-                list = dbcontext.mblist_events_detail.Where(y=>y.event_parent != null && y.event_parent == EventID).AsEnumerable().OrderByDescending(x => x.event_detail_key).Select(x => new SubEventDTO
+                list = dbcontext.mblist_events_detail.Where(y => y.event_parent != null && y.event_parent == EventID).AsEnumerable().OrderByDescending(x => x.event_detail_key).Select(x => new SubEventDTO
                 {
                     eventID = x.event_detail_key,
                     Category = x.mblist_category.cat_name,
@@ -466,8 +475,83 @@ namespace ColidColorlib.Controllers
                     Address = x.event_detail_address
                 }).ToList();
             };
-            return PartialView("_SubEventListing",list);
+            return PartialView("_SubEventListing", list);
         }
+
+        [HttpPost]
+        public ActionResult SetTemplateColors(string fontcolor, string subjectcolor, int EventId)
+        {
+            try
+            {
+                using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                {
+                    var events = dbcontext.mblist_events_detail.Find(EventId);
+                    if (events != null)
+                    {
+                        events.event_font_color = fontcolor;
+                        events.event_subject_color = subjectcolor;
+                        dbcontext.SaveChanges();
+                        return Json(new { key = true, value = "Subject and Font colors updated successfully", templateId = events.event_template_Id }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { key = false, value = "Event not found" }, JsonRequestBehavior.AllowGet);
+                    }
+                };
+            }
+            catch (Exception e)
+            {
+                return Json(new { key = false, value = "Unable to process your request.Please contact your admin" }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        [HttpGet]
+        public ActionResult GetSubject(int Id)
+        {
+            EventSubjectDTO subject = new EventSubjectDTO();
+            using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+            {
+                var details = dbcontext.mblist_events_detail.Find(Id);
+                if (details != null)
+                {
+                    subject.EventId = Id;
+                    subject.EventSubject = details.event_subject;
+                }
+
+            };
+            return PartialView("_GetSubject", subject);
+
+        }
+
+        [HttpPost]
+        public ActionResult UpdateSubject(EventSubjectDTO subject)
+        {
+            try
+            {
+                using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                {
+                    var details = dbcontext.mblist_events_detail.Find(subject.EventId);
+                    if (details != null)
+                    {
+                        details.event_subject = subject.EventSubject;
+                        dbcontext.SaveChanges();
+                        return Json(new { key = true, value = "Subject updated successfully",eventkey = details.event_detail_key }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { key = false, value = "Event not found" }, JsonRequestBehavior.AllowGet);
+                    }
+                };
+
+            }
+            catch (Exception e)
+            {
+                return Json(new { key = false, value = "Unable to process your request.Please contact your admin" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
 
     }
 }

@@ -14,7 +14,16 @@ namespace DataAccessLayer.DBContext
     
     public partial class mblist_invitation_cards
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public mblist_invitation_cards()
+        {
+            this.mblist_events_detail = new HashSet<mblist_events_detail>();
+        }
+    
         public int inviation_key { get; set; }
         public string invitation_img_path { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<mblist_events_detail> mblist_events_detail { get; set; }
     }
 }

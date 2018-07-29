@@ -62,6 +62,7 @@
             });
         }
     };
+
     var handleInvitationTemplates = function () {
         $.ajax({
             url: '/Events/InvitationTemplates',
@@ -215,6 +216,27 @@
             });
             handleSubEventListing();
             $("#linkStep_5").click();
+        }
+        else {
+            $.toast({
+                heading: 'Error',
+                text: result.value,
+                showHideTransition: 'fade',
+                icon: 'error'
+            });
+        }
+    };
+
+    var handleSubjectUpdated = function (result) {
+        if (result.key) {
+            $.toast({
+                heading: 'Success',
+                text: result.value,
+                showHideTransition: 'slide',
+                icon: 'success'
+            });
+            handleSetInvitation(result.eventkey);
+            $("#UpdateSubjectModal").modal("hide");
         }
         else {
             $.toast({
@@ -402,8 +424,7 @@
             });
         }
     };
-    var handleSubEventListing = function ()
-    {
+    var handleSubEventListing = function () {
         var eventId = $(".txtEventId").val();
         if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
             $.ajax({
@@ -412,9 +433,83 @@
                 dataType: 'HTML',
                 data: { "EventID": eventId },
                 success: function (result) {
-                    console.log(result);
                     $("#step-5").empty();
                     $("#step-5").html(result);
+                },
+                error: function () {
+                    console.log("Error");
+                }
+            });
+        }
+        else {
+            $.toast({
+                heading: 'Error',
+                text: "Please create an event",
+                showHideTransition: 'fade',
+                icon: 'error'
+            });
+        }
+    };
+
+    var handleSaveColors = function () {
+
+        var eventId = $(".txtEventId").val();
+        var fontcolor = $("#txtFontColor").val();
+        var subjectcolor = $("#txtSubjectColor").val();
+
+        if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
+            $.ajax({
+                url: '/Events/SetTemplateColors',
+                type: 'post',
+                dataType: 'json',
+                data: { "fontcolor": fontcolor, "subjectcolor": subjectcolor, "EventId": eventId },
+                success: function (result) {
+                    if (result.key) {
+                        $.toast({
+                            heading: 'Success',
+                            text: result.value,
+                            showHideTransition: 'slide',
+                            icon: 'success'
+                        });
+                        handleSetInvitation(eventId);
+                        
+                    }
+                    else {
+                        $.toast({
+                            heading: 'Error',
+                            text: "Please create an event",
+                            showHideTransition: 'fade',
+                            icon: 'error'
+                        });
+                    }
+                },
+                error: function () {
+                    console.log("Error");
+                }
+            });
+        }
+        else {
+            $.toast({
+                heading: 'Error',
+                text: "Please create an event",
+                showHideTransition: 'fade',
+                icon: 'error'
+            });
+        }
+    };
+
+    var handleUpdateSubject = function () {
+        var eventId = $(".txtEventId").val();
+        if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
+            $.ajax({
+                url: '/Events/GetSubject',
+                type: 'GET',
+                dataType: 'HTML',
+                data: { "Id": eventId },
+                success: function (result) {
+                    $('#UpdateSubjectModal').empty();
+                    $('#UpdateSubjectModal').html(result);
+                    $("#UpdateSubjectModal").modal("show");
                 },
                 error: function () {
                     console.log("Error");
@@ -467,7 +562,16 @@
         },
         initSubEventListing: function () {
             handleSubEventListing();
-        }
+        },
+        initSaveColors: function () {
+            handleSaveColors();
+        },
+        initUpdateSubject: function () {
+            handleUpdateSubject();
+        },
+        initSubjectUpdated: function (data) {
+            handleSubjectUpdated(data);
+        },
     };
 }();
 

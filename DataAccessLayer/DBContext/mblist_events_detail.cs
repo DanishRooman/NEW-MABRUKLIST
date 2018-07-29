@@ -17,6 +17,7 @@ namespace DataAccessLayer.DBContext
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public mblist_events_detail()
         {
+            this.mblist_event_guests = new HashSet<mblist_event_guests>();
             this.mblist_events_detail1 = new HashSet<mblist_events_detail>();
         }
     
@@ -29,15 +30,19 @@ namespace DataAccessLayer.DBContext
         public string event_detail_discription { get; set; }
         public string event_detail_user_key { get; set; }
         public Nullable<int> event_parent { get; set; }
-        public string event_template_path { get; set; }
+        public Nullable<int> event_template_Id { get; set; }
         public string event_subject { get; set; }
         public string event_subject_color { get; set; }
         public string event_font_color { get; set; }
     
+        public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual mblist_category mblist_category { get; set; }
-        public virtual mblist_type mblist_type { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<mblist_event_guests> mblist_event_guests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<mblist_events_detail> mblist_events_detail1 { get; set; }
         public virtual mblist_events_detail mblist_events_detail2 { get; set; }
+        public virtual mblist_invitation_cards mblist_invitation_cards { get; set; }
+        public virtual mblist_type mblist_type { get; set; }
     }
 }

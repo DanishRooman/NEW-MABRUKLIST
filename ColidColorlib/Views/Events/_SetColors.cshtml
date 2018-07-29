@@ -4,7 +4,6 @@
 
 
 <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">
@@ -18,28 +17,23 @@
                         <div class="form-group">
                             <label class="control-label col-sm-3">Subject color</label>
                             <div class="col-sm-9">
-                                <div id="txtSubjectColor" class="input-group colorpicker-component colorSelector">
-
+                                <div id="divSubjectColor" class="input-group colorpicker-component colorSelector">
                                     <input type="text" id="txtSubjectColor" class="form-control" />
-
                                     <span class="input-group-addon"><i></i></span>
-
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3">Font color</label>
                             <div class="col-sm-9">
-                                <div id="txtFontColor" class="input-group colorpicker-component colorSelector">
-
-                                    <input type="text" id="txtSubjectColor" class="form-control" />
-
+                                <div id="divFontColor" class="input-group colorpicker-component colorSelector">
+                                    <input type="text" id="txtFontColor" class="form-control" />
                                     <span class="input-group-addon"><i></i></span>
 
                                 </div>
 
-                             </div>
+                            </div>
                         </div>
                     </div>
 
@@ -47,7 +41,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="Event.initSaveColors()">Save</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         </div>
     </div>
@@ -55,13 +49,13 @@
 
 <script type="text/javascript">
     $(function () {
-        $('#txtFontColor').colorpicker({
+        $('#divFontColor').colorpicker({
             color: '#000',
             destroy: true,
             format: 'rgba'
         });
 
-        $('#txtSubjectColor').colorpicker({
+        $('#divSubjectColor').colorpicker({
             color: 'brown',
             destroy: true,
             format: 'rgba'

@@ -498,6 +498,9 @@ table.dataTable thead .sorting_desc_disabled {
     color:white !important;
 }
 
+.modal-header > .close{
+    color:white !important;
+}
 
 @media (max-width: 767px) {
     ul.timeline:before {

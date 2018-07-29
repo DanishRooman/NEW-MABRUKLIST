@@ -248,7 +248,7 @@
                             <br />
                             <button type="button" class="btn btn-primary" onclick="Event.initInvitationTemplates();">Select Template</button>
                             <button type="button" class="btn btn-danger" onclick="Event.initSetColors();">Select Colors</button>
-                            <button type="button" class="btn btn-warning" onclick="Event.initInvitationTemplates();">Set Subject</button>
+                            <button type="button" class="btn btn-warning" onclick="Event.initUpdateSubject();">Update Subject</button>
                             <button class="btn btn-success" onclick="Event.initSendEmail()" type="button">Send Invitations</button>
                         </div>
                         <br />
@@ -263,13 +263,11 @@
     </div>
 </div>
 
-<div id="templatesModal" class="modal fade" role="dialog">
-</div>
+<div id="templatesModal" class="modal fade" role="dialog"></div>
 
+<div id="setColorsModal" class="modal fade" role="dialog"></div>
 
-<div id="setColorsModal" class="modal fade" role="dialog">
-</div>
-
+<div id="UpdateSubjectModal" class="modal fade" role="dialog"></div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

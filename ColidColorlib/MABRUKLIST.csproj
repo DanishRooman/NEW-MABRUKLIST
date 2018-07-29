@@ -717,6 +717,7 @@
     <Content Include="Views\Events\_InvitationTemplates.cshtml" />
     <Content Include="Views\Events\_SetColors.cshtml" />
     <Content Include="Views\Events\_SubEventListing.cshtml" />
+    <Content Include="Views\Events\_GetSubject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
