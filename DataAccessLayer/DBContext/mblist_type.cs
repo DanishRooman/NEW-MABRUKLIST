@@ -14,7 +14,16 @@ namespace DataAccessLayer.DBContext
     
     public partial class mblist_type
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public mblist_type()
+        {
+            this.mblist_events_detail = new HashSet<mblist_events_detail>();
+        }
+    
         public int type_key { get; set; }
         public string type_name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<mblist_events_detail> mblist_events_detail { get; set; }
     }
 }

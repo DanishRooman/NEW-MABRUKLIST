@@ -213,6 +213,7 @@
                 showHideTransition: 'slide',
                 icon: 'success'
             });
+            handleSubEventListing();
             $("#linkStep_5").click();
         }
         else {
@@ -401,6 +402,34 @@
             });
         }
     };
+    var handleSubEventListing = function ()
+    {
+        var eventId = $(".txtEventId").val();
+        if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
+            $.ajax({
+                url: '/Events/SubEventListing',
+                type: 'post',
+                dataType: 'HTML',
+                data: { "EventID": eventId },
+                success: function (result) {
+                    console.log(result);
+                    $("#step-5").empty();
+                    $("#step-5").html(result);
+                },
+                error: function () {
+                    console.log("Error");
+                }
+            });
+        }
+        else {
+            $.toast({
+                heading: 'Error',
+                text: "Please create an event",
+                showHideTransition: 'fade',
+                icon: 'error'
+            });
+        }
+    };
 
     return {
         initRenderContact: function () {
@@ -436,6 +465,9 @@
         initSetColors: function () {
             handleSetColors();
         },
+        initSubEventListing: function () {
+            handleSubEventListing();
+        }
     };
 }();
 

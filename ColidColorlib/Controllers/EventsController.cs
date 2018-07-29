@@ -347,7 +347,7 @@ namespace ColidColorlib.Controllers
             {
                 using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
                 {
-                    string usrkey = User.Identity.GetUserId();
+                    string usrkey = System.Web.HttpContext.Current.User.Identity.GetUserId();
                     if (sbevntdto.id != 0)
                     {
                         mblist_events_detail sbven = new mblist_events_detail()
@@ -373,7 +373,7 @@ namespace ColidColorlib.Controllers
 
                 };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json(new { key = false, value = "Unable to process your request. Please contact your admin" }, JsonRequestBehavior.AllowGet);
             }
@@ -448,6 +448,25 @@ namespace ColidColorlib.Controllers
         public ActionResult SetColorsModal(int eventId)
         {
             return PartialView("_SetColors");
+        }
+
+        [HttpPost]
+        public ActionResult SubEventListing(int EventID)
+        {
+            List<SubEventDTO> list = new List<SubEventDTO>();
+            using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+            {
+                list = dbcontext.mblist_events_detail.Where(y=>y.event_parent != null && y.event_parent == EventID).AsEnumerable().OrderByDescending(x => x.event_detail_key).Select(x => new SubEventDTO
+                {
+                    eventID = x.event_detail_key,
+                    Category = x.mblist_category.cat_name,
+                    Type = x.mblist_type.type_name,
+                    Title = x.event_detail_title,
+                    EventDate = x.event_detail_date.ToString("dd/MMM/yyyy hh:mm tt "),
+                    Address = x.event_detail_address
+                }).ToList();
+            };
+            return PartialView("_SubEventListing",list);
         }
 
     }
