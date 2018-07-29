@@ -5,25 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6c8586b042d64d6499443758fed9cc87" Name="Diagram1" ZoomLevel="55">
-        <EntityTypeShape EntityType="MABRUKLISTModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="2.125" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="10.25" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="6.625" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="9.375" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.AspNetUsers" Width="1.5" PointX="3" PointY="8.875" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_address" Width="1.5" PointX="6" PointY="16.75" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_category" Width="1.5" PointX="2.75" PointY="2.125" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_congregation" Width="1.5" PointX="6" PointY="3.375" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_event" Width="1.5" PointX="0.75" PointY="5.125" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_event_guests" Width="1.5" PointX="7.5" PointY="20.125" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_events_detail" Width="1.5" PointX="5.25" PointY="19.25" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_group" Width="1.5" PointX="6" PointY="24.125" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_invitation_cards" Width="1.5" PointX="8.75" PointY="2.125" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_neighborhoods" Width="1.5" PointX="6" PointY="14.5" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_service_category" Width="1.5" PointX="8.75" PointY="5.125" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_subtitle" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_title" Width="1.5" PointX="6" PointY="12.125" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_type" Width="1.5" PointX="10.75" PointY="2.125" />
-        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_user_info" Width="1.5" PointX="8.25" PointY="7.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="9.375" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="20.25" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="5.375" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.AspNetUsers" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_address" Width="1.5" PointX="8" PointY="12.125" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_category" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_congregation" Width="1.5" PointX="8" PointY="3.5" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_event" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_event_guests" Width="1.5" PointX="7.5" PointY="9.125" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_events_detail" Width="1.5" PointX="5.25" PointY="7.875" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_group" Width="1.5" PointX="8" PointY="5.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_invitation_cards" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_neighborhoods" Width="1.5" PointX="8" PointY="16.875" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_service_category" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_subtitle" Width="1.5" PointX="8" PointY="19.125" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_title" Width="1.5" PointX="8" PointY="14.5" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_type" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MABRUKLISTModel.mblist_user_info" Width="1.5" PointX="10.25" PointY="6.875" />
         <AssociationConnector Association="MABRUKLISTModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="MABRUKLISTModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="MABRUKLISTModel.FK_mblist_events_detail_AspNetUsers" />

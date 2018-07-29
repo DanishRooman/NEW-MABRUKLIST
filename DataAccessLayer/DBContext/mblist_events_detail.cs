@@ -30,6 +30,10 @@ namespace DataAccessLayer.DBContext
         public string event_detail_discription { get; set; }
         public string event_detail_user_key { get; set; }
         public Nullable<int> event_parent { get; set; }
+        public string event_template_path { get; set; }
+        public string event_subject { get; set; }
+        public string event_subject_color { get; set; }
+        public string event_font_color { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

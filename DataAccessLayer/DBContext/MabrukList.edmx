@@ -116,6 +116,10 @@
           <Property Name="event_detail_discription" Type="varchar" MaxLength="150" />
           <Property Name="event_detail_user_key" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="event_parent" Type="int" />
+          <Property Name="event_template_path" Type="nvarchar(max)" />
+          <Property Name="event_subject" Type="varchar" MaxLength="150" />
+          <Property Name="event_subject_color" Type="varchar" MaxLength="50" />
+          <Property Name="event_font_color" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="mblist_group">
           <Key>
@@ -656,6 +660,10 @@
           <Property Name="event_detail_discription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="event_detail_user_key" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="event_parent" Type="Int32" />
+          <Property Name="event_template_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="event_subject" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="event_subject_color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="event_font_color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AspNetUsers" Relationship="MABRUKLISTModel.FK_mblist_events_detail_AspNetUsers" FromRole="mblist_events_detail" ToRole="AspNetUsers" />
           <NavigationProperty Name="mblist_event_guests" Relationship="MABRUKLISTModel.FK_mblist_event_guests_mblist_events_detail" FromRole="mblist_events_detail" ToRole="mblist_event_guests" />
           <NavigationProperty Name="mblist_events_detail1" Relationship="MABRUKLISTModel.FK_mblist_events_detail_mblist_events_detail" FromRole="mblist_events_detail" ToRole="mblist_events_detail1" />
@@ -1024,6 +1032,10 @@
           <EntitySetMapping Name="mblist_events_detail">
             <EntityTypeMapping TypeName="MABRUKLISTModel.mblist_events_detail">
               <MappingFragment StoreEntitySet="mblist_events_detail">
+                <ScalarProperty Name="event_font_color" ColumnName="event_font_color" />
+                <ScalarProperty Name="event_subject_color" ColumnName="event_subject_color" />
+                <ScalarProperty Name="event_subject" ColumnName="event_subject" />
+                <ScalarProperty Name="event_template_path" ColumnName="event_template_path" />
                 <ScalarProperty Name="event_parent" ColumnName="event_parent" />
                 <ScalarProperty Name="event_detail_user_key" ColumnName="event_detail_user_key" />
                 <ScalarProperty Name="event_detail_discription" ColumnName="event_detail_discription" />
