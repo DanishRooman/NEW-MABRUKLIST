@@ -1,15 +1,7 @@
 ﻿
-<link href="~/Content/colorpicker/css/colorpicker.css" rel="stylesheet" />
-<script src="~/Content/colorpicker/js/colorpicker.js"></script>
-<script src="~/Content/colorpicker/js/eye.js"></script>
-<script src="~/Content/colorpicker/js/utils.js"></script>
-<script src="~/Content/colorpicker/js/utils.js"></script>
+@Styles.Render("~/Contents/colorpicker")
+@Scripts.Render("~/Script/colorpicker")
 
-<style>
-    .colorpicker {
-        z-index: 99999 !important;
-    }
-</style>
 
 <div class="modal-dialog">
 
@@ -24,20 +16,30 @@
                 <div class="col-md-12">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-sm-3">Subject Color</label>
+                            <label class="control-label col-sm-3">Subject color</label>
                             <div class="col-sm-9">
-                                @*<input type="text" class="colorSelector" maxlength="6" size="6" value="00ff00" id="colorpickerField1">*@
-                                <p>
-                                    <input type="text" class="colorSelector" maxlength="6" size="6" value="00ff00" id="colorpickerField1">
-                                </p>
-                            
+                                <div id="txtSubjectColor" class="input-group colorpicker-component colorSelector">
+
+                                    <input type="text" id="txtSubjectColor" class="form-control" />
+
+                                    <span class="input-group-addon"><i></i></span>
+
+                                </div>
+                                
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-3">Font Color</label>
+                            <label class="control-label col-sm-3">Font color</label>
                             <div class="col-sm-9">
-                                <input type="text" class="colorSelector" id="colorpickerField2">
-                            </div>
+                                <div id="txtFontColor" class="input-group colorpicker-component colorSelector">
+
+                                    <input type="text" id="txtSubjectColor" class="form-control" />
+
+                                    <span class="input-group-addon"><i></i></span>
+
+                                </div>
+
+                             </div>
                         </div>
                     </div>
 
@@ -45,27 +47,24 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         </div>
     </div>
-
 </div>
 
 <script type="text/javascript">
     $(function () {
-        $('#colorpickerField1, #colorpickerField2').ColorPicker({
-            color: '#0000ff',
-            onShow: function (colpkr) {
-                $(colpkr).fadeIn(500);
-                return false;
-            },
-            onHide: function (colpkr) {
-                $(colpkr).fadeOut(500);
-                return false;
-            },
-            onChange: function (hsb, hex, rgb) {
-                $(this).css('backgroundColor', '#' + hex);
-            }
+        $('#txtFontColor').colorpicker({
+            color: '#000',
+            destroy: true,
+            format: 'rgba'
+        });
+
+        $('#txtSubjectColor').colorpicker({
+            color: 'brown',
+            destroy: true,
+            format: 'rgba'
         });
     });
 </script>
