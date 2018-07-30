@@ -137,7 +137,7 @@ namespace ColidColorlib.Controllers
                 var events = dbcontaxt.mblist_events_detail.Find(eventID);
                 if (events != null)
                 {
-                    ViewBag.background = string.Empty;
+                    ViewBag.background = events.mblist_invitation_cards != null ? events.mblist_invitation_cards.invitation_img_path : string.Empty;
                     ViewBag.EventTitle = events.event_detail_title;
                     ViewBag.DateTime = events.event_detail_date;
                     ViewBag.Address = events.event_detail_address;
@@ -168,6 +168,7 @@ namespace ColidColorlib.Controllers
                     ViewBag.type = dbcontaxt.mblist_type.Find(events.event_detail_type_key) != null ? dbcontaxt.mblist_type.Find(events.event_detail_type_key).type_name : string.Empty;
                     ViewBag.fontcolor = events.event_font_color;
                     ViewBag.subjectcolor = events.event_subject_color;
+                    dbcontaxt.SaveChanges();
                 }
             };
             return PartialView("_InvitationCard");
@@ -286,8 +287,13 @@ namespace ColidColorlib.Controllers
                                     {
                                         _type = type.type_name;
                                     }
+                                    string template = events.mblist_invitation_cards != null ? events.mblist_invitation_cards.invitation_img_path : string.Empty;
+                                    string fontcolor = events.event_font_color;
+                                    string subjectcolor = events.event_subject_color;
+                                    string subject = events.event_subject_color;
+
                                     string datetime = events.event_detail_date.ToString("dd/MMM/yyyy hh:mm tt ");
-                                    string body = PopulateBody(username, events.event_detail_title, datetime, events.event_detail_address, _type);
+                                    string body = PopulateBody(username, events.event_detail_title, datetime, events.event_detail_address, _type, template, fontcolor, subjectcolor, subject);
                                     string email = userInfor.AspNetUsers.Email;
                                     SendHtmlFormattedEmail(email, "MABRUKLIST INVITATION", body);
                                 }
@@ -308,18 +314,34 @@ namespace ColidColorlib.Controllers
             }
         }
 
-        private string PopulateBody(string userName, string EventTitle, string DateTime, string Address, string Type)
+        private string PopulateBody(string userName, string EventTitle, string DateTime, string Address, string Type, string template, string fontcolor, string subjectcolor, string subject)
         {
             string body = string.Empty;
-            using (StreamReader reader = new StreamReader(Server.MapPath("~/TemplatesEmail/InvitationCard.html")))
+            if (string.IsNullOrEmpty(template))
             {
-                body = reader.ReadToEnd();
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/TemplatesEmail/InvitationCard.html")))
+                {
+                    body = reader.ReadToEnd();
+                }
             }
+            else
+            {
+                using (StreamReader reader = new StreamReader(Server.MapPath("~/TemplatesEmail/ColorfulInvitationCard.html")))
+                {
+                    body = reader.ReadToEnd();
+                }
+                body = body.Replace("{background}", "http://mabruklists.somee.com" + template);
+            }
+
             body = body.Replace("{username}", userName);
             body = body.Replace("{EventTitle}", EventTitle);
             body = body.Replace("{DateTime}", DateTime);
             body = body.Replace("{Address}", Address);
             body = body.Replace("{type}", Type);
+            body = body.Replace("{Fontcolor}", fontcolor);
+            body = body.Replace("{Subjectcolor}", subjectcolor);
+            body = body.Replace("{Subject}", subject);
+
             return body;
         }
 
@@ -456,6 +478,15 @@ namespace ColidColorlib.Controllers
         [HttpGet]
         public ActionResult SetColorsModal(int eventId)
         {
+            using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+            {
+                var eventObj = dbcontext.mblist_events_detail.Find(eventId);
+                if (eventObj != null)
+                {
+                    ViewBag.subjectcolor = eventObj.event_subject_color;
+                    ViewBag.fontcolor = eventObj.event_font_color;
+                }
+            };
             return PartialView("_SetColors");
         }
 
@@ -536,7 +567,7 @@ namespace ColidColorlib.Controllers
                     {
                         details.event_subject = subject.EventSubject;
                         dbcontext.SaveChanges();
-                        return Json(new { key = true, value = "Subject updated successfully",eventkey = details.event_detail_key }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = true, value = "Subject updated successfully", eventkey = details.event_detail_key }, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {

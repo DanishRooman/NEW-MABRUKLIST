@@ -16,6 +16,7 @@
             }
         });
     };
+
     var handleZoom = function ($this) {
         $($this).parents(".thumbnail:first").find(".lightzoom:first").click();
     };
