@@ -290,7 +290,7 @@ namespace ColidColorlib.Controllers
                                     string template = events.mblist_invitation_cards != null ? events.mblist_invitation_cards.invitation_img_path : string.Empty;
                                     string fontcolor = events.event_font_color;
                                     string subjectcolor = events.event_subject_color;
-                                    string subject = events.event_subject_color;
+                                    string subject = events.event_subject;
 
                                     string datetime = events.event_detail_date.ToString("dd/MMM/yyyy hh:mm tt ");
                                     string body = PopulateBody(username, events.event_detail_title, datetime, events.event_detail_address, _type, template, fontcolor, subjectcolor, subject);
@@ -381,6 +381,7 @@ namespace ColidColorlib.Controllers
                     string usrkey = System.Web.HttpContext.Current.User.Identity.GetUserId();
                     if (sbevntdto.id != 0)
                     {
+                        DateTime date = DateTime.ParseExact(sbevntdto.Date, "MM/dd/yyyy h:mm tt", null);
                         mblist_events_detail sbven = new mblist_events_detail()
                         {
                             event_detail_user_key = usrkey,
@@ -389,7 +390,7 @@ namespace ColidColorlib.Controllers
                             event_detail_type_key = sbevntdto.EventFor,
                             event_detail_title = sbevntdto.Title,
                             event_detail_address = sbevntdto.Address,
-                            event_detail_date = Convert.ToDateTime(sbevntdto.Date),
+                            event_detail_date = date,
                             event_detail_discription = sbevntdto.Comment
                         };
                         dbcontext.mblist_events_detail.Add(sbven);
