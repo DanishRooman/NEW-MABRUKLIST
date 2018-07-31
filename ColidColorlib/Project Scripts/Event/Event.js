@@ -473,7 +473,7 @@
                             icon: 'success'
                         });
                         handleSetInvitation(eventId);
-                        
+
                     }
                     else {
                         $.toast({

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<DataTransferObjects.Event.EventListingDTO>
+
+<link href="~/Content/jquery-treetable/jquery.treetable.css" rel="stylesheet" />
+<script src="~/Content/jquery-treetable/jquery.treetable.js"></script>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover table-bordered" id="tblEventsListing">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Invited)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.standby)
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr data-tt-id="@item.data_tt_id" data-tt-parent-id="@item.data_tt_parent_id">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Invited)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.standby)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#tblEventsListing").treetable({ expandable: true });
+        $('#tblEventsListing').DataTable({
+            destroy:true,
+            aaSorting: [],
+            "ordering": false,
+            "bSort": false,
+            "bSortable": false,
+            "orderable": false
+        });
+    });
+</script>
+

@@ -583,6 +583,48 @@ namespace ColidColorlib.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult EventListings()
+        {
+            List<EventListingDTO> list = new List<EventListingDTO>();
+            using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+            {
+                var parentEvents = dbcontext.mblist_events_detail.Where(x => x.event_parent == null).OrderByDescending(x => x.event_detail_key);
+                if (parentEvents.Any())
+                {
+                    foreach (var eventt in parentEvents)
+                    {
+                        var guests = dbcontext.mblist_event_guests.Where(x => x.guest_event_key == eventt.event_detail_key);
+                        list.Add(new EventListingDTO()
+                        {
+                            id = eventt.event_detail_key,
+                            Category = eventt.mblist_category.cat_name,
+                            Type = eventt.mblist_type.type_name,
+                            Title = eventt.event_detail_title,
+                            Date = eventt.event_detail_date.ToString("dd/MMM/yyyy hh:mm tt "),
+                            Address = eventt.event_detail_address,
+                            Invited = guests.Any() ? guests.Count() : 0,
+                            standby = guests.Any() ? (guests.Where(w => w.guest_stand_by == true).Any() ? guests.Where(w => w.guest_stand_by == true).Count() : 0) : 0,
+                            data_tt_id = eventt.event_detail_key.ToString(),
+                            data_tt_parent_id = string.Empty,
+                        });
+                        var childEvents = dbcontext.mblist_events_detail.Where(x => x.event_parent != null && x.event_parent == eventt.event_detail_key).AsEnumerable().Select(x => new EventListingDTO {
+                            id = x.event_detail_key,
+                            Category = x.mblist_category.cat_name,
+                            Type = x.mblist_type.type_name,
+                            Title = x.event_detail_title,
+                            Date = x.event_detail_date.ToString("dd/MMM/yyyy hh:mm tt "),
+                            Address = x.event_detail_address,
+                            data_tt_id = x.event_detail_key.ToString(),
+                            data_tt_parent_id = x.event_parent.ToString(),
+                        }).ToList();
+                        list.AddRange(childEvents);
+                    }
+                }
+                return PartialView("_EventListings", list);
+            };
+        }
+
 
 
     }

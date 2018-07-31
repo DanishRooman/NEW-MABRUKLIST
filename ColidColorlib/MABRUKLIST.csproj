@@ -273,6 +273,9 @@
     <Content Include="Content\fileinput.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\jquery-confirm.css" />
+    <Content Include="Content\jquery-treetable\jquery.treetable.css" />
+    <Content Include="Content\jquery-treetable\jquery.treetable.js" />
+    <Content Include="Content\jquery-treetable\jquery.treetable.theme.default.css" />
     <Content Include="Content\jquery.toast.min.css" />
     <Content Include="Content\lang\summernote-ar-AR.js" />
     <Content Include="Content\lang\summernote-bg-BG.js" />
@@ -484,6 +487,7 @@
     <Content Include="Project Scripts\Category\Category.js" />
     <Content Include="Project Scripts\Congregation\Congregation.js" />
     <Content Include="Project Scripts\Event\Event.js" />
+    <Content Include="Project Scripts\Event\EventListing.js" />
     <Content Include="Project Scripts\Group\Group.js" />
     <Content Include="Project Scripts\Invitation\Invitation.js" />
     <Content Include="Project Scripts\Neighbourhood\Neighbourhood.js" />
@@ -718,6 +722,7 @@
     <Content Include="Views\Events\_SetColors.cshtml" />
     <Content Include="Views\Events\_SubEventListing.cshtml" />
     <Content Include="Views\Events\_GetSubject.cshtml" />
+    <Content Include="Views\Events\_EventListings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
