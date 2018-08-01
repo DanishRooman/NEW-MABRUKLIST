@@ -58,6 +58,7 @@
     <Compile Include="Congregation\CongregationDTO.cs" />
     <Compile Include="Event\EventDTO.cs" />
     <Compile Include="Event\EventGuests.cs" />
+    <Compile Include="Event\EventListingDTO.cs" />
     <Compile Include="Event\EventSubjectDTO.cs" />
     <Compile Include="Event\SubEventDTO.cs" />
     <Compile Include="Group\GroupDTO.cs" />

@@ -120,6 +120,10 @@ namespace ColidColorlib
                "~/Project Scripts/Event/Event.js"
                ));
 
+            bundles.Add(new ScriptBundle("~/Script/EventListing").Include(
+              "~/Project Scripts/Event/EventListing.js"
+              ));
+
             bundles.Add(new ScriptBundle("~/Script/steps").Include(
                     "~/Scripts/StepProcess.js"
                ));

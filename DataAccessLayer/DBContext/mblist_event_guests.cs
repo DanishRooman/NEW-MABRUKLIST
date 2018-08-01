@@ -17,6 +17,9 @@ namespace DataAccessLayer.DBContext
         public int guest_key { get; set; }
         public int guest_event_key { get; set; }
         public string guest_user_key { get; set; }
+        public bool guest_stand_by { get; set; }
+        public bool guest_invitation_sent { get; set; }
+        public bool guest_reminder_sent { get; set; }
     
         public virtual mblist_events_detail mblist_events_detail { get; set; }
     }

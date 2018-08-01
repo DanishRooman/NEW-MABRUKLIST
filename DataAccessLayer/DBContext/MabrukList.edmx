@@ -102,6 +102,9 @@
           <Property Name="guest_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="guest_event_key" Type="int" Nullable="false" />
           <Property Name="guest_user_key" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="guest_stand_by" Type="bit" Nullable="false" />
+          <Property Name="guest_invitation_sent" Type="bit" Nullable="false" />
+          <Property Name="guest_reminder_sent" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="mblist_events_detail">
           <Key>
@@ -708,6 +711,9 @@
           <Property Name="guest_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="guest_event_key" Type="Int32" Nullable="false" />
           <Property Name="guest_user_key" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="guest_stand_by" Type="Boolean" Nullable="false" />
+          <Property Name="guest_invitation_sent" Type="Boolean" Nullable="false" />
+          <Property Name="guest_reminder_sent" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="mblist_events_detail" Relationship="MABRUKLISTModel.FK_mblist_event_guests_mblist_events_detail" FromRole="mblist_event_guests" ToRole="mblist_events_detail" />
         </EntityType>
         <EntityType Name="mblist_events_detail">
@@ -1129,6 +1135,9 @@
           <EntitySetMapping Name="mblist_event_guests">
             <EntityTypeMapping TypeName="MABRUKLISTModel.mblist_event_guests">
               <MappingFragment StoreEntitySet="mblist_event_guests">
+                <ScalarProperty Name="guest_reminder_sent" ColumnName="guest_reminder_sent" />
+                <ScalarProperty Name="guest_invitation_sent" ColumnName="guest_invitation_sent" />
+                <ScalarProperty Name="guest_stand_by" ColumnName="guest_stand_by" />
                 <ScalarProperty Name="guest_user_key" ColumnName="guest_user_key" />
                 <ScalarProperty Name="guest_event_key" ColumnName="guest_event_key" />
                 <ScalarProperty Name="guest_key" ColumnName="guest_key" />

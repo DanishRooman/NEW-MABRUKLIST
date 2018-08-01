@@ -205,6 +205,13 @@
             });
         }
     };
+    var handlepreviousbutton = function () {
+        debugger
+        $("#previousstep").click();
+    };
+
+
+
 
     var handleCreateSubEvent = function (result) {
         if (result.key) {
@@ -473,7 +480,7 @@
                             icon: 'success'
                         });
                         handleSetInvitation(eventId);
-                        
+
                     }
                     else {
                         $.toast({
@@ -572,6 +579,10 @@
         },
         initSubjectUpdated: function (data) {
             handleSubjectUpdated(data);
+        },
+        initpreviousbutton: function () {
+
+            handlepreviousbutton();
         },
     };
 }();
