@@ -205,6 +205,13 @@
             });
         }
     };
+    var handlepreviousbutton = function () {
+        debugger
+        $("#previousstep").click();
+    };
+
+
+
 
     var handleCreateSubEvent = function (result) {
         if (result.key) {
@@ -576,6 +583,10 @@
         },
         initSubjectUpdated: function (data) {
             handleSubjectUpdated(data);
+        },
+        initpreviousbutton: function () {
+
+            handlepreviousbutton();
         },
         initStandBy: function ($this) {
             handleStandBy($this);
