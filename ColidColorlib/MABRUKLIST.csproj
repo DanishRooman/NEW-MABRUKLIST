@@ -277,6 +277,8 @@
     <Content Include="Content\datetimepicker.css" />
     <Content Include="Content\fileinput.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\image\close.png" />
+    <Content Include="Content\image\close1.png" />
     <Content Include="Content\jquery-confirm.css" />
     <Content Include="Content\jquery-treetable\jquery.treetable.css" />
     <Content Include="Content\jquery-treetable\jquery.treetable.js" />
