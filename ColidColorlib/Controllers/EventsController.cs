@@ -275,7 +275,7 @@ namespace ColidColorlib.Controllers
                     var events = dbcontext.mblist_events_detail.Find(eventId);
                     if (events != null)
                     {
-                        var guests = dbcontext.mblist_event_guests.Where(x => x.guest_event_key == eventId);
+                        var guests = dbcontext.mblist_event_guests.Where(x => x.guest_event_key == eventId && x.guest_stand_by != true);
                         if (guests.Any())
                         {
                             foreach (var guest in guests)
@@ -430,8 +430,8 @@ namespace ColidColorlib.Controllers
                     {
                         Id = dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault() != null ? (dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().usr_key) : 0,
                         Users = dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault() != null ? ((dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().mblist_title != null ? dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().mblist_title.title_name + " " : string.Empty) + dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().usr_first_name + " " + dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().usr_last_name) : string.Empty,
-                        Status = x.guest_stand_by == true ? "<h5><span class='label label-danger'>Stand by</span></h5>" : "<h5><span class='label label-success'>Active</span></h5>",
-                        Action = (x.guest_stand_by == true ? ("<button type='button' class='btn btn-primary' data-id='"+ x.guest_key + "' data-type = 'false' onclick='Event.initStandBy(this)'><i class='fas fa-link'></i> Active </button>") : ("<button type='button' class='btn btn-success' data-id='" + x.guest_key + "' data-type = 'true' onclick='Event.initStandBy(this)'><i class='fa fa-check'></i>Stand By </button>")) + "&nbsp;" + "<button type='button' class='btn btn-danger' onclick='Event.initRemoveContact(" + x.guest_key + ")'><i class='fa fa-close'></i> Remove Contact </button>"
+                        Status = x.guest_stand_by == true ? "<h4><span class='label label-danger'>Stand by</span></h4>" : "<h4><span class='label label-success'>Active</span></h4>",
+                        Action = (x.guest_stand_by == true ? ("<button type='button' class='btn btn-primary' data-id='" + x.guest_key + "' data-type = 'false' onclick='Event.initStandBy(this)'><i class='fa fa-link'></i> Active </button>") : ("<button type='button' class='btn btn-success' data-id='" + x.guest_key + "' data-type = 'true' onclick='Event.initStandBy(this)'><i class='fa fa-check'></i>Stand By </button>")) + "&nbsp;" + "<button type='button' class='btn btn-danger' onclick='Event.initRemoveContact(" + x.guest_key + ")'><i class='fa fa-close'></i> Remove Contact </button>"
                     }).ToList();
                 }
 
@@ -607,8 +607,8 @@ namespace ColidColorlib.Controllers
                             Title = eventt.event_detail_title,
                             Date = eventt.event_detail_date.ToString("dd/MMM/yyyy hh:mm tt "),
                             Address = eventt.event_detail_address,
-                            Invited = guests.Any() ? guests.Count() : 0,
-                            standby = guests.Any() ? (guests.Where(w => w.guest_stand_by == true).Any() ? guests.Where(w => w.guest_stand_by == true).Count() : 0) : 0,
+                            Invited = guests.Any() ? guests.Count().ToString() : "0",
+                            standby = guests.Any() ? (guests.Where(w => w.guest_stand_by == true).Any() ? guests.Where(w => w.guest_stand_by == true).Count().ToString() : "0") : "0",
                             data_tt_id = eventt.event_detail_key.ToString(),
                             data_tt_parent_id = string.Empty,
                         });
@@ -633,6 +633,32 @@ namespace ColidColorlib.Controllers
         public ActionResult Calender()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult SetStandBy(int guestKey, bool standby)
+        {
+            try
+            {
+                using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                {
+                    var guest = dbcontext.mblist_event_guests.Find(guestKey);
+                    if (guest != null)
+                    {
+                        guest.guest_stand_by = standby;
+                        dbcontext.SaveChanges();
+                        return Json(new { key = true, value = "Status updated successfully" }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { key = false, value = "Guest not found" }, JsonRequestBehavior.AllowGet);
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                return Json(new { key = false, value = "Unable to process your request.Please contact your admin" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult setCalenderEvents()
