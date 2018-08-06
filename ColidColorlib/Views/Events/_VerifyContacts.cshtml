@@ -11,6 +11,9 @@
                     @Html.DisplayNameFor(model => model.Users)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Action)
                 </th>
 
@@ -27,8 +30,10 @@
                     @Html.DisplayFor(modelItem => item.Users)
                 </td>
                 <td>
-                    @Html.Raw(item.Action) @*@Html.DisplayFor(modelItem => item.Action)*@
-                    
+                    @Html.Raw(item.Status)
+                </td>
+                <td>
+                    @Html.Raw(item.Action) 
                 </td>
 
             </tr>

@@ -258,6 +258,11 @@
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\calender\fullcalendar.css" />
+    <Content Include="Content\calender\fullcalendar.js" />
+    <Content Include="Content\calender\fullcalendar.print.css" />
+    <Content Include="Content\calender\jquery.min.js" />
+    <Content Include="Content\calender\moment.min.js" />
     <Content Include="Content\color-picker\css\bootstrap-colorpicker.css" />
     <Content Include="Content\color-picker\css\bootstrap-colorpicker.min.css" />
     <Content Include="Content\color-picker\img\bootstrap-colorpicker\alpha-horizontal.png" />
@@ -723,6 +728,7 @@
     <Content Include="Views\Events\_SubEventListing.cshtml" />
     <Content Include="Views\Events\_GetSubject.cshtml" />
     <Content Include="Views\Events\_EventListings.cshtml" />
+    <Content Include="Views\Events\Calender.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

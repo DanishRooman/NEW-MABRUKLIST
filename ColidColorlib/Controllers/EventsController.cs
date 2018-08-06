@@ -75,7 +75,10 @@ namespace ColidColorlib.Controllers
                                 mblist_event_guests gst = new mblist_event_guests()
                                 {
                                     guest_user_key = guest.userId,
-                                    guest_event_key = Convert.ToInt32(guest.EventId)
+                                    guest_event_key = Convert.ToInt32(guest.EventId),
+                                    guest_stand_by = false,
+                                    guest_invitation_sent = false,
+                                    guest_reminder_sent = false,
                                 };
                                 dbcontex.mblist_event_guests.Add(gst);
                                 dbcontex.SaveChanges();
@@ -427,7 +430,8 @@ namespace ColidColorlib.Controllers
                     {
                         Id = dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault() != null ? (dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().usr_key) : 0,
                         Users = dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault() != null ? ((dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().mblist_title != null ? dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().mblist_title.title_name + " " : string.Empty) + dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().usr_first_name + " " + dbcontext.mblist_user_info.Where(w => w.AspNetUsers.Id == x.guest_user_key).FirstOrDefault().usr_last_name) : string.Empty,
-                        Action = "<button type='button' class='btn btn-danger' onclick='Event.initRemoveContact(" + x.guest_key + ")'><i class='fa fa-close'></i> Remove Contact </button>"
+                        Status = x.guest_stand_by == true ? "<h5><span class='label label-danger'>Stand by</span></h5>" : "<h5><span class='label label-success'>Active</span></h5>",
+                        Action = (x.guest_stand_by == true ? ("<button type='button' class='btn btn-primary' data-id='"+ x.guest_key + "' data-type = 'false' onclick='Event.initStandBy(this)'><i class='fas fa-link'></i> Active </button>") : ("<button type='button' class='btn btn-success' data-id='" + x.guest_key + "' data-type = 'true' onclick='Event.initStandBy(this)'><i class='fa fa-check'></i>Stand By </button>")) + "&nbsp;" + "<button type='button' class='btn btn-danger' onclick='Event.initRemoveContact(" + x.guest_key + ")'><i class='fa fa-close'></i> Remove Contact </button>"
                     }).ToList();
                 }
 
@@ -608,7 +612,8 @@ namespace ColidColorlib.Controllers
                             data_tt_id = eventt.event_detail_key.ToString(),
                             data_tt_parent_id = string.Empty,
                         });
-                        var childEvents = dbcontext.mblist_events_detail.Where(x => x.event_parent != null && x.event_parent == eventt.event_detail_key).AsEnumerable().Select(x => new EventListingDTO {
+                        var childEvents = dbcontext.mblist_events_detail.Where(x => x.event_parent != null && x.event_parent == eventt.event_detail_key).AsEnumerable().Select(x => new EventListingDTO
+                        {
                             id = x.event_detail_key,
                             Category = x.mblist_category.cat_name,
                             Type = x.mblist_type.type_name,
@@ -623,6 +628,26 @@ namespace ColidColorlib.Controllers
                 }
                 return PartialView("_EventListings", list);
             };
+        }
+
+        public ActionResult Calender()
+        {
+            return View();
+        }
+
+        public ActionResult setCalenderEvents()
+        {
+            List<EventCalenderDto> list = new List<EventCalenderDto>();
+            using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+            {
+                list = dbcontext.mblist_events_detail.Where(x => x.event_parent == null).AsEnumerable().Select(x => new EventCalenderDto
+                {
+                    title = x.event_detail_title,
+                    start = x.event_detail_date.ToString("yyyy-MM-ddThh:mm:ss"),
+                    url = "https://www.google.com",
+                }).ToList();
+            };
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
 

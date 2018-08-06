@@ -526,7 +526,11 @@
             });
         }
     };
-
+    var handleStandBy = function ($this) {
+        debugger
+        var guest = $($this).attr("data-id");
+        var standby = $($this).attr("data-type");
+    };
     return {
         initRenderContact: function () {
             handleRenderContact();
@@ -572,6 +576,9 @@
         },
         initSubjectUpdated: function (data) {
             handleSubjectUpdated(data);
+        },
+        initStandBy: function ($this) {
+            handleStandBy($this);
         },
     };
 }();
