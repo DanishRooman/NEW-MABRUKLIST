@@ -91,6 +91,7 @@
             success: function (result) {
                 $('#step-3').empty();
                 $('#step-3').html(result);
+               
             },
             error: function () {
                 console.log("Error");
@@ -205,10 +206,24 @@
             });
         }
     };
-    var handlepreviousbutton = function () {
-        debugger
+
+
+    
+    var CreateVerifyContacts = function () {
+        $("#linkStep_4").click();
+    };
+    var handlepreviousContacts = function () {
+      
         $("#previousstep").click();
     };
+    var handlepreviousVerifyContacts = function () {
+        $("#linkStep_2").click();
+    };
+    var handlepreviousSubEvents = function () {
+        $("#linkStep_3").click();
+    };
+
+
 
 
 
@@ -544,6 +559,9 @@
         initChooseContacts: function () {
             handleChooseContacts();
         },
+        initVerifyContacts: function () {
+            CreateVerifyContacts();
+        },
         initCreateEvent: function (data) {
             handleCreateEvent(data);
         },
@@ -580,9 +598,14 @@
         initSubjectUpdated: function (data) {
             handleSubjectUpdated(data);
         },
-        initpreviousbutton: function () {
-
-            handlepreviousbutton();
+        initpreviousContacts: function () {
+            handlepreviousContacts();
+        },
+        initpreviousVerifyContacts: function () {
+            handlepreviousVerifyContacts();
+        },
+        initpreviousSubEvents: function () {
+            handlepreviousSubEvents();
         },
     };
 }();
