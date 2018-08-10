@@ -10,6 +10,7 @@ namespace DataTransferObjects.Users
     {
         public int Id { get; set; }
         public string Users { get; set; }
+        public string Status { get; set; }
         public string Action { get; set; }
     }
 }

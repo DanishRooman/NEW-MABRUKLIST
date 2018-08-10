@@ -23,9 +23,9 @@ namespace DataTransferObjects.Event
         public string Date { get; set; }
         public string Address { get; set; }
         [Display(Name = "Guests Invited")]
-        public int Invited { get; set; }
+        public string Invited { get; set; }
         [Display(Name = "Guests Standby")]
-        public int standby { get; set; }
+        public string standby { get; set; }
         public string data_tt_id { get; set; }
         public string data_tt_parent_id { get; set; }
     }

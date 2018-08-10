@@ -59,7 +59,7 @@ namespace ColidColorlib
                 "~/Content/responsive.bootstrap.min.css"
                 ));
 
-            bundles.Add(new StyleBundle("~/Contents/lightbox").Include(
+            bundles.Add(new StyleBundle("~/Content/lightbox").Include(
               "~/Content/lightbox/css/style.css"
                ));
 

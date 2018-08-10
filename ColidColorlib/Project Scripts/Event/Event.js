@@ -216,6 +216,11 @@
       
         $("#previousstep").click();
     };
+
+    var handlepreviousbutton = function () {
+        $("#linkStep_1").click();
+    };
+
     var handlepreviousVerifyContacts = function () {
         $("#linkStep_2").click();
     };
@@ -548,7 +553,42 @@
             });
         }
     };
-
+    var handleStandBy = function ($this) {
+        debugger
+        var guest = $($this).attr("data-id");
+        var standby = $($this).attr("data-type");
+        $.ajax({
+            url: '/Events/SetStandBy',
+            type: 'post',
+            dataType: 'json',
+            data: { "guestKey": guest, "standby": standby },
+            success: function (result) {
+                if (result.key) {
+                    $.toast({
+                        heading: 'Success',
+                        text: result.value,
+                        showHideTransition: 'slide',
+                        icon: 'success'
+                    });
+                    var eventId = $(".txtEventId").val();
+                    if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
+                        handleVerifyContacts(eventId);
+                    }
+                }
+                else {
+                    $.toast({
+                        heading: 'Error',
+                        text: "Please create an event",
+                        showHideTransition: 'fade',
+                        icon: 'error'
+                    });
+                }
+            },
+            error: function () {
+                console.log("Error");
+            }
+        });
+    };
     return {
         initRenderContact: function () {
             handleRenderContact();
@@ -598,14 +638,12 @@
         initSubjectUpdated: function (data) {
             handleSubjectUpdated(data);
         },
-        initpreviousContacts: function () {
-            handlepreviousContacts();
+        initpreviousbutton: function () {
+
+            handlepreviousbutton();
         },
-        initpreviousVerifyContacts: function () {
-            handlepreviousVerifyContacts();
-        },
-        initpreviousSubEvents: function () {
-            handlepreviousSubEvents();
+        initStandBy: function ($this) {
+            handleStandBy($this);
         },
     };
 }();
