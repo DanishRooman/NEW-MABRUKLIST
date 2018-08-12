@@ -91,7 +91,7 @@
             success: function (result) {
                 $('#step-3').empty();
                 $('#step-3').html(result);
-               
+
             },
             error: function () {
                 console.log("Error");
@@ -208,12 +208,12 @@
     };
 
 
-    
+
     var CreateVerifyContacts = function () {
         $("#linkStep_4").click();
     };
     var handlepreviousContacts = function () {
-      
+
         $("#previousstep").click();
     };
 
@@ -526,6 +526,7 @@
         }
     };
 
+
     var handleUpdateSubject = function () {
         var eventId = $(".txtEventId").val();
         if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
@@ -589,6 +590,21 @@
             }
         });
     };
+    var handleEventAddUpdate = function (status) {
+        debugger
+        if (status == "Update") {
+            var eventId = $(".txtEventId").val();
+            if (eventId != 0 && eventId != "" && eventId != "0" && eventId != undefined && eventId != null) {
+                handleSetInvitation(eventId);
+                handleVerifyContacts(eventId);
+                handleSubEventListing();
+            }
+        }
+        else
+            if (status == "Add") {
+                //do nothing
+            }
+    };
     return {
         initRenderContact: function () {
             handleRenderContact();
@@ -644,6 +660,9 @@
         },
         initStandBy: function ($this) {
             handleStandBy($this);
+        },
+        initEventAddUpdate: function (status) {
+            handleEventAddUpdate(status);
         },
     };
 }();

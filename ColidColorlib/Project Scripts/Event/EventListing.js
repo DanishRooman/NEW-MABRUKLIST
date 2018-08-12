@@ -14,10 +14,12 @@
             }
         });
     };
+
     return {
         initEventListing: function () {
             handleEventListing();
         },
+
     };
 }();
 

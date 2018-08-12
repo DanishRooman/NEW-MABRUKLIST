@@ -15,7 +15,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4>Add Events</h4>
-                    <input type="hidden" value="0" class="txtEventId" />
+                    <input type="hidden" value="@ViewBag.eventKeys" class="txtEventId" />
                 </div>
                 <div class="panel-body">
                     <br />
@@ -221,7 +221,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12" style="text-align:right;">
                                                         <button type="button" class="btn btn-success" onclick="Event.initpreviousSubEvents();">Previous</button>
-                                                      
+
                                                         <input type="submit" value="Save" class="btn btn-primary" />
                                                     </div>
                                                 </div>
@@ -287,6 +287,7 @@
             height: 200
         });
         $('.datepicker ').datetimepicker();
+        Event.initEventAddUpdate('@ViewBag.eventStatus');
     });
 </script>
 

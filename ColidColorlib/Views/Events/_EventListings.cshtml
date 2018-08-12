@@ -66,13 +66,13 @@
                             </td>
 
                             <td class="text-center">
-                                <a href="javascript:void(0);" title="Toggle Event" onclick="Event.initToggleEvent('@item.id');"><i class="fa fa-ban"></i></a> |
-                                <a href="javascript:void(0);" title="Delete Event" onclick="Event.initDeleteEvent('@item.id');"><i class="fa fa-trash" aria-hidden="true"></i></a> |
-                                <a href="javascript:void(0);" title="Edit Event" onclick="Event.initEditEvent('@item.id');"><i class="fa fa-pencil" aria-hidden="true"></i></a> |
-                                <a href="javascript:void(0);" title="Add Sub Event" onclick="Event.initAddSubEvent('@item.id');"><i class="fa fa-plus" aria-hidden="true"></i></a> |
-                                <a href="javascript:void(0);" title="Clone Event" onclick="Event.initCloneEvent('@item.id');"><i class="fa fa-clone"></i></a> |
-                                <a href="javascript:void(0);" title="Export Event PDF" onclick="Event.initPdfExportEvent('@item.id');"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a> |
-                                <a href="javascript:void(0);" title="Export Event Excel" onclick="Event.initExcelExportEvent('@item.id');"><i class="fa fa-file-excel-o" aria-hidden="true"></i></a>
+                                <a href="javascript:void(0);" title="Toggle Event" onclick="EventListing.initToggleEvent('@item.id');"><i class="fa fa-ban"></i></a> |
+                                <a href="javascript:void(0);" title="Delete Event" onclick="EventListing.initDeleteEvent('@item.id');"><i class="fa fa-trash" aria-hidden="true"></i></a> |
+                                <a href="/Events/UpdateEvent?eventkey=@item.id"  title="Edit Event"><i class="fa fa-pencil" aria-hidden="true"></i></a> |
+                                <a href="javascript:void(0);" title="Add Sub Event" onclick="EventListing.initAddSubEvent('@item.id');"><i class="fa fa-plus" aria-hidden="true"></i></a> |
+                                <a href="javascript:void(0);" title="Clone Event" onclick="EventListing.initCloneEvent('@item.id');"><i class="fa fa-clone"></i></a> |
+                                <a href="javascript:void(0);" title="Export Event PDF" onclick="EventListing.initPdfExportEvent('@item.id');"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a> |
+                                <a href="javascript:void(0);" title="Export Event Excel" onclick="EventListing.initExcelExportEvent('@item.id');"><i class="fa fa-file-excel-o" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     }

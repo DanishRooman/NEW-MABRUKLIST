@@ -31,6 +31,8 @@ namespace ColidColorlib.Controllers
         }
         public ActionResult AddEvent()
         {
+            ViewBag.eventKeys = 0;
+            ViewBag.eventStatus = "Add";
             EventDTO evnt = new EventDTO();
             using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
             {
@@ -50,8 +52,47 @@ namespace ColidColorlib.Controllers
 
                 }).ToList();
             };
-            return PartialView("_AddEvent", evnt);
+            return View("_AddEvent", evnt);
         }
+
+
+        public ActionResult UpdateEvent(int eventkey)
+        {
+            ViewBag.eventKeys = eventkey;
+            ViewBag.eventStatus = "Update";
+            EventDTO evnt = new EventDTO();
+            using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+            {
+                var events = dbcontext.mblist_events_detail.Find(eventkey);
+                if (events != null)
+                {
+                    evnt.id = events.event_detail_key;
+                    evnt.Category = events.event_detail_category_key;
+                    evnt.EventFor = events.event_detail_type_key;
+                    evnt.Title = events.event_detail_title;
+                    evnt.Date = events.event_detail_date.ToString("MM/dd/yyyy hh:mm tt");
+                    evnt.Address = events.event_detail_address;
+                    evnt.Comment = events.event_detail_discription;
+                }
+                //Category
+                evnt.eventCategoryList = dbcontext.mblist_category.AsEnumerable().Select(x => new CategoryDto
+                {
+                    Id = x.cat_key,
+                    Category = x.cat_name
+                }).ToList();
+
+                //Types
+                evnt.eventTypesList = dbcontext.mblist_type.AsEnumerable().Select(x => new TypeDto
+                {
+
+                    id = x.type_key,
+                    Type = x.type_name
+
+                }).ToList();
+            };
+            return View("_AddEvent", evnt);
+        }
+
 
         [HttpPost]
         public ActionResult AddGuests(List<EventGuests> guests)
