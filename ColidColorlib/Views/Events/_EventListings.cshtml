@@ -5,67 +5,80 @@
 
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-bordered table-hover table-bordered" id="tblEventsListing">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Title)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Date)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Category)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Type)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Address)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Invited)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.standby)
-                    </th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr data-tt-id="@item.data_tt_id" data-tt-parent-id="@item.data_tt_parent_id">
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Date)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Category)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Type)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Address)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Invited)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.standby)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                        </td>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-bordered" id="tblEventsListing">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Category)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Type)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Invited)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.standby)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.status)
+                        </th>
+                        <th>Action</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr data-tt-id="@item.data_tt_id" data-tt-parent-id="@item.data_tt_parent_id">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Invited)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.standby)
+                            </td>
+                            <td>
+                                @Html.Raw(item.status)
+                            </td>
+
+                            <td class="text-center">
+                                <a href="javascript:void(0);" title="Toggle Event" onclick="Event.initToggleEvent('@item.id');"><i class="fa fa-ban"></i></a> |
+                                <a href="javascript:void(0);" title="Delete Event" onclick="Event.initDeleteEvent('@item.id');"><i class="fa fa-trash" aria-hidden="true"></i></a> |
+                                <a href="javascript:void(0);" title="Edit Event" onclick="Event.initEditEvent('@item.id');"><i class="fa fa-pencil" aria-hidden="true"></i></a> |
+                                <a href="javascript:void(0);" title="Add Sub Event" onclick="Event.initAddSubEvent('@item.id');"><i class="fa fa-plus" aria-hidden="true"></i></a> |
+                                <a href="javascript:void(0);" title="Clone Event" onclick="Event.initCloneEvent('@item.id');"><i class="fa fa-clone"></i></a> |
+                                <a href="javascript:void(0);" title="Export Event PDF" onclick="Event.initPdfExportEvent('@item.id');"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a> |
+                                <a href="javascript:void(0);" title="Export Event Excel" onclick="Event.initExcelExportEvent('@item.id');"><i class="fa fa-file-excel-o" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -74,12 +87,12 @@
     $(function () {
         $("#tblEventsListing").treetable({ expandable: true });
         $('#tblEventsListing').DataTable({
-            destroy:true,
+            destroy: true,
             aaSorting: [],
             "ordering": false,
             "bSort": false,
             "bSortable": false,
-            "orderable": false
+            "orderable": false,
         });
     });
 </script>

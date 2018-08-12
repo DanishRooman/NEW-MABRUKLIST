@@ -24,7 +24,8 @@ namespace ColidColorlib
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css"
+                      "~/Content/bootstrap.css",
+                      "~/Content/scroll.css"
                    ));
             bundles.Add(new StyleBundle("~/Content/main").Include(
            "~/StyleSheet/normalize.css",
@@ -51,7 +52,8 @@ namespace ColidColorlib
                    "~/Content/jquery-confirm.css",
                    "~/Content/select2.min.css",
                     "~/Content/components.css",
-                    "~/Content/UserProfile.css"
+                    "~/Content/UserProfile.css",
+                    "~/Content/scroll.css"
                  ));
 
             bundles.Add(new StyleBundle("~/Contents/Datatables_Styles").Include(

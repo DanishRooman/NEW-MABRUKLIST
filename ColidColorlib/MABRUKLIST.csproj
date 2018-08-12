@@ -335,6 +335,7 @@
     <Content Include="Content\plugin\hello\summernote-ext-hello.js" />
     <Content Include="Content\plugin\specialchars\summernote-ext-specialchars.js" />
     <Content Include="Content\responsive.bootstrap.min.css" />
+    <Content Include="Content\scroll.css" />
     <Content Include="Content\select2.min.css" />
     <Content Include="Content\stepProcess.css" />
     <Content Include="Content\summernote-bs4.css" />

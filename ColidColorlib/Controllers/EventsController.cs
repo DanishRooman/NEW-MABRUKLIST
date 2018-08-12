@@ -609,6 +609,7 @@ namespace ColidColorlib.Controllers
                             Address = eventt.event_detail_address,
                             Invited = guests.Any() ? guests.Count().ToString() : "0",
                             standby = guests.Any() ? (guests.Where(w => w.guest_stand_by == true).Any() ? guests.Where(w => w.guest_stand_by == true).Count().ToString() : "0") : "0",
+                            status = eventt.event_is_active == true ? "<h4><span class='label label-success'>Active</span></h4>" : "<h4><span class='label label-danger'>In active</span></h4>",
                             data_tt_id = eventt.event_detail_key.ToString(),
                             data_tt_parent_id = string.Empty,
                         });
@@ -674,6 +675,29 @@ namespace ColidColorlib.Controllers
                 }).ToList();
             };
             return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult SetEventInactive(int Eventkey, bool status)
+        {
+            try
+            {
+                using (MABRUKLISTEntities dbcontext = new MABRUKLISTEntities())
+                {
+                    var eventt = dbcontext.mblist_events_detail.Find(Eventkey);
+                    if (eventt != null)
+                    {
+                        eventt.event_is_active = status;
+                        dbcontext.SaveChanges();
+                        return Json(new { key = true, value = "Event Status updated successfully" }, JsonRequestBehavior.AllowGet);
+                    }
+                    return Json(new { key = true, value = "Event not found" }, JsonRequestBehavior.AllowGet);
+                };
+            }
+            catch (Exception ex)
+            {
+                return Json(new { key = false, value = "Unable to process your request.Please contact your admin" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
 

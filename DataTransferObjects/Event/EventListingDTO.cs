@@ -26,6 +26,10 @@ namespace DataTransferObjects.Event
         public string Invited { get; set; }
         [Display(Name = "Guests Standby")]
         public string standby { get; set; }
+
+        [Display(Name = "Status")]
+        public string status { get; set; }
+
         public string data_tt_id { get; set; }
         public string data_tt_parent_id { get; set; }
     }

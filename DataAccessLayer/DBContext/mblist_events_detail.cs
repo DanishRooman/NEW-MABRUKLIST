@@ -34,6 +34,7 @@ namespace DataAccessLayer.DBContext
         public string event_subject { get; set; }
         public string event_subject_color { get; set; }
         public string event_font_color { get; set; }
+        public bool event_is_active { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual mblist_category mblist_category { get; set; }
