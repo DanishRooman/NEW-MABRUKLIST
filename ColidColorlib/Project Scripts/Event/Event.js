@@ -65,6 +65,7 @@
     };
 
     var handleInvitationTemplates = function () {
+
         $.ajax({
             url: '/Events/InvitationTemplates',
             type: 'GET',
@@ -206,7 +207,6 @@
             });
         }
     };
-
 
 
     var CreateVerifyContacts = function () {

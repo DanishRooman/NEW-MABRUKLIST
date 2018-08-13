@@ -211,6 +211,7 @@ namespace ColidColorlib.Controllers
                     ViewBag.Address = events.event_detail_address;
                     ViewBag.type = dbcontaxt.mblist_type.Find(events.event_detail_type_key) != null ? dbcontaxt.mblist_type.Find(events.event_detail_type_key).type_name : string.Empty;
                     ViewBag.fontcolor = events.event_font_color;
+                    ViewBag.subject = events.event_subject;
                     ViewBag.subjectcolor = events.event_subject_color;
                     dbcontaxt.SaveChanges();
                 }
